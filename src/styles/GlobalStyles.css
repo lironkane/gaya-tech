@@ -1,0 +1,300 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+html {
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+/* Animations */
+@keyframes slideUp {
+  0% { 
+    transform: translateY(30px); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  0% { 
+    transform: scale(0.9); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+}
+
+/* Animation Classes */
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  opacity: 0;
+  animation: scaleIn 0.8s ease-out forwards;
+}
+
+/* Animation Delays */
+.delay-200 { animation-delay: 200ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-600 { animation-delay: 600ms; }
+
+/* Custom Utility Classes */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .transition-gpu {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
+/* Add these keyframes to your CSS */
+@keyframes sparkle-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0; }
+  25% { transform: translate(-10px, -10px) scale(1.5); opacity: 1; }
+  50% { transform: translate(10px, -20px) scale(0.5); opacity: 0; }
+}
+
+@keyframes sparkle-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0; }
+  25% { transform: translate(10px, -15px) scale(2); opacity: 1; }
+  50% { transform: translate(-5px, -25px) scale(0.5); opacity: 0; }
+}
+
+@keyframes sparkle-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0; }
+  25% { transform: translate(-15px, -5px) scale(1.5); opacity: 1; }
+  50% { transform: translate(5px, -15px) scale(0.5); opacity: 0; }
+}
+
+.animate-sparkle-1 {
+  animation: sparkle-1 2s ease-in-out infinite;
+}
+
+.animate-sparkle-2 {
+  animation: sparkle-2 2s ease-in-out infinite 0.3s;
+}
+
+.animate-sparkle-3 {
+  animation: sparkle-3 2s ease-in-out infinite 0.6s;
+}
+
+/* אפקט טקסט זוהר */
+.glow-text {
+  text-shadow: 0 0 3px #fff, 0 0 6px #a29898, 0 0 9px #fff, 0 0 12px #007bff,
+    0 0 21px #007bff, 0 0 24px #007bff, 0 0 30px #007bff;
+}
+
+/* אנימציית הקלדה */
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 40 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0; /* Start with full width */
+  }
+  to {
+    width: 100%; /* End with zero width */
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange; 
+  }
+}
+
+/* חלקיקים מרחפים */
+.particle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  animation: particle-animation 5s linear infinite;
+}
+
+.particle:nth-child(1) {
+  top: 20%;
+  left: 30%;
+  animation-delay: 1s;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.particle:nth-child(2) {
+  top: 80%;
+  left: 70%;
+  animation-delay: 2s;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.particle:nth-child(3) {
+  top: 50%;
+  left: 10%;
+  animation-delay: 3s;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
+                 0 0 30px rgba(255, 255, 255, 0.4),
+                 0 0 45px rgba(255, 255, 255, 0.2);
+  }
+}
+
+@keyframes particle-animation {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-200px) scale(1);
+    opacity: 0;
+  }
+}
+
+.screen {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.wrapper-3d {
+  position: relative;
+  perspective: 20vw;
+  transform-style: preserve-3d;
+}
+
+.fold {
+  overflow: hidden;
+  width: 60vw;
+  height: 80vh;
+}
+
+.fold-top {
+  position: absolute;
+  transform-origin: bottom center;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+}
+
+.fold-bottom {
+  position: absolute;
+  transform-origin: top center;
+  right: 0;
+  left: 0;
+  top: 100%;
+}
+
+.fold-align {
+  width: 100%;
+  height: 100%;
+}
+
+.fold-bottom .fold-align {
+  transform: translateY(-100%);
+}
+
+.fold-top .fold-align {
+  transform: translateY(100%);
+}
+
+.fold-bottom {
+  transform-origin: top center;
+  transform: rotateX(123deg);
+}
+
+.fold-top {
+  transform-origin: bottom center;
+  transform: rotateX(-123deg);
+}
+
+/* Image hover effects */
+.image-card {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-card:hover {
+  transform: scale(1.05);
+}
+
+/* Gradient overlays */
+.gradient-overlay {
+  background: linear-gradient(to bottom, 
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.7) 100%
+  );
+}
+
+/* הוסף את זה לקובץ ה-CSS הראשי שלך (לדוגמה, index.css) */
+.animate-gradient {
+  background-size: 400% 400%;
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 
+      0 0 15px rgba(255, 255, 255, 0.6),
+      0 0 30px rgba(255, 255, 255, 0.4),
+      0 0 45px rgba(255, 255, 255, 0.2),
+      0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@keyframes liquid-hover {
+  0%, 100% { 
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; 
+  } 
+  50% { 
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; 
+  }
+}
