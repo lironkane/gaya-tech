@@ -1,15 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const BackButton = () => {
+const BackButton = ({ handleBack }) => {
   return (
     <div className="mt-8 flex justify-center">
-      <Link
-        to="/blog"
+      <button
+        onClick={handleBack}
         className="bg-primary-dark hover:bg-primary-dark/80 text-white font-bold py-2 px-4 rounded-full transition duration-300"
       >
-        חזרה לבלוג
-      </Link>
+        חזרה
+      </button>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { Helmet } from 'react-helmet';
+import { motion } from 'framer-motion';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +34,12 @@ const ContactPage = () => {
   };
 
   return (
+    <motion.div
+    initial={{ opacity: 0, x: -20 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: 20 }}
+    transition={{ duration: 0.3 }}
+  >
     <>
       <Helmet>
         <title>צור קשר | גאיה-טק</title>
@@ -212,6 +219,8 @@ const ContactPage = () => {
         </div>
       </div>
     </>
+    </motion.div>
+
   );
 };
 

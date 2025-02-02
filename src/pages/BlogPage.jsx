@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const BlogPage = () => {
   const blogPosts = [
@@ -96,6 +97,12 @@ const BlogPage = () => {
   ];
 
   return (
+    <motion.div
+    initial={{ opacity: 0, x: -20 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: 20 }}
+    transition={{ duration: 0.3 }}
+  >
     <div className="bg-[#FFF8F0] py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold text-center text-[#124A36] mb-8">
@@ -140,6 +147,8 @@ const BlogPage = () => {
         </div>
       </div>
     </div>
+    </motion.div>
+
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Users, Target, Award, Lightbulb } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const AboutPage = () => {
   useEffect(() => {
@@ -54,6 +55,12 @@ const AboutPage = () => {
   ];
 
   return (
+    <motion.div
+    initial={{ opacity: 0, x: -20 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: 20 }}
+    transition={{ duration: 0.3 }}
+  >
     <div className="min-h-screen bg-[#FAF9F6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section - Cream Background */}
@@ -155,6 +162,7 @@ const AboutPage = () => {
         </section>
       </div>
     </div>
+    </motion.div>
   );
 };
 

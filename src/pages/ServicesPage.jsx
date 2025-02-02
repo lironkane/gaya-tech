@@ -1,5 +1,6 @@
 import React from 'react';
 import { Code, Globe, Users, LineChart, CheckCircle, HelpCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const ServicesPage = () => {
   const services = [
@@ -81,6 +82,12 @@ const ServicesPage = () => {
   ];
 
   return (
+    <motion.div
+    initial={{ opacity: 0, x: -20 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: 20 }}
+    transition={{ duration: 0.3 }}
+  >
     <div className="min-h-screen bg-[#FFF8F0]">
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-b from-[#124A36] to-[#2A6B52] text-white relative overflow-hidden">
@@ -176,6 +183,8 @@ const ServicesPage = () => {
         </div>
       </section>
     </div>
+    </motion.div>
+
   );
 };
 
