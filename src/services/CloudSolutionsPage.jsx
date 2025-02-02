@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Helmet } from 'react-helmet';
 
+
 const CloudSolutionsPage = () => {
   useEffect(() => {
     document.title = 'פתרונות ענן מתקדמים | גאיה-טק';
