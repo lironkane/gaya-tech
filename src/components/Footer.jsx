@@ -8,6 +8,8 @@ import {
   MapPin,
 } from 'lucide-react';
 import Logo from './Logos';
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <footer
@@ -34,14 +36,15 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 {[
-                  { name: 'שירותים', href: '/services' },
-                  { name: 'תיק עבודות', href: '#portfolio' },
-                  { name: 'אודות', href: '/about' },
-                  { name: 'בלוג', href: '/blog' },
+                  { name: 'שירותים', path: '/services' },
+                  { name: 'תיק עבודות', path: '/portfolio' },
+                  { name: 'אודות', path: '/about' },
+                  { name: 'בלוג', path: '/blog' },
+                  { name: 'צור קשר', path: '/contact' },
                 ].map((link) => (
                   <li key={link.name}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.path}
                       className="
                         inline-block
                         text-gray-600 hover:text-[#124A36]
@@ -51,7 +54,7 @@ const Footer = () => {
                       "
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
