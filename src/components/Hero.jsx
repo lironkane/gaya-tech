@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSpring, animated } from 'react-spring';
+import { Helmet } from 'react-helmet';
 import backgroundImage from "../assets/background/red3-background.jpg";
 import RotatingCubeButton from '../RotatingCubeButton';
 
@@ -8,24 +9,30 @@ const Hero = ({ isVisible }) => {
   const heroRef = useRef(null);
   const textRef = useRef(null);
 
+  // SEO Meta Data
+  const metaDescription = "פתרונות דיגיטליים מתקדמים - בניית אתרים מותאמים אישית, קידום אורגני מתקדם וליווי מקצועי לאורך כל הדרך";
+  const metaKeywords = "פתרונות דיגיטליים, בניית אתרים, קידום אורגני, פיתוח אתרים, עיצוב אתרים, קידום אתרים";
+
   useEffect(() => {
     if (textRef.current) {
       const textWidth = textRef.current.offsetWidth;
       textRef.current.style.animation = `typing 3.5s steps(${textWidth}, end), blink-caret 0.75s step-end infinite`;
     }
+
+    // טעינת תמונת הרקע מראש לשיפור ביצועים
+    const img = new Image();
+    img.src = backgroundImage;
   }, []);
 
-  // האזנה לאירוע גלילה
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // חישוב האטימות בזמן גלילה
   const calculateOpacity = () => {
     if (!heroRef.current) return 1;
     const heroHeight = heroRef.current.offsetHeight;
@@ -80,131 +87,106 @@ const Hero = ({ isVisible }) => {
   };
 
   return (
-    <animated.header 
-      ref={heroRef}
-      className="relative pt-24 overflow-hidden"
-      style={fadeProps}
-    >
-      {/* רקע תמונה */}
-      <animated.div
-        className="absolute inset-0 h-full w-full z-0"
-        style={{
-          ...backgroundProps,
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
+    <>
+      <Helmet>
+        <title>פתרונות דיגיטליים מתקדמים | גאיה-טק</title>
+        <meta name="description" content={metaDescription} />
+        <meta name="keywords" content={metaKeywords} />
+        <meta property="og:title" content="פתרונות דיגיטליים מתקדמים | גאיה-טק" />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:image" content={backgroundImage} />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href={window.location.href} />
+        <meta name="robots" content="index, follow" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "גאיה-טק",
+            "description": metaDescription,
+            "url": window.location.href,
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": `${window.location.origin}/search?q={search_term_string}`
+              },
+              "query-input": "required name=search_term_string"
+            }
+          })}
+        </script>
+      </Helmet>
 
-      {/* שכבת כיסוי עם אפקט הדרגתי */}
-      <div
-        className="
-          absolute inset-0
-          bg-gradient-to-br
-          from-gray-900/30
-          via-gray-800/20
-          to-transparent
-        "
-      />
+      <animated.header 
+        ref={heroRef}
+        className="relative pt-24 overflow-hidden"
+        style={fadeProps}
+        role="banner"
+        aria-label="פתרונות דיגיטליים מתקדמים"
+      >
+        {/* תמונת רקע עם טעינה מותנית */}
+        <animated.div
+          className="absolute inset-0 h-full w-full z-0"
+          style={{
+            ...backgroundProps,
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+          role="img"
+          aria-label="רקע דינמי"
+          loading="lazy"
+        />
 
-      {/* תוכן ה-Hero */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="text-right space-y-8">
-          {/* כותרת ראשית */}
-          <animated.h1
-  style={{ 
-    ...titleProps, 
-    ...textShadowAnimation,
-  }}
-  className={`
-    group
-    font-secular
-    font-black
-    leading-tight
-    tracking-wider
-    text-white
-    text-center 
-    text-5xl sm:text-6xl md:text-7xl lg:text-8xl
-    transition-all duration-700
-    cursor-pointer
-    drop-shadow-lg
-    hover:text-shadow-glow
-    relative
-    before:content-['']
-    before:absolute
-    before:inset-0
-    before:bg-gradient-to-b
-    before:from-transparent
-    before:to-white/10
-    before:opacity-0
-    hover:before:opacity-100
-    before:transition-opacity
-    before:duration-300
-    before:rounded-3xl
-    transform-gpu
-    hover:transform
-    hover:scale-[1.02]
-    active:scale-[0.98]
-    ${isVisible ? "opacity-100" : "opacity-0"}
-  `}
->
-  <span className="relative inline-block transform transition-transform duration-300 hover:scale-y-110 hover:scale-x-95">
-    פתרונות
-  </span>
-  <br />
-  <span className="relative inline-block transform transition-transform duration-300 hover:scale-y-110 hover:scale-x-95">
-    דיגיטליים
-  </span>
-</animated.h1>
-          {/* כותרת משנית */}
-          <animated.div
-            style={subtitleProps}
-            ref={textRef}
-            className={`
-              font-secular
-              drop-shadow-md
-              text-4xl sm:text-5xl
-              text-center
-              text-white
-              font-extrabold
-              transition-all duration-700
-              hover:text-shadow-glow
-              ${isVisible ? "opacity-100 delay-400" : "opacity-0"}
-              typewriter 
-            `}
-          >
-            שעובדים בשבילך
-          </animated.div>
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-gray-900/30 via-gray-800/20 to-transparent"
+          aria-hidden="true"
+        />
 
-          {/* תיאור */}
-          <animated.p 
-            style={descriptionProps}
-            className={`
-              font-amatic
-              text-lg sm:text-3xl
-              text-white
-              max-w-3xl
-              mx-auto
-              text-center 
-              transition-all duration-700
-              drop-shadow-sm
-              hover:text-shadow-glow
-              ${isVisible ? "opacity-100 delay-600" : "opacity-0"}
-              animate-fade-in
-            `}
-          >
-            בניית אתרים מותאמים אישית, קידום אורגני מתקדם וליווי מקצועי
-            לאורך כל הדרך
-          </animated.p>
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="text-right space-y-8">
+            <animated.h1
+              style={{ ...titleProps, ...textShadowAnimation }}
+              className="group font-secular font-black leading-tight tracking-wider text-white text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl transition-all duration-700 cursor-pointer drop-shadow-lg hover:text-shadow-glow relative transform-gpu"
+            >
+              <span className="relative inline-block transform transition-transform duration-300 hover:scale-y-110 hover:scale-x-95">
+                פתרונות
+              </span>
+              <br />
+              <span className="relative inline-block transform transition-transform duration-300 hover:scale-y-110 hover:scale-x-95">
+                דיגיטליים
+              </span>
+            </animated.h1>
 
-          {/* כפתור הנעה לפעולה */}
-          <div className={`flex justify-center w-full ${isVisible ? "opacity-100 delay-600" : "opacity-0"}`}>
-            <RotatingCubeButton />
+            <animated.div
+              style={subtitleProps}
+              ref={textRef}
+              className="font-secular drop-shadow-md text-4xl sm:text-5xl text-center text-white font-extrabold transition-all duration-700 hover:text-shadow-glow typewriter"
+              role="doc-subtitle"
+            >
+              שעובדים בשבילך
+            </animated.div>
+
+            <animated.p 
+              style={descriptionProps}
+              className="font-amatic text-lg sm:text-3xl text-white max-w-3xl mx-auto text-center transition-all duration-700 drop-shadow-sm hover:text-shadow-glow animate-fade-in"
+            >
+              בניית אתרים מותאמים אישית, קידום אורגני מתקדם וליווי מקצועי
+              לאורך כל הדרך
+            </animated.p>
+
+            <div 
+              className={`flex justify-center w-full ${isVisible ? "opacity-100 delay-600" : "opacity-0"}`}
+              role="navigation"
+              aria-label="כפתור יצירת קשר"
+            >
+              <RotatingCubeButton />
+            </div>
           </div>
         </div>
-      </div>
-    </animated.header>
+      </animated.header>
+    </>
   );
 };
 

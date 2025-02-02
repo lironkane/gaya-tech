@@ -1,22 +1,19 @@
-// components/Logos.jsx
-import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Logo = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    // גלול לראש הדף רק אם אנחנו בעמוד הראשי
-    if (location.pathname === '/') {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
+const Logo = ({ closeNavbar }) => {
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+    if (closeNavbar) {
+      closeNavbar();
     }
-  }, [location]);
+  };
 
   return (
-    <Link to="/" className="flex items-center">
+    <Link to="/" className="flex items-center" onClick={handleClick}>
       <img src="/logo.svg" alt="לוגו גאיה טק" className="h-10" />
     </Link>
   );

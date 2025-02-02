@@ -23,7 +23,7 @@ export default {
         "text-primary": "#FFFFFF", // טקסט לבן (נשאר)
         "text-secondary": "#A0A0A0", // אפור בהיר
         highlight: "#A3C5B8", // ירוק בהיר (נשאר)
-        deep: "#0D2A57", // כחול כהה מאוד (אופציונלי)
+        deep: "#FFF8F0", // שמנת (אופציונלי)
       },
 
       keyframes: {

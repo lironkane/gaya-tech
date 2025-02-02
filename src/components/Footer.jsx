@@ -36,7 +36,7 @@ const Footer = () => {
                 {[
                   { name: 'שירותים', href: '/services' },
                   { name: 'תיק עבודות', href: '#portfolio' },
-                  { name: 'אודות', href: '#about' },
+                  { name: 'אודות', href: '/about' },
                   { name: 'בלוג', href: '/blog' },
                 ].map((link) => (
                   <li key={link.name}>

@@ -2,8 +2,7 @@ import React from 'react';
 
 const RotatingCubeButton = () => {
   const handleClick = () => {
-    console.log('Cube clicked!');
-    // Add your click handler logic here
+    window.location.href = '/contact';
   };
 
   return (
@@ -22,7 +21,6 @@ const RotatingCubeButton = () => {
       <style jsx>{`
         .cube-wrapper {
           perspective: 1000px;
-          perspective-origin: 50% 50%;
           width: 160px;
           height: 60px;
           position: relative;
@@ -67,30 +65,34 @@ const RotatingCubeButton = () => {
 
         .front { transform: translateZ(30px); }
         .back { transform: translateZ(-30px) rotateX(180deg); }
-        .right { transform: translateY(0) translateZ(0) rotateX(90deg) translateZ(30px); }
-        .left { transform: translateY(0) translateZ(0) rotateX(-90deg) translateZ(30px); }
+        .right { transform: rotateX(90deg) translateZ(30px); }
+        .left { transform: rotateX(-90deg) translateZ(30px); }
         .top { transform: translateY(-30px) rotateX(90deg); }
         .bottom { transform: translateY(30px) rotateX(-90deg); }
 
         @keyframes rotate {
-          0% {
-            transform: rotateX(0);
-          }
-          100% {
-            transform: rotateX(360deg);
-          }
+          0% { transform: rotateX(0); }
+          100% { transform: rotateX(360deg); }
         }
 
         @media (max-width: 640px) {
           .cube-wrapper {
-            width: 140px;
-            height: 50px;
+            width: 120px;
+            height: 45px;
           }
+          
           .cube-face {
-            width: 140px;
-            height: 50px;
-            font-size: 20px;
+            width: 120px;
+            height: 45px;
+            font-size: 18px;
           }
+
+          .front { transform: translateZ(22.5px); }
+          .back { transform: translateZ(-22.5px) rotateX(180deg); }
+          .right { transform: rotateX(90deg) translateZ(22.5px); }
+          .left { transform: rotateX(-90deg) translateZ(22.5px); }
+          .top { transform: translateY(-22.5px) rotateX(90deg); }
+          .bottom { transform: translateY(22.5px) rotateX(-90deg); }
         }
       `}</style>
     </div>

@@ -31,8 +31,6 @@ const Features = () => {
     },
   ];
 
-  const containerRef = useRef(null);
-  const [activeFeature, setActiveFeature] = useState(0);
   const controls = useAnimation();
   const { ref: titleRef, inView: titleInView } = useInView({
     threshold: 0.5,
@@ -64,40 +62,16 @@ const Features = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [controls]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (containerRef.current) {
-        const containerTop = containerRef.current.offsetTop;
-        const scrollPosition = window.scrollY + window.innerHeight / 2;
-        const featureHeight =
-          containerRef.current.offsetHeight / features.length;
-        let visibleIndex = Math.floor(
-          (scrollPosition - containerTop) / featureHeight
-        );
-
-        if (visibleIndex < 0) {
-          visibleIndex = 0;
-        } else if (visibleIndex >= features.length) {
-          visibleIndex = features.length - 1;
-        }
-
-        setActiveFeature(visibleIndex);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const titleVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,
       scale: 1,
       transition: {
         type: 'spring',
-        stiffness: 100,
-        delay: 0.2,
+        stiffness: 200, // קפיציות עדינה יותר
+        damping: 20, // ריסון עדין יותר
+        delay: 0.1, // השהייה קצרה יותר
       },
     },
   };
@@ -109,6 +83,21 @@ const Features = () => {
       rotateX: 0,
       transition: { duration: 0.5 },
     },
+  };
+
+  // אנימציה מעודנת לכל Feature
+  const featureVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (index) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 150, // קפיציות עדינה
+        damping: 25, // ריסון עדין
+        delay: index * 0.1, // השהייה קצרה ומדורגת
+      },
+    }),
   };
 
   return (
@@ -129,39 +118,37 @@ const Features = () => {
         >
           השירותים שלנו - בונים עתיד דיגיטלי
         </motion.h2>
-        <p className="text-center text-lg mb-16">
+        <p className="text-center text-lg mb-24">
           עכשיו בואו נראה איך כל שירות שלנו יכול לתרום להצלחה שלכם:
         </p>
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          ref={containerRef}
-        >
+        <div className="grid grid-cols-1 gap-20">
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-              className={` bg-[#FFF8F0] rounded-xl p-8 transition-all duration-500 shadow-lg hover:shadow-xl border border-[#F5E6D3] ${
-                index === activeFeature
-                  ? 'opacity-100 blur-none scale-105'
-                  : 'opacity-70 blur-[2px]'
-              }`}
+              className="bg-deep rounded-xl p-6 shadow-lg hover:shadow-xl border border-[#F5E6D3] flex flex-col items-center"
+              variants={featureVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={index}
             >
-              <div className="mb-6 flex justify-center">
-                <feature.icon className="w-12 h-12 text-[#124A36]" />
+              <div className="mb-4 flex justify-center">
+                <feature.icon className="w-10 h-10 text-[#124A36]" />
               </div>
-              <h3 className="text-xl text-center font-bold mb-4 text-[#2D2D2D]">
+              <h3 className="text-lg text-center font-bold mb-2 text-[#2D2D2D]">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 text-center mb-6">
+              <p className="text-gray-600 text-center text-sm mb-4">
                 {feature.description}
               </p>
-              <ul className="text-center list-none p-0 pl-4">
+              <ul className="text-center list-none p-0">
                 {feature.features.map((item, i) => (
                   <li
                     key={i}
-                    className="mb-3 flex items-center justify-center"
+                    className="mb-2 flex items-center justify-center"
                   >
                     <svg
-                      className="w-5 h-5 text-[#124A36] ml-1"
+                      className="w-4 h-4 text-[#124A36] ml-1"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -173,11 +160,11 @@ const Features = () => {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    <span className="text-gray-700 mr-0">{item}</span>
+                    <span className="text-gray-700 text-xs mr-0">{item}</span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
