@@ -208,12 +208,12 @@ const AIandIoTPage = () => {
               <p className="text-xl text-[#FAF9F6]/80 mb-8 font-assistant font-amatic">
                 צוות המומחים שלנו כאן כדי ללוות אתכם בתהליך הטרנספורמציה הדיגיטלית
               </p>
-              <Link
-        to="/contact"
-        className="bg-white hover:bg-gray-100 text-primary font-bold py-2 px-6 rounded-full transition duration-300"
-      >
-                צור קשר לייעוץ טכנולוגי
-              </Link>
+                        <Link
+                          to="/contact"
+                          className="inline-block bg-primary-dark hover:bg-primary-dark/80 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:-translate-y-1"
+                        >
+                          צור קשר לייעוץ טכנולוגי
+                        </Link>
             </div>
           </div>
         </div>

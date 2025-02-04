@@ -307,11 +307,11 @@ const SoftwareDevPage = () => {
             צוות המומחים שלנו כאן כדי להפוך את החזון שלכם למציאות
           </p>
           <Link
-        to="/contact"
-        className="bg-white hover:bg-gray-100 text-primary font-bold py-2 px-6 rounded-full transition duration-300"
-      >
-                צור קשר לייעוץ טכנולוגי
-              </Link>
+                                    to="/contact"
+                                    className="inline-block bg-primary-dark hover:bg-primary-dark/80 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:-translate-y-1"
+                                  >
+                                    צור קשר לייעוץ טכנולוגי
+                                  </Link>
             </div>
           </div>
         </div>
