@@ -1,16 +1,10 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 import { Users, Target, Award, Lightbulb } from 'lucide-react';
-import { motion } from 'framer-motion';
-
 const AboutPage = () => {
   useEffect(() => {
     document.title = 'אודות גאיה-טק | חברת היי-טק מובילה בישראל';
   }, []);
 
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0); // גלילה מיידית לראש העמוד
-  }, []);
-  // Previous data arrays remain the same
   const values = [
     {
       icon: <Target className="w-10 h-10 text-[#124A36]" />,
@@ -59,13 +53,6 @@ const AboutPage = () => {
 
   return (
     <div>
-
-    <motion.div
-    initial={{ opacity: 0, x: -20 }}
-    animate={{ opacity: 1, x: 0 }}
-    exit={{ opacity: 0, x: 20 }}
-    transition={{ duration: 0.3 }}
-  >
     <div className="min-h-screen bg-[#FAF9F6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section - Cream Background */}
@@ -167,7 +154,6 @@ const AboutPage = () => {
         </section>
       </div>
     </div>
-    </motion.div>
     </div>
 
   );
