@@ -29,6 +29,7 @@ import MetaTagsOptimization from './pages/blog/MetaTagsOptimization';
 import GoogleImagesSeo from './pages/blog/GoogleImagesSeo';
 import TechnicalSeoGuide from './pages/blog/TechnicalSeoGuide';
 import WordpressSeoTips from './pages/blog/WordpressSeoTips';
+import ScrollToTop from './components/ScrollToTop';
 
 import './parallax.js';
 
@@ -49,10 +50,11 @@ function App() {
 
   return (
     <Router>
+    <ScrollToTop />
+
       <div className="min-h-screen bg-background">
-        {/* הסרתי את הקוד שקשור לאנימציות */}
         <Navbar isScrolled={isScrolled} isVisible={isVisible} />
-          <Routes >
+          <Routes>
             <Route path="/" element={
                 <>
                   <Hero isVisible={isVisible} />
