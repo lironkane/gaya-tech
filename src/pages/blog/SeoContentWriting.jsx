@@ -48,7 +48,7 @@ const SeoContentWriting = () => {
         <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-secular">
           מדריך לכתיבת תוכן ידידותי ל-SEO בשנת 2024
         </h1>
-        <p className="text-gray-600 mb-6 text-center font-secular">
+        <p className="text-gray-600 mb-6 text-center font-amatic">
           למד איך לכתוב תוכן שגם ימשוך את הגולשים וגם יקודם בצורה אורגנית
           במנועי החיפוש. תוכן איכותי הוא המפתח לקידום אתרים מוצלח.
         </p>
@@ -64,15 +64,15 @@ const SeoContentWriting = () => {
           </div>
         </div>
         <article className="mx-auto font-secular">
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
             מהו תוכן ידידותי ל-SEO?
           </h2>
-          <p className="text-gray-700 mb-4 leading-relaxed">
+          <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             תוכן ידידותי ל-SEO הוא תוכן שנכתב בצורה שמאפשרת למנועי חיפוש
             להבין בקלות במה הוא עוסק. תוכן כזה משתמש במילות מפתח רלוונטיות,
             כתוב בצורה ברורה ומאורגנת, ומספק ערך אמיתי לגולשים.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
             טיפים לכתיבת תוכן SEO בשנת 2024
           </h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -97,8 +97,8 @@ const SeoContentWriting = () => {
               שלך וקשר לאתרים חיצוניים רלוונטיים וסמכותיים.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">סיכום</h2>
-          <p className="text-gray-700 mb-4 leading-relaxed">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">סיכום</h2>
+          <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             כתיבת תוכן ידידותי ל-SEO היא אומנות שמשלבת בין יצירתיות לבין
             הבנה טכנית של מנועי החיפוש. על ידי יישום הטיפים במאמר זה, תוכל
             ליצור תוכן שימשוך את הגולשים וישפר את דירוג האתר שלך בתוצאות

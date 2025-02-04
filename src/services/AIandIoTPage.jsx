@@ -92,13 +92,13 @@ const AIandIoTPage = () => {
         <div className="bg-[#124A36] py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-5xl font-bold text-white mb-6 font-heebo">
+              <h1 className="text-5xl font-bold text-white mb-6 font-secular">
                 בינה מלאכותית ו-IoT
                 <span className="block text-2xl mt-4 text-[#FAF9F6]/80 font-normal">
                   טכנולוגיות מתקדמות לעסק החכם
                 </span>
               </h1>
-              <p className="text-xl text-[#FAF9F6]/90 font-assistant leading-relaxed">
+              <p className="text-xl text-[#FAF9F6]/90 font-assistant leading-relaxed font-amatic">
                 פתרונות חדשניים המשלבים בינה מלאכותית ו-IoT להתייעלות
                 וצמיחה עסקית
               </p>
@@ -109,10 +109,10 @@ const AIandIoTPage = () => {
         {/* Technologies Section */}
         <div className="py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-[#124A36] text-center mb-4 font-heebo">
+            <h2 className="text-4xl font-bold text-[#124A36] text-center mb-4 font-secular">
               הטכנולוגיות שלנו
             </h2>
-            <p className="text-center text-gray-600 mb-16 font-assistant text-lg">
+            <p className="text-center text-gray-600 mb-16 font-assistant text-lg font-amatic">
               פתרונות מתקדמים המשלבים טכנולוגיות חדשניות
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -121,8 +121,8 @@ const AIandIoTPage = () => {
                   <div className="flex justify-center mb-6">
                     {tech.icon}
                   </div>
-                  <h3 className="text-xl font-heebo font-bold mb-4 text-[#124A36] text-center">{tech.title}</h3>
-                  <p className="text-gray-600 font-assistant text-center">{tech.description}</p>
+                  <h3 className="text-xl font-secular font-bold mb-4 text-[#124A36] text-center">{tech.title}</h3>
+                  <p className="text-gray-600 font-assistant text-center font-amatic">{tech.description}</p>
                 </article>
               ))}
             </div>
@@ -132,13 +132,13 @@ const AIandIoTPage = () => {
         {/* Showcase Section */}
         <div className="bg-[#124A36] py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-white text-center mb-16 font-heebo">
+            <h2 className="text-4xl font-bold text-white text-center mb-16 font-secular">
               יישומים מעשיים
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {applications.map((app, index) => (
                 <div key={index} className="bg-[#FAF9F6] rounded-2xl p-8">
-                  <h3 className="text-xl font-heebo font-bold mb-6 text-[#124A36]">{app.title}</h3>
+                  <h3 className="text-xl font-secular font-bold mb-6 text-[#124A36]">{app.title}</h3>
                   <ul className="space-y-4">
                     {app.items.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex items-start gap-3 font-assistant text-gray-600">
@@ -156,7 +156,7 @@ const AIandIoTPage = () => {
         {/* Features Section */}
         <div className="py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-[#124A36] text-center mb-16 font-heebo">
+            <h2 className="text-4xl font-bold text-[#124A36] text-center mb-16 font-secular">
               יתרונות המערכת
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -165,10 +165,10 @@ const AIandIoTPage = () => {
                   <div className="flex justify-center mb-6">
                     {feature.icon}
                   </div>
-                  <h3 className="text-xl font-heebo font-bold mb-4 text-[#124A36] text-center">
+                  <h3 className="text-xl font-secular font-bold mb-4 text-[#124A36] text-center">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 font-assistant text-center">
+                  <p className="text-gray-600 font-assistant text-center font-amatic">
                     {feature.description}
                   </p>
                 </div>
@@ -181,10 +181,10 @@ const AIandIoTPage = () => {
         <div className="bg-[#124A36]/5 py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold text-[#124A36] mb-6 font-heebo">
+              <h2 className="text-3xl font-bold text-[#124A36] mb-6 font-secular">
                 טכנולוגיות מובילות
               </h2>
-              <p className="text-gray-600 font-assistant mb-8">
+              <p className="text-gray-600 font-assistant mb-8 font-amatic">
                 אנו משתמשים בטכנולוגיות המתקדמות ביותר בתעשייה
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -202,10 +202,10 @@ const AIandIoTPage = () => {
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="bg-[#124A36] rounded-3xl p-12 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#FAF9F6]/10 via-[#FAF9F6]/20 to-[#FAF9F6]/10"></div>
-              <h2 className="text-3xl font-bold text-white mb-6 font-heebo">
+              <h2 className="text-3xl font-bold text-white mb-6 font-secular">
                 מוכנים להפוך את העסק שלכם לחכם יותר?
               </h2>
-              <p className="text-xl text-[#FAF9F6]/80 mb-8 font-assistant">
+              <p className="text-xl text-[#FAF9F6]/80 mb-8 font-assistant font-amatic">
                 צוות המומחים שלנו כאן כדי ללוות אתכם בתהליך הטרנספורמציה הדיגיטלית
               </p>
               <Link

@@ -57,7 +57,7 @@ const ServicesShowcase = () => {
     <div className="relative min-h-screen bg-gray-900 overflow-hidden" dir="rtl">
       {/* כותרת */}
       <div className="absolute top-16 left-1/2 -translate-x-1/2 z-10">
-        <h2 className="text-center text-5xl font-bold text-white tracking-tight">השירותים שלנו</h2>
+        <h2 className="text-center text-5xl font-bold text-white tracking-tight font-secular">השירותים שלנו</h2>
       </div>
 
       <div className="relative max-w-6xl mx-auto h-screen mt-32">
@@ -87,7 +87,7 @@ const ServicesShowcase = () => {
                         className="w-16 h-16 text-accent mb-8 transition-all duration-300 
                                    hover:scale-125 hover:rotate-15 hover:text-white cursor-pointer" 
                       />
-                      <h2 className="text-5xl font-bold text-white tracking-tight mb-4">{service.title}</h2>
+                      <h2 className="text-5xl font-bold text-white tracking-tight mb-4 font-secular">{service.title}</h2>
                       <p className="font-amatic text-3xl text-gray-400 w-2/3 mb-8">{service.description}</p>
                       <div className="font-amatic space-y-3 w-2/3">
                         {service.features.map((feature, idx) => (

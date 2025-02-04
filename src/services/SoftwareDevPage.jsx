@@ -186,7 +186,7 @@ const SoftwareDevPage = () => {
                   פתרונות תוכנה חדשניים לעסקים מובילים
                 </span>
               </h1>
-              <p className="text-base md:text-lg text-white/90 leading-relaxed">
+              <p className="text-base text-xl md:text-lg text-white/90 leading-relaxed font-amatic">
                 אנו מציעים שירותי פיתוח תוכנה מתקדמים, תוך שימוש בטכנולוגיות
                 העדכניות ביותר, כדי לספק לך פתרונות יעילים, מאובטחים
                 ומותאמים אישית לדרישות העסק שלך.
@@ -201,7 +201,7 @@ const SoftwareDevPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-secular">
               הטכנולוגיות שלנו
             </h2>
-            <p className="text-center text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg">
+            <p className="text-center text-xl text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg font-amatic">
               אנו מתמחים במגוון רחב של טכנולוגיות פיתוח, כדי להבטיח את
               הפתרון המתאים ביותר עבורך.
             </p>
@@ -215,10 +215,10 @@ const SoftwareDevPage = () => {
                   <h3 className="text-lg md:text-xl font-secular font-bold mb-3 text-primary text-center">
                     {tech.title}
                   </h3>
-                  <p className="text-gray-600 font-assistant text-center text-sm md:text-base">
+                  <p className="text-gray-600 font-assistant text-center text-lg md:text-base font-amatic">
                     {tech.description}
                   </p>
-                  <ul className="mt-4 space-y-2">
+                  <ul className="text-center mt-4 space-y-2">
                     {tech.keywords.map((keyword) => (
                       <li
                         key={keyword}
@@ -240,7 +240,7 @@ const SoftwareDevPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 font-secular">
               תהליך העבודה שלנו
             </h2>
-            <p className="text-center text-white/80 mb-12 md:mb-16 font-assistant text-base md:text-lg">
+            <p className="text-center text-xl text-white/80 mb-12 md:mb-16 font-assistant text-base md:text-lg font-amatic">
               אנו מאמינים בתהליך עבודה מסודר ויעיל, המבטיח תוצאות
               איכותיות.
             </p>
@@ -254,7 +254,7 @@ const SoftwareDevPage = () => {
                     {step.icon}
                     {step.title}
                   </h3>
-                  <p className="font-assistant text-gray-600 text-sm md:text-base mb-4">
+                  <p className="font-assistant text-gray-600 text-sm md:text-base mb-4 font-amatic">
                     {step.description}
                   </p>
                   <ul className="list-disc pl-5 space-y-2">
@@ -276,7 +276,7 @@ const SoftwareDevPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-secular">
               היתרונות שלנו
             </h2>
-            <p className="text-center text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg">
+            <p className="text-center text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg font-amatic">
               הערכים המוספים שאנו מביאים לכל פרויקט פיתוח תוכנה.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
@@ -289,7 +289,7 @@ const SoftwareDevPage = () => {
                   <h3 className="text-lg md:text-xl font-secular font-bold mb-2 text-primary text-center">
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-600 font-assistant text-center text-sm md:text-base">
+                  <p className="text-gray-600 font-assistant text-center text-sm md:text-base font-amatic">
                     {benefit.description}
                   </p>
                 </div>
@@ -300,10 +300,10 @@ const SoftwareDevPage = () => {
       {/* CTA Section */}
       <div className="bg-[#124A36] py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6 font-heebo">
+          <h2 className="text-3xl font-bold text-white mb-6 font-secular">
             מוכנים להתחיל בפיתוח הפרויקט שלכם?
           </h2>
-          <p className="text-xl text-[#FAF9F6]/80 mb-8 font-assistant">
+          <p className="text-xl text-[#FAF9F6]/80 mb-8 font-assistant font-amatic">
             צוות המומחים שלנו כאן כדי להפוך את החזון שלכם למציאות
           </p>
           <Link

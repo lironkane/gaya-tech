@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Helmet } from 'react-helmet';
 
+import { Link } from 'react-router-dom';
 
 const CloudSolutionsPage = () => {
   useEffect(() => {
@@ -158,7 +159,7 @@ const CloudSolutionsPage = () => {
                   העתיד של העסק שלך מתחיל כאן
                 </span>
               </h1>
-              <p className="text-base md:text-lg text-white/90 font-assistant leading-relaxed">
+              <p className="text-base md:text-lg text-white/90 font-assistant leading-relaxed font-amatic">
                 אנחנו מציעים פתרונות ענן מותאמים אישית, שיעזרו לך לשפר את
                 היעילות, להגביר את הגמישות, ולחסוך בעלויות. גלה כיצד פתרונות
                 הענן שלנו יכולים להזניק את העסק שלך קדימה.
@@ -173,7 +174,7 @@ const CloudSolutionsPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-secular">
               הפתרונות שלנו
             </h2>
-            <p className="text-center text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg">
+            <p className="text-center text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg font-amatic">
               מגוון פתרונות ענן מתקדמים המותאמים בדיוק לצרכי העסק שלך.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -186,7 +187,7 @@ const CloudSolutionsPage = () => {
                   <h3 className="text-lg md:text-xl font-secular font-bold mb-3 text-primary text-center">
                     {solution.title}
                   </h3>
-                  <p className="text-gray-600 font-assistant text-center text-sm md:text-base">
+                  <p className="text-gray-600 font-assistant text-center text-sm md:text-base font-amatic">
                     {solution.description}
                   </p>
                   <ul className="mt-4 space-y-2">
@@ -278,7 +279,7 @@ const CloudSolutionsPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-secular">
               היתרונות שלנו
             </h2>
-            <p className="text-center text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg">
+            <p className="text-center text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg font-amatic">
               למה לבחור בפתרונות הענן המתקדמים שלנו?
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -292,7 +293,7 @@ const CloudSolutionsPage = () => {
                     <h3 className="text-lg md:text-xl font-secular font-bold mb-2 text-primary">
                       {benefit.title}
                     </h3>
-                    <p className="text-gray-600 font-assistant text-sm md:text-base">
+                    <p className="text-gray-600 font-assistant text-sm md:text-base font-amatic">
                       {benefit.description}
                     </p>
                   </div>
@@ -310,7 +311,7 @@ const CloudSolutionsPage = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-secular">
                 מוכנים לעבור לענן?
               </h2>
-              <p className="text-base md:text-lg text-white/90 mb-8 font-assistant">
+              <p className="text-base md:text-lg text-white/90 mb-8 font-assistant font-amatic">
               צוות המומחים שלנו כאן כדי ללוות אתכם בתהליך הטרנספורמציה הדיגיטלית
               </p>
               <Link

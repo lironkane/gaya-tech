@@ -24,7 +24,7 @@ const Footer = () => {
             {/* 1) לוגו + תיאור קצר */}
             <div className="space-y-4">
               <Logo />
-              <p className="text-gray-600 leading-relaxed">
+              <p className="font-amatic text-gray-600 leading-relaxed">
                 פתרונות דיגיטליים מתקדמים לעסקים
               </p>
             </div>
@@ -131,7 +131,7 @@ const Footer = () => {
 
           {/* פס תחתון */}
           <div className="mt-12 border-t border-[#124A36]/10 pt-8">
-            <p className="text-center text-gray-600 text-sm">
+            <p className="font-amatic text-center text-gray-600 text-sm">
               © {new Date().getFullYear()} גאיה טק. כל הזכויות שמורות.
             </p>
           </div>

@@ -31,10 +31,10 @@ const BlogPage = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary to-accent text-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">
+          <h1 className="text-4xl sm:text-5xl font-extrabold font-secular mb-4">
             הבלוג שלנו
           </h1>
-          <p className="text-xl sm:text-2xl">
+          <p className="font-amatic text-xl sm:text-2xl">
             חדשות, טיפים ועדכונים מעולם הדיגיטל והפיתוח
           </p>
         </div>
@@ -60,13 +60,13 @@ const BlogPage = () => {
               )}
               {/* תוכן הפוסט */}
               <div className="p-6">
-                <h2 className="text-xl font-bold mb-2 text-secondary">
+                <h2 className="text-xl font-bold mb-2 text-secondary font-secular">
                   {post.title}
                 </h2>
                 <p className="text-sm text-text-secondary mb-2">
                   {post.excerpt}
                 </p>
-                <p className="text-xs text-text-tertiary mb-4">
+                <p className=" font-amatic text-xs text-text-tertiary mb-4">
                   פורסם בתאריך: {post.date}
                 </p>
                 <a
@@ -87,7 +87,7 @@ const BlogPage = () => {
             className="
               bg-accent text-white rounded-lg px-6 py-3
               hover:bg-accent/90 transition-colors
-              text-lg font-semibold
+              text-lg font-semibold font-amatic
             "
           >
             עוד פוסטים

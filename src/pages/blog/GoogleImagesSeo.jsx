@@ -47,7 +47,7 @@ const GoogleImagesSeo = () => {
         <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-secular">
           קידום אתרים בגוגל תמונות: איך להופיע בתוצאות החיפוש הוויזואלי
         </h1>
-        <p className="text-gray-600 mb-6 text-center font-secular">
+        <p className="font-amatic text-gray-600 mb-6 text-center">
           הטמע את הטיפים האלה כדי להביא תנועה אורגנית נוספת לאתר שלך דרך
           גוגל תמונות. אופטימיזציה של תמונות היא חלק בלתי נפרד מתהליך
           ה-SEO.
@@ -60,20 +60,20 @@ const GoogleImagesSeo = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#124A36]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div className="absolute left-4 bottom-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span className="font-bold text-lg">קידום תמונות</span>
+           <span className="font-bold text-lg font-amatic">קידום תמונות</span>
           </div>
         </div>
         <article className="mx-auto font-secular">
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
             למה גוגל תמונות חשוב ל-SEO?
           </h2>
-          <p className="text-gray-700 mb-4 leading-relaxed">
+          <p className="font-amatic text-gray-700 mb-4 leading-relaxed">
             גוגל תמונות הוא מנוע חיפוש התמונות הגדול בעולם. אנשים רבים
             משתמשים בו כדי למצוא תמונות הקשורות למוצרים, שירותים או מידע
             שהם מחפשים. הופעה בתוצאות החיפוש של גוגל תמונות יכולה להביא
             תנועה אורגנית נוספת לאתר שלך.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
             טיפים לאופטימיזציה של תמונות
           </h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -94,8 +94,8 @@ const GoogleImagesSeo = () => {
               מופיעה.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">סיכום</h2>
-          <p className="text-gray-700 mb-4 leading-relaxed">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">סיכום</h2>
+          <p className="font-amatic text-gray-700 mb-4 leading-relaxed">
             קידום אתרים בגוגל תמונות הוא דרך יעילה נוספת להגדיל את התנועה
             האורגנית לאתר. על ידי יישום הטיפים במאמר זה, תוכל לשפר את
             הנראות של התמונות שלך בתוצאות החיפוש ולהגיע לקהל רחב יותר.

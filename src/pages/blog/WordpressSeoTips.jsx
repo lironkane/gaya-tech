@@ -46,7 +46,7 @@ const WordpressSeoTips = () => {
         <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-secular">
           קידום אתרים בוורדפרס: טיפים וטריקים לשיפור הדירוג
         </h1>
-        <p className="text-gray-600 mb-6 text-center font-secular">
+        <p className="text-gray-600 mb-6 text-center font-amatic">
           למד איך לשפר את ה-SEO של אתר הוורדפרס שלך עם כלים וטכניקות
           יעילות. וורדפרס היא פלטפורמה מצוינת לקידום אתרים, אך יש להגדיר
           אותה נכון.
@@ -63,16 +63,16 @@ const WordpressSeoTips = () => {
           </div>
         </div>
         <article className="mx-auto font-secular">
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
             למה וורדפרס טובה ל-SEO?
           </h2>
-          <p className="text-gray-700 mb-4 leading-relaxed">
+          <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             וורדפרס היא מערכת ניהול תוכן (CMS) פופולרית וידידותית למשתמש
             שמציעה יתרונות רבים לקידום אתרים. היא מאפשרת לך ליצור ולנהל
             בקלות תוכן, להתקין תוספים ייעודיים ל-SEO, וליהנות ממבנה אתר
             שמנועי החיפוש אוהבים.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
             טיפים לקידום אתרים בוורדפרס
           </h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -102,8 +102,8 @@ const WordpressSeoTips = () => {
               ערך שעונה על הצרכים של קהל היעד שלך.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">סיכום</h2>
-          <p className="text-gray-700 mb-4 leading-relaxed">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">סיכום</h2>
+          <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             קידום אתרים בוורדפרס הוא תהליך מתמשך שדורש תשומת לב לפרטים. על
             ידי יישום הטיפים במאמר זה ושימוש בכלים הנכונים, תוכל לשפר
             משמעותית את דירוג האתר שלך בתוצאות החיפוש ולהגיע לקהל רחב

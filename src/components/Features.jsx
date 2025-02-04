@@ -118,7 +118,7 @@ const Features = () => {
         >
           השירותים שלנו - בונים עתיד דיגיטלי
         </motion.h2>
-        <p className="text-center text-lg mb-24">
+        <p className="text-center text-lg font-amatic mb-24">
           עכשיו בואו נראה איך כל שירות שלנו יכול לתרום להצלחה שלכם:
         </p>
         <div className="grid grid-cols-1 gap-20">
@@ -135,10 +135,10 @@ const Features = () => {
               <div className="mb-4 flex justify-center">
                 <feature.icon className="w-10 h-10 text-[#124A36]" />
               </div>
-              <h3 className="text-lg text-center font-bold mb-2 text-[#2D2D2D]">
+              <h3 className="text-lg text-center font-secular font-bold mb-2 text-[#2D2D2D]">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 text-center text-sm mb-4">
+              <p className="font-amatic text-xl text-gray-600 text-center text-sm mb-4">
                 {feature.description}
               </p>
               <ul className="text-center list-none p-0">

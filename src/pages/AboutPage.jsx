@@ -66,13 +66,13 @@ const AboutPage = () => {
         {/* Hero Section - Cream Background */}
         <section className="pt-32 pb-24">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-5xl font-bold text-[#124A36] mb-8 font-heebo leading-tight">
+            <h1 className="text-5xl font-bold text-[#124A36] mb-8 font-secular leading-tight">
               גאיה-טק
               <span className="block text-2xl mt-4 text-[#1a654a] font-normal">
                 חברת היי-טק מובילה בישראל
               </span>
             </h1>
-            <p className="text-xl text-gray-600 font-assistant leading-relaxed">
+            <p className="font-amatic text-xl text-gray-600 font-assistant leading-relaxed">
               אנחנו חברת טכנולוגיה מובילה המתמחה בפיתוח תוכנה, פתרונות ענן, ו-AI. 
               הצוות המקצועי שלנו מספק פתרונות טכנולוגיים חדשניים המותאמים לצרכי העסק שלך.
             </p>
@@ -81,7 +81,7 @@ const AboutPage = () => {
 
         {/* Values Section - Green Background */}
         <section className="py-24 bg-[#124A36] rounded-3xl mb-24">
-          <h2 className="text-4xl font-bold text-white text-center mb-16 font-heebo">
+          <h2 className="text-4xl font-bold text-white text-center mb-16 font-secular">
             השירותים והיתרונות שלנו
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-8">
@@ -91,7 +91,7 @@ const AboutPage = () => {
                   {value.icon}
                 </div>
                 <h3 className="text-xl font-heebo font-bold mb-4 text-[#124A36]">{value.title}</h3>
-                <p className="text-gray-600 font-assistant leading-relaxed">{value.description}</p>
+                <p className="font-amatic text-gray-600 font-assistant leading-relaxed">{value.description}</p>
               </article>
             ))}
           </div>
@@ -101,15 +101,15 @@ const AboutPage = () => {
         <section className="py-24">
           <div className="max-w-3xl mx-auto bg-[#124A36] rounded-3xl p-12 relative">
             <div className="absolute -top-3 right-12 w-24 h-2 bg-[#FAF9F6]/20 rounded-full"></div>
-            <h2 className="text-4xl font-bold text-white text-center mb-12 font-heebo">
+            <h2 className="text-4xl font-bold text-white text-center mb-12 font-secular">
               המומחיות שלנו
             </h2>
             <div className="space-y-6 text-right">
-              <p className="text-lg text-gray-200 font-assistant leading-relaxed">
+              <p className="text-lg text-gray-200 font-amatic leading-relaxed">
                 גאיה-טק מובילה בתחום פיתוח התוכנה והפתרונות הטכנולוגיים בישראל. 
                 אנו מתמחים בפיתוח אפליקציות, מערכות ענן, ומערכות בינה מלאכותית מתקדמות.
               </p>
-              <p className="text-lg text-gray-200 font-assistant leading-relaxed">
+              <p className="text-lg text-gray-200 font-amatic leading-relaxed">
                 צוות המומחים שלנו כולל מפתחי Full Stack, מומחי DevOps, ומהנדסי תוכנה בכירים. 
                 אנו משלבים טכנולוגיות חדשניות לפיתוח פתרונות מותאמים אישית.
               </p>
@@ -120,10 +120,10 @@ const AboutPage = () => {
         {/* Milestones Section - Green Background */}
         <section className="py-24 bg-[#124A36] rounded-3xl mb-24">
           <div className="mb-16 text-center">
-            <h2 className="inline-block text-4xl font-bold text-white font-heebo pb-2 mb-2">
+            <h2 className="inline-block text-4xl font-bold text-white font-secular pb-2 mb-2">
               ציוני דרך
             </h2>
-            <p className="text-[#FAF9F6]/80 text-lg font-assistant">
+            <p className="text-[#FAF9F6]/80 text-lg font-amatic font-assistant">
               התפתחות החברה לאורך השנים
             </p>
           </div>
@@ -131,12 +131,12 @@ const AboutPage = () => {
             {milestones.map((milestone, index) => (
               <article key={index} className="bg-[#FAF9F6] rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center mb-6">
-                  <span className="text-lg font-bold text-[#124A36] font-heebo bg-[#124A36]/10 px-4 py-1 rounded-full">
+                  <span className="text-lg font-bold font-amatic text-[#124A36] font-heebo bg-[#124A36]/10 px-4 py-1 rounded-full">
                     {milestone.year}
                   </span>
                 </div>
                 <h3 className="text-xl font-heebo font-bold mb-4 text-[#124A36]">{milestone.title}</h3>
-                <p className="text-gray-600 font-assistant leading-relaxed">{milestone.description}</p>
+                <p className="font-amatic text-gray-600 font-assistant leading-relaxed">{milestone.description}</p>
               </article>
             ))}
           </div>
@@ -146,10 +146,10 @@ const AboutPage = () => {
         <section className="py-24">
           <div className="bg-[#124A36] rounded-3xl p-12 max-w-3xl mx-auto relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#FAF9F6]/10 via-[#FAF9F6]/20 to-[#FAF9F6]/10"></div>
-            <h2 className="text-3xl font-bold text-white mb-6 font-heebo">
+            <h2 className="text-3xl font-bold text-white mb-6 font-secular">
               מוכנים לקחת את העסק שלכם לשלב הבא?
             </h2>
-            <p className="text-xl text-gray-200 mb-8 font-assistant">
+            <p className="font-amatic text-xl text-gray-200 mb-8 font-assistant">
               צוות המומחים שלנו כאן כדי לעזור לכם להצליח בעידן הדיגיטלי
             </p>
             <button 

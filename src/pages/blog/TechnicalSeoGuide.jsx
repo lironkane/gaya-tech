@@ -46,7 +46,7 @@ const TechnicalSeoGuide = () => {
         <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-secular">
           קידום אתרים טכני: סודות האינדוקס והסריקה של גוגל
         </h1>
-        <p className="text-gray-600 mb-6 text-center font-secular">
+        <p className="text-gray-600 mb-6 text-center font-amatic">
           המדריך המלא ל-SEO טכני, שיעזור לך להבטיח שגוגל יסרוק ויאנדקס את
           האתר שלך בצורה יעילה. קידום אתרים טכני הוא הבסיס לכל אסטרטגיית
           SEO.
@@ -63,24 +63,24 @@ const TechnicalSeoGuide = () => {
           </div>
         </div>
         <article className="mx-auto font-secular">
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
             מהו SEO טכני?
           </h2>
-          <p className="text-gray-700 mb-4 leading-relaxed">
+          <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             SEO טכני מתייחס לאופטימיזציה של ההיבטים הטכניים של אתר אינטרנט
             כדי לשפר את האופן שבו מנועי החיפוש סורקים ומאנדקסים אותו. זה כולל
             שיפורים בקוד האתר, ארכיטקטורת האתר, מהירות הטעינה, התאמה
             למובייל ועוד.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
             למה SEO טכני חשוב?
           </h2>
-          <p className="text-gray-700 mb-4 leading-relaxed">
+          <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             ללא SEO טכני נכון, מנועי החיפוש עשויים להתקשות להבין את מבנה
             האתר ותוכנו, מה שעלול להוביל לדירוג נמוך יותר בתוצאות החיפוש.
             SEO טכני מבטיח שהאתר שלך נגיש וקל לסריקה עבור מנועי החיפוש.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
             היבטים מרכזיים ב-SEO טכני
           </h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -104,8 +104,8 @@ const TechnicalSeoGuide = () => {
               <strong>HTTPS:</strong> ודא שהאתר שלך מאובטח באמצעות SSL.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36]">סיכום</h2>
-          <p className="text-gray-700 mb-4 leading-relaxed">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">סיכום</h2>
+          <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             SEO טכני הוא חלק חיוני בכל אסטרטגיית קידום אתרים. על ידי שיפור
             ההיבטים הטכניים של האתר שלך, תוכל להבטיח שמנועי החיפוש יסרקו
             ויאנדקסו אותו בצורה יעילה, מה שיוביל לדירוג טוב יותר בתוצאות

@@ -80,7 +80,7 @@ const ContactPage = () => {
             <h1 className="text-4xl font-bold text-primary mb-6 font-secular">
               צור קשר
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="font-amatic text-lg text-gray-600">
               נשמח לעמוד לרשותך! מלא את הטופס ונחזור אליך בהקדם, או התקשר
               אלינו ישירות.
             </p>
@@ -112,7 +112,7 @@ const ContactPage = () => {
             <div className="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition duration-200">
               <MapPin className="w-10 h-10 mx-auto mb-4 text-primary" />
               <h3 className="font-semibold mb-2 text-primary">כתובת</h3>
-              <p className="text-gray-600">רחוב הרצל 1, תל אביב</p>
+              <p className="font-amatic text-gray-600">רחוב הרצל 1, תל אביב</p>
             </div>
           </div>
 

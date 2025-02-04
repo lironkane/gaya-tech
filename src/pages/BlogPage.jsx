@@ -105,10 +105,10 @@ const BlogPage = () => {
   >
     <div className="bg-[#FFF8F0] py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold text-center text-[#124A36] mb-8">
+        <h1 className="text-4xl font-bold font-secular text-center text-[#124A36] mb-8">
           בלוג קידום אתרים
         </h1>
-        <p className="text-xl text-center text-gray-700 mb-12">
+        <p className="font-amatic text-xl text-center text-gray-700 mb-12">
           כל מה שרציתם לדעת על קידום אתרים אורגני, בניית אסטרטגיה, ושיפור
           הנוכחות הדיגיטלית שלכם.
         </p>
@@ -125,10 +125,10 @@ const BlogPage = () => {
                 style={{ backgroundImage: `url(${post.imageUrl})` }}
               ></div>
               <div className="p-6">
-                <h2 className="text-2xl font-bold mb-3 text-[#124A36]">
+                <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
                   {post.title}
                 </h2>
-                <p className="text-gray-600 mb-4 text-sm">
+                <p className="font-amatic text-gray-600 mb-4 text-sm">
                   {post.excerpt}
                 </p>
                 <div className="flex flex-wrap gap-2">

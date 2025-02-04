@@ -3,10 +3,10 @@ import React from 'react';
 const MetaTagsOptimization = () => {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4 text-[#124A36]">
+      <h1 className="text-3xl font-bold mb-4 text-[#124A36] font-secular">
         שימוש נכון בתגיות מטא: כותרות ותיאורים שמושכים קליקים
       </h1>
-      <p className="text-gray-600 mb-4">
+      <p className="font-amatic text-gray-600 mb-4">
         למד איך לכתוב תגיות מטא אפקטיביות שישפרו את שיעור ההקלקה ויקדמו
         את האתר שלך. תגיות מטא הן חלק חשוב מאופטימיזציית SEO.
       </p>
