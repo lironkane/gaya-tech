@@ -98,7 +98,7 @@ const WhyChooseUs = () => {
               >
                 {feature.title}
               </h3>
-              <p className="font-amatic text-center text-white">
+              <p className="font-secular text-center text-white">
                 {feature.description}
               </p>
             </div>

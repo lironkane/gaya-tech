@@ -103,29 +103,29 @@ const Features = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="py-24 bg-primary-dark hover:bg-primary-dark/90 text-white"
+      className="py-24 bg-primary-dark hover:bg-primary-dark/90 text-white font-secular"
       variants={sectionVariants}
       initial="visible"
       animate={controls}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-secular">
         <motion.h2
           ref={titleRef}
-          className="text-center text-4xl font-bold mb-16"
+          className="text-center text-4xl font-bold mb-16 font-secular"
           variants={titleVariants}
           initial="hidden"
           animate={controls}
         >
           השירותים שלנו - בונים עתיד דיגיטלי
         </motion.h2>
-        <p className="text-center text-lg font-amatic mb-24">
+        <p className="text-center text-3xl font-amatic mb-24">
           עכשיו בואו נראה איך כל שירות שלנו יכול לתרום להצלחה שלכם:
         </p>
         <div className="grid grid-cols-1 gap-20">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-deep rounded-xl p-6 shadow-lg hover:shadow-xl border border-[#F5E6D3] flex flex-col items-center"
+              className="bg-deep font-amatic rounded-xl p-6 shadow-lg hover:shadow-xl border border-[#F5E6D3] flex flex-col items-center"
               variants={featureVariants}
               initial="hidden"
               whileInView="visible"
@@ -135,10 +135,10 @@ const Features = () => {
               <div className="mb-4 flex justify-center">
                 <feature.icon className="w-10 h-10 text-[#124A36]" />
               </div>
-              <h3 className="text-lg text-center font-secular font-bold mb-2 text-[#2D2D2D]">
+              <h3 className="text-xl text-center font-secular font-bold mb-2 text-[#2D2D2D]">
                 {feature.title}
               </h3>
-              <p className="font-amatic text-xl text-gray-600 text-center text-sm mb-4">
+              <p className="font-amatic font-bold text-xl text-gray-600 text-center text-sm mb-4">
                 {feature.description}
               </p>
               <ul className="text-center list-none p-0">
@@ -147,20 +147,7 @@ const Features = () => {
                     key={i}
                     className="mb-2 flex items-center justify-center"
                   >
-                    <svg
-                      className="w-4 h-4 text-[#124A36] ml-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <span className="text-gray-700 text-xs mr-0">{item}</span>
+                    <span className="text-gray-700 text-lg mr-0">{item}</span>
                   </li>
                 ))}
               </ul>

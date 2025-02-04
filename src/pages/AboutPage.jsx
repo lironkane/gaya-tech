@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { Users, Target, Award, Lightbulb } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -7,6 +7,9 @@ const AboutPage = () => {
     document.title = 'אודות גאיה-טק | חברת היי-טק מובילה בישראל';
   }, []);
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0); // גלילה מיידית לראש העמוד
+  }, []);
   // Previous data arrays remain the same
   const values = [
     {
@@ -55,6 +58,8 @@ const AboutPage = () => {
   ];
 
   return (
+    <div>
+
     <motion.div
     initial={{ opacity: 0, x: -20 }}
     animate={{ opacity: 1, x: 0 }}
@@ -131,7 +136,7 @@ const AboutPage = () => {
             {milestones.map((milestone, index) => (
               <article key={index} className="bg-[#FAF9F6] rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center mb-6">
-                  <span className="text-lg font-bold font-amatic text-[#124A36] font-heebo bg-[#124A36]/10 px-4 py-1 rounded-full">
+                  <span className="text-lg font-bold font-specular text-[#124A36] font-heebo bg-[#124A36]/10 px-4 py-1 rounded-full">
                     {milestone.year}
                   </span>
                 </div>
@@ -163,6 +168,8 @@ const AboutPage = () => {
       </div>
     </div>
     </motion.div>
+    </div>
+
   );
 };
 

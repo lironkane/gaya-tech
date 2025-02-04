@@ -10,7 +10,7 @@ const ContactCTA = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-secular text-primary">
             מוכנים לקחת את העסק שלכם לשלב הבא?
           </h2>
-          <p className="font-amatic text-base md:text-lg text-primary-dark/90 mb-8 font-assistant">
+          <p className="font-amatic text-base text-xl md:text-lg text-primary-dark/90 mb-8 font-assistant">
             צוות המומחים שלנו ישמח לענות על כל שאלה ולספק לכם ייעוץ מקצועי
             מותאם אישית.
           </p>

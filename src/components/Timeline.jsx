@@ -120,7 +120,7 @@ const Timeline = ({ isVisible }) => {
               animate-pulse shadow-lg shadow-[#124A36]/20"
             ></div>
           </h2>
-          <p className="text-5xl font-amatic text-[#124A36]/80 mt-6 font-medium">
+          <p className="text-5xl font-secular text-[#124A36]/80 mt-6 font-medium">
             הדרך שלך להצלחה דיגיטלית
           </p>
         </div>
