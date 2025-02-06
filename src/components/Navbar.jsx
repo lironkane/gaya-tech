@@ -43,7 +43,7 @@ const Navbar = () => {
   }, [prevScrollPos]);
 
   useEffect(() => {
-    setIsOpen(false); // סגירת התפריט בעת ניווט
+    setIsOpen(false);
   }, [location]);
 
   const closeNavbar = () => {
@@ -53,7 +53,7 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed w-full z-50 transition-all duration-500 transform ${
+        className={`fixed inset-x-2 z-50 transition-all duration-500 transform pt-3 ${
           visible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
         }`}
       >
@@ -74,21 +74,15 @@ const Navbar = () => {
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
       >
-
-
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md px-4">
           <div className="p-4 space-y-4">
             {menuItems.map((item) => (
               <div key={item.title} className="space-y-2">
                 {item.submenu ? (
                   <>
-                    {/* כותרת תת-תפריט */}
-                    <div
-                      className="block text-white text-xl font-medium p-4 rounded-lg transition-all duration-300 text-center w-full flex items-center justify-center gap-2"
-                    >
+                    <div className="block text-white text-xl font-medium p-4 rounded-lg transition-all duration-300 text-center w-full flex items-center justify-center gap-2">
                       {item.title}
                     </div>
-                    {/* פריטי תת-תפריט */}
                     <div className="space-y-2">
                       {item.submenu.map((subItem) => (
                         <Link
@@ -113,7 +107,6 @@ const Navbar = () => {
                 )}
               </div>
             ))}
-            {/* כפתור "דבר איתנו" */}
             <button
               className="w-full bg-primary-dark/30 text-white p-4 rounded-lg transition-all duration-300 hover:bg-primary-dark/50 border border-white/20 text-lg font-medium mt-4"
               onClick={() => setIsOpen(false)}

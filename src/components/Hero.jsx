@@ -1,192 +1,169 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useSpring, animated } from 'react-spring';
-import { Helmet } from 'react-helmet';
-import backgroundImage from "../assets/background/red3-background.jpg";
-import RotatingCubeButton from '../RotatingCubeButton';
+import React, { useRef } from 'react';
+import Lottie from 'lottie-react';
+import { motion, useTransform, useScroll } from 'framer-motion';
+import handshakeAnimation from '../assets/animations/arrow.json';
+import { Global } from '@emotion/react'; // ייבוא Global
 
-const Hero = ({ isVisible }) => {
-  const [scrollY, setScrollY] = useState(0);
+const RotatingCubeButton = () => {
+  return (
+    <div className="cube-wrapper group relative">
+      <a href="/contact" className="absolute inset-0 z-20 cursor-pointer" aria-label="Contact us" />
+      <div className="cube">
+        <div className="cube-face front">בואו נדבר</div>
+        <div className="cube-face back">בואו נדבר</div>
+        <div className="cube-face top">בואו נדבר</div>
+        <div className="cube-face bottom">בואו נדבר</div>
+      </div>
+    </div>
+  );
+};
+
+const Hero = () => {
   const heroRef = useRef(null);
-  const textRef = useRef(null);
+  const maxHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
+  const minHeight = 50;
 
-  // SEO Meta Data
-  const metaDescription = "פתרונות דיגיטליים מתקדמים - בניית אתרים מותאמים אישית, קידום אורגני מתקדם וליווי מקצועי לאורך כל הדרך";
-  const metaKeywords = "פתרונות דיגיטליים, בניית אתרים, קידום אורגני, פיתוח אתרים, עיצוב אתרים, קידום אתרים";
-
-  useEffect(() => {
-    if (textRef.current) {
-      const textWidth = textRef.current.offsetWidth;
-      textRef.current.style.animation = `typing 3.5s steps(${textWidth}, end), blink-caret 0.75s step-end infinite`;
-    }
-
-    // טעינת תמונת הרקע מראש לשיפור ביצועים
-    const img = new Image();
-    img.src = backgroundImage;
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const calculateOpacity = () => {
-    if (!heroRef.current) return 1;
-    const heroHeight = heroRef.current.offsetHeight;
-    return Math.max(0, 1 - (scrollY / (heroHeight * 0.5)));
-  };
-
-  // אנימציות
-  const backgroundProps = useSpring({
-    from: { transform: 'scale(1) translateY(0px)' },
-    to: async (next) => {
-      while (true) {
-        await next({ transform: 'scale(1.05) translateY(-20px)' });
-        await next({ transform: 'scale(1) translateY(0px)' });
-      }
-    },
-    config: { duration: 20000 },
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
   });
 
-  const titleProps = useSpring({
-    from: { transform: 'scale(1) translateY(-20px)', opacity: 0 },
-    to: async (next) => {
-      while (true) {
-        await next({ transform: 'scale(1.02) translateY(0px)', opacity: 1 });
-        await next({ transform: 'scale(0.98) translateY(-5px)', opacity: 0.95 });
-      }
-    },
-    config: { tension: 300, friction: 15, mass: 2 },
-    delay: 1000,
-  });
+  const height = useTransform(scrollYProgress, [0, 1], [maxHeight, minHeight]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+  const innerDivTranslateY = useTransform(scrollYProgress, [0, 1], [0, maxHeight * 0.8]);
 
-  const subtitleProps = useSpring({
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateX(0px)' : 'translateX(-20px)',
-    delay: 300,
-    config: { duration: 500 },
-  });
-
-  const descriptionProps = useSpring({
-    opacity: isVisible ? 1 : 0,
-    delay: 600,
-    config: { duration: 500 },
-  });
-
-  const fadeProps = useSpring({
-    opacity: calculateOpacity(),
-    config: { tension: 280, friction: 60 },
-  });
-
-  const textShadowAnimation = {
-    textShadow: '0 0 10px rgba(255, 255, 255, 0.5)',
-    transition: 'text-shadow 0.3s ease-in-out',
-  };
+  // Modified blur transform with stronger values
+  const blurValue = useTransform(scrollYProgress, [0, 0.2, 0.6, 1], ['blur(0px)', 'blur(0px)', 'blur(8px)', 'blur(16px)']);
 
   return (
-    <>
-      <Helmet>
-        <title>פתרונות דיגיטליים מתקדמים | גאיה-טק</title>
-        <meta name="description" content={metaDescription} />
-        <meta name="keywords" content={metaKeywords} />
-        <meta property="og:title" content="פתרונות דיגיטליים מתקדמים | גאיה-טק" />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={backgroundImage} />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href={window.location.href} />
-        <meta name="robots" content="index, follow" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "גאיה-טק",
-            "description": metaDescription,
-            "url": window.location.href,
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": `${window.location.origin}/search?q={search_term_string}`
-              },
-              "query-input": "required name=search_term_string"
-            }
-          })}
-        </script>
-      </Helmet>
-
-      <animated.header 
-        ref={heroRef}
-        className="relative pt-24 overflow-hidden"
-        style={fadeProps}
-        role="banner"
-        aria-label="פתרונות דיגיטליים מתקדמים"
+    <motion.section
+      ref={heroRef}
+      initial={{ opacity: 1 }}
+      className="relative p-3 min-h-screen bg-black"
+      style={{
+        height,
+        scale,
+      }}
+    >
+      <motion.div
+        className="w-full h-full rounded-3xl relative shadow-lg bg-[#EAEAEA] p-8"
+        style={{
+          translateY: innerDivTranslateY,
+          filter: blurValue,
+        }}
       >
-        {/* תמונת רקע עם טעינה מותנית */}
-        <animated.div
-          className="absolute inset-0 h-full w-full z-0"
-          style={{
-            ...backgroundProps,
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-          role="img"
-          aria-label="רקע דינמי"
-          loading="lazy"
-        />
+        <nav className="flex justify-end mb-8 gap-4">
+          <a href="/about" className="text-black hover:text-gray-600"></a>
+        </nav>
 
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-gray-900/30 via-gray-800/20 to-transparent"
-          aria-hidden="true"
-        />
-
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-right space-y-8">
-            <animated.h1
-              style={{ ...titleProps, ...textShadowAnimation }}
-              className="group font-secular font-black leading-tight tracking-wider text-white text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl transition-all duration-700 cursor-pointer drop-shadow-lg hover:text-shadow-glow relative transform-gpu"
-            >
-              <span className="relative inline-block transform transition-transform duration-300 hover:scale-y-110 hover:scale-x-95">
-                פתרונות
-              </span>
-              <br />
-              <span className="relative inline-block transform transition-transform duration-300 hover:scale-y-110 hover:scale-x-95">
-                דיגיטליים
-              </span>
-            </animated.h1>
-
-            <animated.div
-              style={subtitleProps}
-              ref={textRef}
-              className="font-secular drop-shadow-md text-4xl sm:text-5xl text-center text-white font-extrabold transition-all duration-700 hover:text-shadow-glow typewriter"
-              role="doc-subtitle"
-            >
-              שעובדים בשבילך
-            </animated.div>
-
-            <animated.p 
-              style={descriptionProps}
-              className="font-amatic text-lg sm:text-3xl text-white max-w-3xl mx-auto text-center transition-all duration-700 drop-shadow-sm hover:text-shadow-glow animate-fade-in"
-            >
-              בניית אתרים מותאמים אישית, קידום אורגני מתקדם וליווי מקצועי
-              לאורך כל הדרך
-            </animated.p>
-
-            <div 
-              className={`flex justify-center w-full ${isVisible ? "opacity-100 delay-600" : "opacity-0"}`}
-              role="navigation"
-              aria-label="כפתור יצירת קשר"
-            >
+        <div className="flex flex-col justify-end min-h-[calc(100vh-200px)] pb-16">
+          <div className="flex flex-col gap-12 items-end">
+            <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-end w-full justify-end">
+              <h1 className="text-4xl md:text-6xl font-black leading-tight font-arimo text-right whitespace-pre-line">
+                בניית אתרים.{'\n'}
+                שיווק דיגיטלי.{'\n'}
+                הצלחה עסקית.
+              </h1>
+              <p className="text-lg md:text-xl text-right md:max-w-md font-arimo">
+                אנחנו עוזרים ללקוחות ברחבי העולם ליצור חוויות מרתקות יותר באמצעות
+                השילוב המנצח בין פיתוח אתרים מתקדם לקידום דיגיטלי אפקטיבי.
+              </p>
+            </div>
+            <div className="flex justify-end w-full">
               <RotatingCubeButton />
             </div>
           </div>
         </div>
-      </animated.header>
-    </>
+
+        <div
+          className="w-24 h-48 absolute bottom-16 right-4 transform"
+          style={{
+            transform: 'rotateY(180deg) rotateX(180deg) rotateZ(40deg)',
+          }}
+        >
+          <Lottie
+            animationData={handshakeAnimation}
+            loop={true}
+            className="transition-all duration-300 hover:scale-105"
+          />
+        </div>
+      </motion.div>
+
+      {/* שימוש ב-Global של Emotion */}
+      <Global
+        styles={`
+          .cube-wrapper {
+            perspective: 1000px;
+            width: 120px;
+            height: 45px;
+            transform-style: preserve-3d;
+            filter: drop-shadow(2px 2px 0px #000);
+          }
+
+          .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateX 8s infinite linear;
+          }
+
+          .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px solid #0a2a1f;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            user-select: none;
+            text-shadow: 1px 1px 0px #000;
+          }
+
+          .cube-wrapper:hover .cube-face {
+            background: #1a654a;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4);
+            text-shadow: 2px 2px 0px #000;
+          }
+
+          .front { transform: translateZ(22.5px); }
+          .back { transform: rotateX(180deg) translateZ(22.5px); }
+          .right { transform: rotateY(90deg) translateZ(60px) scaleX(-1); }
+          .left { transform: rotateY(-90deg) translateZ(60px) scaleX(-1); }
+          .top { transform: rotateX(90deg) translateZ(22.5px); }
+          .bottom { transform: rotateX(-90deg) translateZ(22.5px); }
+
+          @keyframes rotateX {
+            0% { transform: rotateX(0deg); }
+            100% { transform: rotateX(-360deg); }
+          }
+
+          @media (max-width: 640px) {
+            .cube-wrapper {
+              width: 100px;
+              height: 40px;
+            }
+
+            .cube-face {
+              font-size: 16px;
+            }
+
+            .front { transform: translateZ(20px); }
+            .back { transform: translateZ(-20px) rotateX(180deg); }
+            .right { transform: rotateY(90deg) translateZ(50px) scaleX(-1); }
+            .left { transform: rotateY(-90deg) translateZ(50px) scaleX(-1); }
+            .top { transform: rotateX(90deg) translateZ(20px); }
+            .bottom { transform: rotateX(-90deg) translateZ(20px); }
+          }
+        `}
+      />
+    </motion.section>
   );
 };
 

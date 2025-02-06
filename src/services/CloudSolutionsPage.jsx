@@ -153,9 +153,9 @@ const CloudSolutionsPage = () => {
         <div className="bg-primary text-white py-20 md:py-28">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 font-secular">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 font-arimo">
                 פתרונות ענן מתקדמים
-                <span className="block text-lg md:text-xl mt-4 text-white/80 font-normal font-secular">
+                <span className="block text-lg md:text-xl mt-4 text-white/80 font-normal font-arimo">
                   העתיד של העסק שלך מתחיל כאן
                 </span>
               </h1>
@@ -171,7 +171,7 @@ const CloudSolutionsPage = () => {
         {/* Solutions Section */}
         <div className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-secular">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-arimo">
               הפתרונות שלנו
             </h2>
             <p className="text-center text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg font-amatic">
@@ -184,7 +184,7 @@ const CloudSolutionsPage = () => {
                   className="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center"
                 >
                   <div className="mb-4">{solution.icon}</div>
-                  <h3 className="text-lg md:text-xl font-secular font-bold mb-3 text-primary text-center">
+                  <h3 className="text-lg md:text-xl font-arimo font-bold mb-3 text-primary text-center">
                     {solution.title}
                   </h3>
                   <p className="text-gray-600 font-assistant text-center text-sm md:text-base font-amatic">
@@ -206,12 +206,12 @@ const CloudSolutionsPage = () => {
         {/* Features Section */}
         <div className="bg-primary text-white py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-secular">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-arimo">
               טכנולוגיות ושירותים בענן
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-gray-100 rounded-2xl p-6 md:p-8 text-primary">
-                <h3 className="text-lg md:text-xl font-secular font-bold mb-4">
+                <h3 className="text-lg md:text-xl font-arimo font-bold mb-4">
                   תשתיות ענן
                 </h3>
                 <ul className="space-y-3 font-assistant text-sm md:text-base">
@@ -231,7 +231,7 @@ const CloudSolutionsPage = () => {
               </div>
 
               <div className="bg-gray-100 rounded-2xl p-6 md:p-8 text-primary">
-                <h3 className="text-lg md:text-xl font-secular font-bold mb-4">
+                <h3 className="text-lg md:text-xl font-arimo font-bold mb-4">
                   שירותי ניהול ענן
                 </h3>
                 <ul className="space-y-3 font-assistant text-sm md:text-base">
@@ -251,7 +251,7 @@ const CloudSolutionsPage = () => {
               </div>
 
               <div className="bg-gray-100 rounded-2xl p-6 md:p-8 text-primary">
-                <h3 className="text-lg md:text-xl font-secular font-bold mb-4">
+                <h3 className="text-lg md:text-xl font-arimo font-bold mb-4">
                   אבטחת ענן
                 </h3>
                 <ul className="space-y-3 font-assistant text-sm md:text-base">
@@ -276,7 +276,7 @@ const CloudSolutionsPage = () => {
         {/* Benefits Section */}
         <div className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-secular">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-arimo">
               היתרונות שלנו
             </h2>
             <p className="text-center text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg font-amatic">
@@ -290,7 +290,7 @@ const CloudSolutionsPage = () => {
                 >
                   {benefit.icon}
                   <div>
-                    <h3 className="text-lg md:text-xl font-secular font-bold mb-2 text-primary">
+                    <h3 className="text-lg md:text-xl font-arimo font-bold mb-2 text-primary">
                       {benefit.title}
                     </h3>
                     <p className="text-gray-600 font-assistant text-sm md:text-base font-amatic">
@@ -308,7 +308,7 @@ const CloudSolutionsPage = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="rounded-3xl p-8 md:p-12 relative overflow-hidden bg-primary-light">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 opacity-20"></div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-secular">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-arimo">
                 מוכנים לעבור לענן?
               </h2>
               <p className="text-base md:text-lg text-white/90 mb-8 font-assistant font-amatic">

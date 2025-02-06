@@ -43,7 +43,7 @@ const WordpressSeoTips = () => {
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-secular">
+        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-arimo">
           קידום אתרים בוורדפרס: טיפים וטריקים לשיפור הדירוג
         </h1>
         <p className="text-gray-600 mb-6 text-center font-amatic">
@@ -62,8 +62,8 @@ const WordpressSeoTips = () => {
             <span className="font-bold text-lg">קידום אתרי וורדפרס</span>
           </div>
         </div>
-        <article className="mx-auto font-secular">
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
+        <article className="mx-auto font-arimo">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">
             למה וורדפרס טובה ל-SEO?
           </h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
@@ -72,7 +72,7 @@ const WordpressSeoTips = () => {
             בקלות תוכן, להתקין תוספים ייעודיים ל-SEO, וליהנות ממבנה אתר
             שמנועי החיפוש אוהבים.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">
             טיפים לקידום אתרים בוורדפרס
           </h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -102,7 +102,7 @@ const WordpressSeoTips = () => {
               ערך שעונה על הצרכים של קהל היעד שלך.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">סיכום</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">סיכום</h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             קידום אתרים בוורדפרס הוא תהליך מתמשך שדורש תשומת לב לפרטים. על
             ידי יישום הטיפים במאמר זה ושימוש בכלים הנכונים, תוכל לשפר

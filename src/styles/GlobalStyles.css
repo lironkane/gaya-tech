@@ -68,6 +68,10 @@ html {
     backface-visibility: hidden;
   }
 }
+.relative.z-10 {
+  position: relative;
+  z-index: 10;
+}
 
 /* Add these keyframes to your CSS */
 @keyframes sparkle-1 {

@@ -7,7 +7,7 @@ const ContactCTA = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="rounded-3xl p-8 md:p-12 relative overflow-hidden bg-primary-light">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 opacity-20"></div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-secular text-primary">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-arimo text-primary">
             מוכנים לקחת את העסק שלכם לשלב הבא?
           </h2>
           <p className="font-amatic text-base text-xl md:text-lg text-primary-dark/90 mb-8 font-assistant">

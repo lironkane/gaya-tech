@@ -36,7 +36,7 @@ const RotatingCubeButton = () => {
           position: absolute;
           width: 100%;
           height: 100%;
-          background: #124A36;
+          background: black;
           color: white;
           display: flex;
           align-items: center;

@@ -43,7 +43,7 @@ const WebsiteSpeedOptimization = () => {
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-secular">
+        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-arimo">
           מהירות אתר: איך לשפר את ביצועי האתר ולהשפיע על הקידום
         </h1>
         <p className="text-gray-600 mb-6 text-center font-amatic">
@@ -61,8 +61,8 @@ const WebsiteSpeedOptimization = () => {
             <span className="font-bold text-lg">מהירות אתר</span>
           </div>
         </div>
-        <article className="mx-auto font-secular">
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
+        <article className="mx-auto font-arimo">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">
             למה מהירות האתר חשובה?
           </h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
@@ -70,7 +70,7 @@ const WebsiteSpeedOptimization = () => {
             לנטוש את האתר ולעבור למתחרים. גוגל לוקח בחשבון את מהירות האתר
             כאחד מגורמי הדירוג, ולכן אתר איטי עשוי להיפגע בתוצאות החיפוש.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">
             איך לבדוק את מהירות האתר?
           </h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -87,7 +87,7 @@ const WebsiteSpeedOptimization = () => {
               שונים בעולם.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">
             טיפים לשיפור מהירות האתר
           </h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -112,7 +112,7 @@ const WebsiteSpeedOptimization = () => {
               תשפיע ישירות על ביצועי האתר.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">סיכום</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">סיכום</h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             מהירות האתר היא גורם קריטי שמשפיע על חוויית המשתמש ועל דירוג
             האתר במנועי החיפוש. על ידי יישום הטיפים במאמר זה, תוכל לשפר

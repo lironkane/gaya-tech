@@ -3,7 +3,7 @@ import React from 'react';
 const MetaTagsOptimization = () => {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4 text-[#124A36] font-secular">
+      <h1 className="text-3xl font-bold mb-4 text-[#124A36] font-arimo">
         שימוש נכון בתגיות מטא: כותרות ותיאורים שמושכים קליקים
       </h1>
       <p className="font-amatic text-gray-600 mb-4">

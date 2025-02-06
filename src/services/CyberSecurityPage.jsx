@@ -89,7 +89,7 @@ const CyberSecurityPage = () => {
         <div className="bg-[#124A36] py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-5xl font-bold text-white mb-6 font-secular">
+              <h1 className="text-5xl font-bold text-white mb-6 font-arimo">
                 אבטחת מידע וסייבר
                 <span className="block text-2xl mt-4 text-[#FAF9F6]/80 font-normal">
                   הגנה מתקדמת על הנכסים הדיגיטליים שלך
@@ -105,7 +105,7 @@ const CyberSecurityPage = () => {
         {/* Services Grid */}
         <div className="py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-[#124A36] text-center mb-4 font-secular">
+            <h2 className="text-4xl font-bold text-[#124A36] text-center mb-4 font-arimo">
               שירותי אבטחה
             </h2>
             <p className="text-center text-gray-600 mb-16 font-assistant text-lg font-amatic">
@@ -117,7 +117,7 @@ const CyberSecurityPage = () => {
                   <div className="flex justify-center mb-6">
                     {service.icon}
                   </div>
-                  <h3 className="text-xl font-secular font-bold mb-4 text-[#124A36] text-center">{service.title}</h3>
+                  <h3 className="text-xl font-arimo font-bold mb-4 text-[#124A36] text-center">{service.title}</h3>
                   <p className="text-gray-600 font-assistant text-center font-amatic">{service.description}</p>
                 </article>
               ))}
@@ -131,7 +131,7 @@ const CyberSecurityPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-4xl font-bold text-white mb-2 font-secular">{stat.number}</div>
+                  <div className="text-4xl font-bold text-white mb-2 font-arimo">{stat.number}</div>
                   <div className="text-[#FAF9F6]/80 font-assistant">{stat.label}</div>
                 </div>
               ))}
@@ -142,13 +142,13 @@ const CyberSecurityPage = () => {
         {/* Security Solutions */}
         <div className="py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-[#124A36] text-center mb-16 font-secular">
+            <h2 className="text-4xl font-bold text-[#124A36] text-center mb-16 font-arimo">
               פתרונות אבטחה מקיפים
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {solutions.map((solution, index) => (
                 <div key={index} className="bg-white rounded-2xl p-8 shadow-sm">
-                  <h3 className="text-xl font-secular font-bold mb-6 text-[#124A36]">{solution.title}</h3>
+                  <h3 className="text-xl font-arimo font-bold mb-6 text-[#124A36]">{solution.title}</h3>
                   <ul className="space-y-4">
                     {solution.items.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex items-start gap-3 font-assistant text-gray-600">
@@ -167,7 +167,7 @@ const CyberSecurityPage = () => {
         <div className="bg-[#124A36]/5 py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold text-[#124A36] mb-6 font-secular">
+              <h2 className="text-3xl font-bold text-[#124A36] mb-6 font-arimo">
                 תקנים והסמכות
               </h2>
               <p className="text-gray-600 font-assistant mb-8 font-amatic">
@@ -188,7 +188,7 @@ const CyberSecurityPage = () => {
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="bg-[#124A36] rounded-3xl p-12 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#FAF9F6]/10 via-[#FAF9F6]/20 to-[#FAF9F6]/10"></div>
-              <h2 className="text-3xl font-bold text-white mb-6 font-secular">
+              <h2 className="text-3xl font-bold text-white mb-6 font-arimo">
                 מוכנים להגן על העסק שלכם?
               </h2>
               <p className="text-xl text-[#FAF9F6]/80 mb-8 font-assistant font-amatic">

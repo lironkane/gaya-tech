@@ -58,7 +58,7 @@ const AboutPage = () => {
         {/* Hero Section - Cream Background */}
         <section className="pt-32 pb-24">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-5xl font-bold text-[#124A36] mb-8 font-secular leading-tight">
+            <h1 className="text-5xl font-bold text-[#124A36] mb-8 font-arimo leading-tight">
               גאיה-טק
               <span className="block text-2xl mt-4 text-[#1a654a] font-normal">
                 חברת היי-טק מובילה בישראל
@@ -73,7 +73,7 @@ const AboutPage = () => {
 
         {/* Values Section - Green Background */}
         <section className="py-24 bg-[#124A36] rounded-3xl mb-24">
-          <h2 className="text-4xl font-bold text-white text-center mb-16 font-secular">
+          <h2 className="text-4xl font-bold text-white text-center mb-16 font-arimo">
             השירותים והיתרונות שלנו
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-8">
@@ -93,7 +93,7 @@ const AboutPage = () => {
         <section className="py-24">
           <div className="max-w-3xl mx-auto bg-[#124A36] rounded-3xl p-12 relative">
             <div className="absolute -top-3 right-12 w-24 h-2 bg-[#FAF9F6]/20 rounded-full"></div>
-            <h2 className="text-4xl font-bold text-white text-center mb-12 font-secular">
+            <h2 className="text-4xl font-bold text-white text-center mb-12 font-arimo">
               המומחיות שלנו
             </h2>
             <div className="space-y-6 text-right">
@@ -112,7 +112,7 @@ const AboutPage = () => {
         {/* Milestones Section - Green Background */}
         <section className="py-24 bg-[#124A36] rounded-3xl mb-24">
           <div className="mb-16 text-center">
-            <h2 className="inline-block text-4xl font-bold text-white font-secular pb-2 mb-2">
+            <h2 className="inline-block text-4xl font-bold text-white font-arimo pb-2 mb-2">
               ציוני דרך
             </h2>
             <p className="text-[#FAF9F6]/80 text-lg font-amatic font-assistant">
@@ -138,7 +138,7 @@ const AboutPage = () => {
         <section className="py-24">
           <div className="bg-[#124A36] rounded-3xl p-12 max-w-3xl mx-auto relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#FAF9F6]/10 via-[#FAF9F6]/20 to-[#FAF9F6]/10"></div>
-            <h2 className="text-3xl font-bold text-white mb-6 font-secular">
+            <h2 className="text-3xl font-bold text-white mb-6 font-arimo">
               מוכנים לקחת את העסק שלכם לשלב הבא?
             </h2>
             <p className="font-amatic text-xl text-gray-200 mb-8 font-assistant">

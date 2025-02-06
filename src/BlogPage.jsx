@@ -31,7 +31,7 @@ const BlogPage = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary to-accent text-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-extrabold font-secular mb-4">
+          <h1 className="text-4xl sm:text-5xl font-extrabold font-arimo mb-4">
             הבלוג שלנו
           </h1>
           <p className="font-amatic text-xl sm:text-2xl">
@@ -60,7 +60,7 @@ const BlogPage = () => {
               )}
               {/* תוכן הפוסט */}
               <div className="p-6">
-                <h2 className="text-xl font-bold mb-2 text-secondary font-secular">
+                <h2 className="text-xl font-bold mb-2 text-secondary font-arimo">
                   {post.title}
                 </h2>
                 <p className="text-sm text-text-secondary mb-2">

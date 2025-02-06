@@ -6,12 +6,32 @@ import {
   Settings,
   Target,
   Flag,
-  CircleDot,
 } from 'lucide-react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
-const Timeline = ({ isVisible }) => {
+const Timeline = () => {
   const [activeStep, setActiveStep] = useState(0);
   const timelineRef = useRef(null);
+  const maxHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
+  const minHeight = maxHeight * 0.7;
+
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["0.3 0.9", "1.2 0.5"]
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 30,
+    damping: 20,
+    restDelta: 0.001
+  });
+
+  const scale = useTransform(smoothProgress, [0.3, 0.8, 1], [1, 1, 0.95]);
+  const innerDivTranslateY = useTransform(smoothProgress, [0.3, 0.8, 1], [0, 0, maxHeight * 0.1]);
+  const blurValue = useTransform(smoothProgress, 
+    [0.3, 0.7, 0.9, 1], 
+    ['blur(0px)', 'blur(0px)', 'blur(2px)', 'blur(4px)']
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,7 +48,7 @@ const Timeline = ({ isVisible }) => {
       },
       {
         threshold: 0.5,
-        rootMargin: '-20% 0px -20% 0px',
+        rootMargin: '-10% 0px -40% 0px',
       }
     );
 
@@ -100,141 +120,177 @@ const Timeline = ({ isVisible }) => {
   ];
 
   return (
-    <section
-      className="py-24 relative overflow-hidden bg-[#FFF8F0]"
-      id="process"
+    <motion.section
       ref={timelineRef}
+      className="relative pt-5 pb-48 px-3 bg-black min-h-screen"
+      initial={{ opacity: 1 }}
+      style={{
+        scale
+      }}
     >
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(18,74,54,0.05)_2px,transparent_2px),linear-gradient(90deg,rgba(18,74,54,0.05)_2px,transparent_2px)]
-        bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_70%,transparent_100%)]">
-      </div>
-
-      <div className="text-center mb-20 relative z-10">
-        <div className={`${isVisible ? 'animate-scale-in' : 'opacity-0'}`}>
-          <h2 className="relative font-secular inline-block mb-6">
-            <span className="block text-7xl font-bold text-[#124A36]">
-              תהליך העבודה שלנו
-            </span>
-            <div
-              className="h-1.5 w-full bg-[#124A36] mt-4 rounded-full
-              animate-pulse shadow-lg shadow-[#124A36]/20"
-            ></div>
-          </h2>
-          <p className="text-5xl font-secular text-[#124A36]/80 mt-6 font-medium">
-            הדרך שלך להצלחה דיגיטלית
-          </p>
-        </div>
-      </div>
-
-      <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Center Line */}
-        <div className="absolute left-1/2 top-0 w-1 transform -translate-x-1/2 bg-[#124A36]/20 rounded-full h-full">
-          {/* Animated Progress */}
-          <div
-            className="absolute top-0 left-0 right-0 bg-[#124A36] rounded-full transition-all duration-1000"
-            style={{
-              height: `${((activeStep + 1) / (stepsData.length + 1)) * 100}%`,
-              boxShadow: '0 0 20px rgba(18,74,54,0.3)',
-            }}
-          />
-        </div>
-
-        {/* Starting Point */}
-        <div
-          className="flex items-center justify-center mb-6 timeline-step"
-          data-step="start"
-        >
-          <div
-            className="w-10 h-10 bg-[#FFF8F0] rounded-full flex items-center justify-center
-            relative z-10 shadow-md border-2 border-[#124A36]"
+      <motion.div
+        className="w-full h-full rounded-3xl relative shadow-lg bg-gradient-to-br from-[#EAEAEA] to-[#F5E6D3] p-8"
+        style={{
+          translateY: innerDivTranslateY,
+          filter: blurValue,
+        }}
+        transition={{
+          duration: 0.8,
+          ease: "easeInOut"
+        }}
+      >
+        <div className="flex flex-col">
+          <motion.div 
+            className="text-center mb-16 relative z-10"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <Flag className="w-6 h-6 text-[#124A36]" />
-          </div>
-        </div>
+            <h2 className="relative font-arimo inline-block mb-6">
+              <span className="block text-6xl font-bold text-[#124A36]">
+                תהליך העבודה שלנו
+              </span>
+              <div className="h-1.5 w-full bg-[#124A36] mt-4 rounded-full animate-pulse shadow-lg shadow-[#124A36]/20"></div>
+            </h2>
+            <p className="text-4xl font-arimo text-[#124A36]/80 mt-6 font-medium">
+              הדרך שלך להצלחה דיגיטלית
+            </p>
+          </motion.div>
 
-        {/* Steps */}
-        <div className="relative">
-          {stepsData.map((step, index) => (
-            <div
-              key={index}
-              className={`timeline-step mb-16 flex items-start ${
-                index % 2 === 0 ? 'flex-row-reverse' : ''
-              }`}
-              data-step={index}
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            {/* Center Line */}
+            <div className="absolute left-1/2 top-0 h-[95%] w-1 transform -translate-x-1/2 bg-gradient-to-b from-[#124A36]/10 via-[#124A36]/20 to-[#124A36]/10 rounded-full">
+              {/* Animated Progress */}
+              <motion.div
+                className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#124A36] to-[#1a654a] rounded-full"
+                initial={{ height: "0%" }}
+                animate={{ 
+                  height: `${Math.min(((activeStep + 1) / stepsData.length) * 105, 100)}%`
+                }}
+                transition={{
+                  duration: 1.5,
+                  ease: "easeInOut",
+                  delay: 0.1
+                }}
+                style={{
+                  boxShadow: '0 0 20px rgba(18,74,54,0.3)',
+                }}
+              />
+            </div>
+
+            {/* Starting Point */}
+            <motion.div
+              className="flex items-center justify-center mb-6 timeline-step"
+              data-step="start"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ 
+                duration: 0.5,
+                type: "spring",
+                stiffness: 100,
+                damping: 20
+              }}
             >
-              {/* Timeline Node */}
-              <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center bg-[#FFF8F0] border-2 border-[#F5E6D3]
-                    transition-all duration-500
-                    ${activeStep === index ? 'scale-100' : 'scale-75'}
-                    shadow-md z-10 relative
-                  `}
-              >
-                <step.icon
-                  className={`w-6 h-6 ${
-                    activeStep === index
-                      ? 'text-[#124A36] animate-pulse'
-                      : 'text-[#124A36]/70'
+              <div className="w-10 h-10 bg-[#FFF8F0] rounded-full flex items-center justify-center relative z-10 shadow-md border-2 border-[#124A36]">
+                <Flag className="w-6 h-6 text-[#124A36]" />
+              </div>
+            </motion.div>
+
+            {/* Steps */}
+            <div className="relative">
+              {stepsData.map((step, index) => (
+                <motion.div
+                  key={index}
+                  className={`timeline-step mb-16 flex items-start ${
+                    index % 2 === 0 ? 'flex-row-reverse' : ''
                   }`}
-                />
-              </div>
-
-              {/* Content Box */}
-              <div
-                className={`
-                    p-4 rounded-2xl bg-[#FFF8F0] backdrop-blur-sm shadow-md transition-all duration-500 group
-                    border border-[#F5E6D3] flex-1
-                    ${index % 2 === 0 ? 'ml-6' : 'mr-6'}
-                    ${
-                      activeStep === index
-                        ? 'ring-2 ring-[#124A36]/30 shadow-[#124A36]/20 scale-105'
-                        : ''
-                    }
-                    hover:shadow-[#124A36]/20 hover:scale-105
-                  `}
-              >
-                <h3 className="text-lg font-secular font-bold text-[#124A36] mb-2 group-hover:text-[#124A36]/80 transition duration-300 text-right">
-                  {step.title}
-                </h3>
-                <p
-                  className="text-sm font-secular text-gray-700 mb-3 text-right"
-                  dir="rtl"
+                  data-step={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ 
+                    duration: 0.8,
+                    delay: index * 0.2,
+                    ease: "easeOut"
+                  }}
                 >
-                  {step.description}
-                </p>
+                  {/* Timeline Node */}
+                  <motion.div
+                    className={`w-10 h-10 rounded-full flex items-center justify-center bg-[#FFF8F0] border-2 border-[#F5E6D3]
+                        transition-all duration-500
+                        ${activeStep === index ? 'scale-100' : 'scale-75'}
+                        shadow-md z-10 relative
+                      `}
+                    whileHover={{ 
+                      scale: 1.1,
+                      transition: {
+                        duration: 0.3,
+                        ease: "easeOut"
+                      }
+                    }}
+                  >
+                    <step.icon
+                      className={`w-6 h-6 ${
+                        activeStep === index
+                          ? 'text-[#124A36] animate-pulse'
+                          : 'text-[#124A36]/70'
+                      }`}
+                    />
+                  </motion.div>
 
-                <ul className="space-y-1 text-xs list-none">
-                  {step.details.map((detail, i) => (
-                    <li
-                      key={i}
-                      className="flex font-secular items-center gap-2 text-right"
-                      dir="rtl"
-                    >
-                      <div className="w-2 h-1 bg-[#124A36] rounded-full"></div>
-                      <span className="text-gray-600 font-medium">
-                        {detail.text}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
+                  {/* Content Box */}
+                  <motion.div
+                    className={`
+                        p-6 rounded-2xl bg-white shadow-lg transition-all duration-500 group
+                        border border-[#F5E6D3] flex-1
+                        ${index % 2 === 0 ? 'ml-6' : 'mr-6'}
+                        ${
+                          activeStep === index
+                            ? 'ring-2 ring-[#124A36]/30 shadow-[#124A36]/20 scale-105'
+                            : ''
+                        }
+                        hover:shadow-xl
+                      `}
+                    whileHover={{ 
+                      scale: 1.02,
+                      transition: { 
+                        duration: 0.3,
+                        ease: "easeOut"
+                      }
+                    }}
+                  >
+                    <h3 className="text-xl font-arimo font-bold text-[#124A36] mb-3 group-hover:text-[#124A36]/80 transition duration-300 text-right">
+                      {step.title}
+                    </h3>
+                    <p className="text-base font-arimo text-gray-700 mb-4 text-right" dir="rtl">
+                      {step.description}
+                    </p>
 
-        {/* End Point */}
-        <div className="flex items-center justify-center mt-4">
-          <div
-            className="w-8 h-8 bg-[#124A36] rounded-full flex items-center justify-center relative z-10
-              animate-pulse"
-          >
-            <div className="w-6 h-6 bg-[#FFF8F0] rounded-full flex items-center justify-center">
-              <CircleDot className="w-4 h-4 text-[#124A36]" />
+                    <ul className="space-y-2 text-sm list-none">
+                      {step.details.map((detail, i) => (
+                        <motion.li 
+                          key={i} 
+                          className="flex font-arimo items-center gap-3 text-right bg-black/5 rounded-lg px-4 py-2 hover:bg-black/10 transition-colors duration-300" 
+                          dir="rtl"
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{
+                            duration: 0.3,
+                            delay: i * 0.1
+                          }}
+                        >
+                          <div className="w-2 h-2 bg-[#124A36] rounded-full"></div>
+                          <span className="text-gray-700 font-medium">{detail.text}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 

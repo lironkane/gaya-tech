@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+import WebsiteQuestionnaire from './pages/WebsiteQuestionnaire';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
@@ -58,13 +59,14 @@ function App() {
             <Route path="/" element={
                 <>
                   <Hero isVisible={isVisible} />
-                  <Features isVisible={isVisible} />
+                  <Features isVisible={isVisible}/>
                   <Timeline isVisible={isVisible} />
                   <WhyChooseUs isVisible={WhyChooseUs} />
                   <ContactCTA />
                 </>
               }
             />
+            <Route path="/questionnaire" element={<WebsiteQuestionnaire />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/services/software-development" element={<SoftwareDevPage />} />
             <Route path="/services/cyber-security" element={<CyberSecurityPage />} />

@@ -45,7 +45,7 @@ const SeoContentWriting = () => {
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-secular">
+        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-arimo">
           מדריך לכתיבת תוכן ידידותי ל-SEO בשנת 2024
         </h1>
         <p className="text-gray-600 mb-6 text-center font-amatic">
@@ -63,8 +63,8 @@ const SeoContentWriting = () => {
             <span className="font-bold text-lg">כתיבת תוכן SEO</span>
           </div>
         </div>
-        <article className="mx-auto font-secular">
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
+        <article className="mx-auto font-arimo">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">
             מהו תוכן ידידותי ל-SEO?
           </h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
@@ -72,7 +72,7 @@ const SeoContentWriting = () => {
             להבין בקלות במה הוא עוסק. תוכן כזה משתמש במילות מפתח רלוונטיות,
             כתוב בצורה ברורה ומאורגנת, ומספק ערך אמיתי לגולשים.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">
             טיפים לכתיבת תוכן SEO בשנת 2024
           </h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -97,7 +97,7 @@ const SeoContentWriting = () => {
               שלך וקשר לאתרים חיצוניים רלוונטיים וסמכותיים.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">סיכום</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">סיכום</h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             כתיבת תוכן ידידותי ל-SEO היא אומנות שמשלבת בין יצירתיות לבין
             הבנה טכנית של מנועי החיפוש. על ידי יישום הטיפים במאמר זה, תוכל

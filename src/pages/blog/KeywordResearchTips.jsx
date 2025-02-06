@@ -28,7 +28,7 @@ const KeywordResearchTips = () => {
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-secular">
+        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-arimo">
           מחקר מילות מפתח: מצא את הביטויים הנכונים לקידום האתר שלך
         </h1>
         <p className="font-amatic text-gray-600 mb-6 text-center">
@@ -47,20 +47,20 @@ const KeywordResearchTips = () => {
             <span className="font-bold text-lg font-amatic">מחקר מילות מפתח</span>
           </div>
         </div>
-        <article className="mx-auto font-secular">
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">מהו מחקר מילות מפתח?</h2>
+        <article className="mx-auto font-arimo">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">מהו מחקר מילות מפתח?</h2>
           <p className="font-amatic text-gray-700 mb-4 leading-relaxed">
             מחקר מילות מפתח הוא תהליך של זיהוי מילות המפתח והביטויים
             שאנשים משתמשים בהם כדי לחפש מידע, מוצרים או שירותים הקשורים
             לאתר שלך.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">למה מחקר מילות מפתח חשוב?</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">למה מחקר מילות מפתח חשוב?</h2>
           <p className="font-amatic text-gray-700 mb-4 leading-relaxed">
             מחקר מילות מפתח עוזר לך להבין מה קהל היעד שלך מחפש, ומאפשר לך
             ליצור תוכן ממוקד שעונה על הצרכים שלהם. שימוש נכון במילות מפתח
             בתוכן האתר ישפר את דירוג האתר בתוצאות החיפוש האורגניות.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">איך לערוך מחקר מילות מפתח יעיל</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">איך לערוך מחקר מילות מפתח יעיל</h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
             <li className="text-gray-700 leading-relaxed">
               <strong>השתמש בכלים ייעודיים:</strong> כלים כמו Google Keyword
@@ -77,7 +77,7 @@ const KeywordResearchTips = () => {
               לרוב פחות תחרותיות ויכולות למשוך תנועה איכותית יותר.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">סיכום</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">סיכום</h2>
           <p className="font-amatic text-gray-700 mb-4 leading-relaxed">
             מחקר מילות מפתח הוא שלב קריטי בכל תהליך קידום אתרים. על ידי
             השקעת זמן ומאמץ במחקר נכון, תוכל לבחור את מילות המפתח

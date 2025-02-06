@@ -93,7 +93,7 @@ const ServicesPage = () => {
       <section className="py-24 bg-gradient-to-b from-[#124A36] to-[#2A6B52] text-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-secular font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-arimo font-bold mb-6">
               השירותים שלנו
             </h1>
             <p className="font-amatic text-xl md:text-2xl text-white/80 max-w-2xl mx-auto">
@@ -142,7 +142,7 @@ const ServicesPage = () => {
       {/* FAQ Section */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-[#124A36] font-secular">
+          <h2 className="text-3xl font-bold text-center mb-12 text-[#124A36] font-arimo">
             שאלות נפוצות
           </h2>
           <div className="space-y-6">
@@ -171,7 +171,7 @@ const ServicesPage = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-[#124A36] via-[#2A6B52] to-[#124A36] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-secular">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-arimo">
             מוכנים להתחיל?
           </h2>
           <p className="font-amatic text-xl text-white/80 mb-8">

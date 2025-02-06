@@ -7,7 +7,7 @@ import communicationAnimation from '../assets/animations/communication.json';
 import puzzleAnimation from '../assets/animations/puzzle.json';
 import rocketAnimation from '../assets/animations/rocket.json';
 import trophyAnimation from '../assets/animations/trophy.json';
-import greenBackground from '../assets/background/green-background.jpg';
+import greenBackground from '../assets/background/features-background.jpg';
 
 const WhyChooseUs = () => {
   const features = [
@@ -64,7 +64,7 @@ const WhyChooseUs = () => {
       ></div>
 
       <div className="relative container mx-auto px-4">
-        <h2 className="font-secular text-center text-6xl font-bold text-white mb-12 animate-fade-slide-in">
+        <h2 className="font-arimo text-center text-6xl font-bold text-white mb-12 animate-fade-slide-in">
           היתרון הייחודי שלנו
         </h2>
         <p className="font-amatic text-center text-3xl text-white mb-16 animate-fade-slide-in animation-delay-200">
@@ -93,12 +93,12 @@ const WhyChooseUs = () => {
                 />
               </div>
               <h3
-                className="font-secular text-3xl font-bold text-green-200 mb-4
+                className="font-arimo text-3xl font-bold text-green-200 mb-4
                   transition-all duration-300 hover:scale-105"
               >
                 {feature.title}
               </h3>
-              <p className="font-secular text-center text-white">
+              <p className="font-arimo text-center text-white">
                 {feature.description}
               </p>
             </div>

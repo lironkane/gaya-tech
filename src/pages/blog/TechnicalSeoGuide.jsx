@@ -43,7 +43,7 @@ const TechnicalSeoGuide = () => {
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-secular">
+        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-arimo">
           קידום אתרים טכני: סודות האינדוקס והסריקה של גוגל
         </h1>
         <p className="text-gray-600 mb-6 text-center font-amatic">
@@ -62,8 +62,8 @@ const TechnicalSeoGuide = () => {
             <span className="font-bold text-lg">קידום אתרים טכני</span>
           </div>
         </div>
-        <article className="mx-auto font-secular">
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
+        <article className="mx-auto font-arimo">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">
             מהו SEO טכני?
           </h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
@@ -72,7 +72,7 @@ const TechnicalSeoGuide = () => {
             שיפורים בקוד האתר, ארכיטקטורת האתר, מהירות הטעינה, התאמה
             למובייל ועוד.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">
             למה SEO טכני חשוב?
           </h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
@@ -80,7 +80,7 @@ const TechnicalSeoGuide = () => {
             האתר ותוכנו, מה שעלול להוביל לדירוג נמוך יותר בתוצאות החיפוש.
             SEO טכני מבטיח שהאתר שלך נגיש וקל לסריקה עבור מנועי החיפוש.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">
             היבטים מרכזיים ב-SEO טכני
           </h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -104,7 +104,7 @@ const TechnicalSeoGuide = () => {
               <strong>HTTPS:</strong> ודא שהאתר שלך מאובטח באמצעות SSL.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">סיכום</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">סיכום</h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             SEO טכני הוא חלק חיוני בכל אסטרטגיית קידום אתרים. על ידי שיפור
             ההיבטים הטכניים של האתר שלך, תוכל להבטיח שמנועי החיפוש יסרקו

@@ -28,7 +28,7 @@ const LinkBuildingStrategies = () => {
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-secular">
+        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-arimo">
           בניית קישורים: איך להשיג קישורים איכותיים לאתר שלך
         </h1>
         <p className="text-gray-600 mb-6 text-center font-amatic">
@@ -47,20 +47,20 @@ const LinkBuildingStrategies = () => {
             <span className="font-bold text-lg font-amatic">בניית קישורים</span>
           </div>
         </div>
-        <article className="mx-auto font-secular">
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">מהי בניית קישורים?</h2>
+        <article className="mx-auto font-arimo">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">מהי בניית קישורים?</h2>
           <p className="font-amatic text-gray-700 mb-4 leading-relaxed">
             בניית קישורים היא תהליך של השגת קישורים נכנסים לאתר שלך מאתרים
             אחרים. קישורים אלה נתפסים על ידי מנועי החיפוש כ"הצבעות אמון"
             ויכולים לשפר משמעותית את דירוג האתר שלך.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">למה קישורים חשובים ל-SEO?</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">למה קישורים חשובים ל-SEO?</h2>
           <p className="font-amatic text-gray-700 mb-4 leading-relaxed">
             קישורים איכותיים מאתרים סמכותיים בתחום שלך מאותתים לגוגל שהאתר
             שלך אמין ובעל ערך. ככל שיש לך יותר קישורים איכותיים, כך גדל
             הסיכוי שתדורג גבוה יותר בתוצאות החיפוש.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">אסטרטגיות יעילות לבניית קישורים</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">אסטרטגיות יעילות לבניית קישורים</h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
             <li className="text-gray-700 leading-relaxed">
               <strong>יצירת תוכן איכותי:</strong> כתוב תוכן מקורי, מעמיק
@@ -79,7 +79,7 @@ const LinkBuildingStrategies = () => {
               חברתיות ועודד אנשים לקשר אליו.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">סיכום</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">סיכום</h2>
           <p className="font-amatic text-gray-700 mb-4 leading-relaxed">
             בניית קישורים היא תהליך מתמשך שדורש סבלנות ועקביות. על ידי יישום
             האסטרטגיות המתוארות במאמר זה, תוכל לבנות פרופיל קישורים חזק

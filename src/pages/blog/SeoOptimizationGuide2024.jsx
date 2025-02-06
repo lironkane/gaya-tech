@@ -30,7 +30,7 @@ const SeoOptimizationGuide2024 = () => {
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-secular">
+        <h1 className="text-4xl font-bold mb-4 text-[#124A36] text-center font-arimo">
           אופטימיזציית אתרים למנועי חיפוש: המדריך המלא ל-2024
         </h1>
         <p className="text-gray-600 mb-6 text-center font-amatic">
@@ -49,21 +49,21 @@ const SeoOptimizationGuide2024 = () => {
             <span className="font-bold text-lg">קידום אתרים</span>
           </div>
         </div>
-        <article className="mx-auto font-secular">
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">מהי אופטימיזציית אתרים (SEO)?</h2>
+        <article className="mx-auto font-arimo">
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">מהי אופטימיזציית אתרים (SEO)?</h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             אופטימיזציית אתרים למנועי חיפוש (SEO) היא תהליך שיטתי לשיפור
             הדירוג של אתר אינטרנט בתוצאות החיפוש האורגניות של מנועי חיפוש
             כמו גוגל. המטרה היא להגדיל את התנועה האורגנית (לא ממומנת) לאתר
             על ידי שיפור הנראות שלו במילות מפתח רלוונטיות.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">מדוע SEO חשוב בשנת 2024?</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">מדוע SEO חשוב בשנת 2024?</h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             בשנת 2024, SEO חשוב מתמיד. עם התחרות הגוברת ברשת, אתר שלא עבר
             אופטימיזציה יתקשה להתבלט. SEO עוזר לאתר שלך להגיע לקהל היעד
             הנכון, מגדיל את המודעות למותג, ומוביל ליותר המרות.
           </p>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">טיפים ל-SEO בשנת 2024</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">טיפים ל-SEO בשנת 2024</h2>
           <ul className="list-disc pl-5 mb-4 space-y-2">
             <li className="text-gray-700 leading-relaxed">
               <strong>התמקדות בחוויית משתמש (UX):</strong> גוגל נותן עדיפות
@@ -84,7 +84,7 @@ const SeoOptimizationGuide2024 = () => {
               טכנית, עם קוד נקי, כתובות URL ידידותיות, ותגיות מטא מתאימות.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-secular">סיכום</h2>
+          <h2 className="text-2xl font-bold mb-3 text-[#124A36] font-arimo">סיכום</h2>
           <p className="text-gray-700 mb-4 leading-relaxed font-amatic">
             SEO הוא תהליך מתמשך שדורש עבודה עקבית. על ידי יישום הטיפים
             במדריך זה, תוכל לשפר את דירוג האתר שלך במנועי החיפוש ולהגיע

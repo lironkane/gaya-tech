@@ -77,7 +77,7 @@ const ContactPage = () => {
       <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 text-right font-assistant">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-primary mb-6 font-secular">
+            <h1 className="text-4xl font-bold text-primary mb-6 font-arimo">
               צור קשר
             </h1>
             <p className="font-amatic text-lg text-gray-600">

@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'amatic': ['Amatic SC', 'cursive'],
-        'secular': ['Secular One', 'cursive'],
+        'amatic': ['Secular One', 'cursive'],
+        'arimo': ['Arimo', 'cursive'],
       },
       colors: {
         primary: "#1a654a",

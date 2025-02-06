@@ -180,9 +180,9 @@ const SoftwareDevPage = () => {
         <div className="bg-primary text-white py-20 md:py-28">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 font-secular">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 font-arimo">
                 פיתוח תוכנה
-                <span className="block text-lg md:text-xl mt-4 text-white/80 font-normal font-secular">
+                <span className="block text-lg md:text-xl mt-4 text-white/80 font-normal font-arimo">
                   פתרונות תוכנה חדשניים לעסקים מובילים
                 </span>
               </h1>
@@ -198,7 +198,7 @@ const SoftwareDevPage = () => {
         {/* Technologies Section */}
         <div className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-secular">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-arimo">
               הטכנולוגיות שלנו
             </h2>
             <p className="text-center text-xl text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg font-amatic">
@@ -212,7 +212,7 @@ const SoftwareDevPage = () => {
                   className="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center"
                 >
                   <div className="mb-4">{tech.icon}</div>
-                  <h3 className="text-lg md:text-xl font-secular font-bold mb-3 text-primary text-center">
+                  <h3 className="text-lg md:text-xl font-arimo font-bold mb-3 text-primary text-center">
                     {tech.title}
                   </h3>
                   <p className="text-gray-600 font-assistant text-center text-lg md:text-base font-amatic">
@@ -237,7 +237,7 @@ const SoftwareDevPage = () => {
         {/* Process Section */}
         <div className="bg-primary text-white py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 font-secular">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 font-arimo">
               תהליך העבודה שלנו
             </h2>
             <p className="text-center text-xl text-white/80 mb-12 md:mb-16 font-assistant text-base md:text-lg font-amatic">
@@ -250,7 +250,7 @@ const SoftwareDevPage = () => {
                   key={index}
                   className="bg-gray-100 rounded-2xl p-6 md:p-8"
                 >
-                  <h3 className="text-lg md:text-xl font-secular font-bold mb-4 text-primary flex items-center gap-3">
+                  <h3 className="text-lg md:text-xl font-arimo font-bold mb-4 text-primary flex items-center gap-3">
                     {step.icon}
                     {step.title}
                   </h3>
@@ -273,7 +273,7 @@ const SoftwareDevPage = () => {
         {/* Benefits Section */}
         <div className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-secular">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-4 font-arimo">
               היתרונות שלנו
             </h2>
             <p className="text-center text-gray-600 mb-12 md:mb-16 font-assistant text-base md:text-lg font-amatic">
@@ -286,7 +286,7 @@ const SoftwareDevPage = () => {
                   className="bg-white p-6 md:p-8 rounded-2xl shadow-md flex flex-col items-center"
                 >
                   <div className="mb-4">{benefit.icon}</div>
-                  <h3 className="text-lg md:text-xl font-secular font-bold mb-2 text-primary text-center">
+                  <h3 className="text-lg md:text-xl font-arimo font-bold mb-2 text-primary text-center">
                     {benefit.title}
                   </h3>
                   <p className="text-gray-600 font-assistant text-center text-sm md:text-base font-amatic">
@@ -300,7 +300,7 @@ const SoftwareDevPage = () => {
       {/* CTA Section */}
       <div className="bg-[#124A36] py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6 font-secular">
+          <h2 className="text-3xl font-bold text-white mb-6 font-arimo">
             מוכנים להתחיל בפיתוח הפרויקט שלכם?
           </h2>
           <p className="text-xl text-[#FAF9F6]/80 mb-8 font-assistant font-amatic">
