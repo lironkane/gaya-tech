@@ -109,6 +109,15 @@ html {
   text-shadow: 0 0 3px #fff, 0 0 6px #a29898, 0 0 9px #fff, 0 0 12px #007bff,
     0 0 21px #007bff, 0 0 24px #007bff, 0 0 30px #007bff;
 }
+.motion.section {
+  height: 100vh; /* כל סקשן תופס את גובה המסך המלא */
+  scroll-snap-align: start; /* עצירה בתחילת הסקשן */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  /* סגנון בסיסי לטקסט, לא חובה */
+}
 
 /* אנימציית הקלדה */
 .typewriter {

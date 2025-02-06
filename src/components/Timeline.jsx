@@ -8,6 +8,7 @@ import {
   Flag,
 } from 'lucide-react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import timelineBackground from '../assets/background/timeline-background.jpg';
 
 const Timeline = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -133,6 +134,13 @@ const Timeline = () => {
         style={{
           translateY: innerDivTranslateY,
           filter: blurValue,
+          background: 'rgba(234, 234, 234, 0.5)', // צבע התחלתי שקוף-למחצה
+          backgroundImage: `url(${timelineBackground})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundBlendMode: 'overlay',
+          filter: blurValue,
+          borderRadius: '2rem'
         }}
         transition={{
           duration: 0.8,
@@ -147,22 +155,22 @@ const Timeline = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h2 className="relative font-arimo inline-block mb-6">
-              <span className="block text-6xl font-bold text-[#124A36]">
+              <span className="block text-6xl font-bold text-black">
                 תהליך העבודה שלנו
               </span>
-              <div className="h-1.5 w-full bg-[#124A36] mt-4 rounded-full animate-pulse shadow-lg shadow-[#124A36]/20"></div>
+              <div className="h-1.5 w-full bg-black mt-4 rounded-full animate-pulse shadow-lg shadow-black/20"></div>
             </h2>
-            <p className="text-4xl font-arimo text-[#124A36]/80 mt-6 font-medium">
+            <p className="text-4xl font-arimo text-black/80 mt-6 font-medium">
               הדרך שלך להצלחה דיגיטלית
             </p>
           </motion.div>
 
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             {/* Center Line */}
-            <div className="absolute left-1/2 top-0 h-[95%] w-1 transform -translate-x-1/2 bg-gradient-to-b from-[#124A36]/10 via-[#124A36]/20 to-[#124A36]/10 rounded-full">
+            <div className="absolute left-1/2 top-0 h-[95%] w-1 transform -translate-x-1/2 bg-gradient-to-b from-black/10 via-black/20 to-black/10 rounded-full">
               {/* Animated Progress */}
               <motion.div
-                className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#124A36] to-[#1a654a] rounded-full"
+                className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black to-black rounded-full"
                 initial={{ height: "0%" }}
                 animate={{ 
                   height: `${Math.min(((activeStep + 1) / stepsData.length) * 105, 100)}%`
@@ -191,8 +199,8 @@ const Timeline = () => {
                 damping: 20
               }}
             >
-              <div className="w-10 h-10 bg-[#FFF8F0] rounded-full flex items-center justify-center relative z-10 shadow-md border-2 border-[#124A36]">
-                <Flag className="w-6 h-6 text-[#124A36]" />
+              <div className="w-10 h-10 bg-[#FFF8F0] rounded-full flex items-center justify-center relative z-10 shadow-md border-2 border-black">
+                <Flag className="w-6 h-6 text-black" />
               </div>
             </motion.div>
 
@@ -231,8 +239,8 @@ const Timeline = () => {
                     <step.icon
                       className={`w-6 h-6 ${
                         activeStep === index
-                          ? 'text-[#124A36] animate-pulse'
-                          : 'text-[#124A36]/70'
+                          ? 'text-black animate-pulse'
+                          : 'text-black/70'
                       }`}
                     />
                   </motion.div>
@@ -245,7 +253,7 @@ const Timeline = () => {
                         ${index % 2 === 0 ? 'ml-6' : 'mr-6'}
                         ${
                           activeStep === index
-                            ? 'ring-2 ring-[#124A36]/30 shadow-[#124A36]/20 scale-105'
+                            ? 'ring-2 ring-black/30 shadow-black/20 scale-105'
                             : ''
                         }
                         hover:shadow-xl
@@ -258,7 +266,7 @@ const Timeline = () => {
                       }
                     }}
                   >
-                    <h3 className="text-xl font-arimo font-bold text-[#124A36] mb-3 group-hover:text-[#124A36]/80 transition duration-300 text-right">
+                    <h3 className="text-xl font-arimo font-bold text-black mb-3 group-hover:text-black/80 transition duration-300 text-right">
                       {step.title}
                     </h3>
                     <p className="text-base font-arimo text-gray-700 mb-4 text-right" dir="rtl">
@@ -278,7 +286,7 @@ const Timeline = () => {
                             delay: i * 0.1
                           }}
                         >
-                          <div className="w-2 h-2 bg-[#124A36] rounded-full"></div>
+                          <div className="w-2 h-2 bg-black rounded-full"></div>
                           <span className="text-gray-700 font-medium">{detail.text}</span>
                         </motion.li>
                       ))}

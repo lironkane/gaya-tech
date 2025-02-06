@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import Lottie from 'lottie-react';
-import { motion, useTransform, useScroll } from 'framer-motion';
+import { motion, useTransform, useScroll, useSpring } from 'framer-motion';
 import handshakeAnimation from '../assets/animations/arrow.json';
-import { Global } from '@emotion/react'; // ייבוא Global
+import { Global } from '@emotion/react';
 
 const RotatingCubeButton = () => {
   return (
@@ -23,17 +23,31 @@ const Hero = () => {
   const maxHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
   const minHeight = 50;
 
+  // שימוש ב- useScroll כדי לקבל את scrollYProgress
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
 
-  const height = useTransform(scrollYProgress, [0, 1], [maxHeight, minHeight]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
-  const innerDivTranslateY = useTransform(scrollYProgress, [0, 1], [0, maxHeight * 0.8]);
+  // ממירים את ערך ה-scrollYProgress לטווח עבור גובה וסקייל
+  const heightValue = useTransform(scrollYProgress, [0, 1], [maxHeight, minHeight]);
+  const scaleValue = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
 
-  // Modified blur transform with stronger values
-  const blurValue = useTransform(scrollYProgress, [0, 0.2, 0.6, 1], ['blur(0px)', 'blur(0px)', 'blur(8px)', 'blur(16px)']);
+  // במקום מחרוזות - נעבוד עם מספרים עבור הבלור
+  const blurValueNumeric = useTransform(scrollYProgress, [0, 0.2, 0.6, 1], [0, 0, 8, 16]);
+
+  // עוטפים ב-useSpring כדי לאפשר "גלישה" (אינטרפולציה) חלקה
+  const heightSpring = useSpring(heightValue, { stiffness: 80, damping: 30 });
+  const scaleSpring = useSpring(scaleValue, { stiffness: 80, damping: 30 });
+  const blurSpring = useSpring(blurValueNumeric, { stiffness: 80, damping: 30 });
+
+  // צור טרנספורמציה נוספת כדי להפוך את המספר למחרוזת blur
+  // כאן 'v' הוא הערך המונפש המספרי מ-blurSpring, ובסוף מחזירים "blur(XXpx)"
+  const blurFilter = useTransform(blurSpring, (v) => `blur(${v}px)`);
+
+  // Translate Y פנימי
+  const innerDivTranslateY = useTransform(scrollYProgress, [0, 1], [0, maxHeight * 0.8]);
+  const innerDivTranslateYSpring = useSpring(innerDivTranslateY, { stiffness: 80, damping: 30 });
 
   return (
     <motion.section
@@ -41,15 +55,17 @@ const Hero = () => {
       initial={{ opacity: 1 }}
       className="relative p-3 min-h-screen bg-black"
       style={{
-        height,
-        scale,
+        height: heightSpring,
+        scale: scaleSpring,
+        willChange: 'height, transform',
       }}
     >
       <motion.div
         className="w-full h-full rounded-3xl relative shadow-lg bg-[#EAEAEA] p-8"
         style={{
-          translateY: innerDivTranslateY,
-          filter: blurValue,
+          translateY: innerDivTranslateYSpring,
+          filter: blurFilter,    // <--- כאן משתמשים בערך שהומר למחרוזת
+          willChange: 'transform, filter',
         }}
       >
         <nav className="flex justify-end mb-8 gap-4">
