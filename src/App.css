@@ -40,3 +40,37 @@
 .read-the-docs {
   color: #888;
 }
+/* טיפוגרפיה - הקטנת גדלים מעט */
+.text-lg {
+  font-size: 1.125rem;  /* 18px */
+  line-height: 1.6; /* קצת יותר צפוף */
+}
+.sm\:text-xl {
+font-size: 1.25rem; /* 20px */
+line-height: 1.6;
+}
+.font-semibold {
+  font-weight: 600; /* קצת פחות בולד */
+}
+
+/* ריווחים - הקטנה קלה */
+.p-4 {
+padding: 1rem; /* 16px */
+}
+.sm\:p-6 {
+padding: 1.5rem; /* 24px */
+}
+.p-14 {
+ padding: 2rem; /* הקטנה משמעותית */
+}
+.sm\:p-8 {
+  padding: 2rem;
+}
+
+.md\:p-12 {
+  padding: 3rem;
+}
+
+.lg\:p-16 {
+ padding: 4rem;
+}

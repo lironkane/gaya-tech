@@ -14,9 +14,10 @@ import AIandIoTPage from './services/AIandIoTPage';
 import CyberSecurityPage from './services/CyberSecurityPage';
 import CloudSolutionsPage from './services/CloudSolutionsPage';
 import Navbar from './components/Navbar';
+import WhatWeDo from './components/Services.jsx';
 import ContactCTA from './components/ContactCTA';
 import Hero from './components/Hero';
-import WhyChooseUs from './components/WhyChooseUs';
+import Services from './components/Services';
 import Timeline from './components/Timeline';
 import Features from './components/Features';
 import Footer from './components/Footer';
@@ -59,9 +60,8 @@ function App() {
             <Route path="/" element={
                 <>
                   <Hero isVisible={isVisible} />
-                  <Features isVisible={isVisible}/>
+                  <Services isVisible={isVisible}/>
                   <Timeline isVisible={isVisible} />
-                  <WhyChooseUs isVisible={WhyChooseUs} />
                   <ContactCTA />
                 </>
               }
