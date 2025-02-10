@@ -148,7 +148,7 @@ const Timeline = () => {
   return (
     <motion.section
       ref={timelineRef}
-      className="relative pt-5 pb-12 px-3 bg-black min-h-screen"
+      className="relative pt-5 pb-1 px-3 bg-black min-h-screen"
       initial={{ opacity: 1 }}
       style={{
         scale

@@ -170,7 +170,7 @@ const Services = () => {
     };
 
     return (
-        <section ref={sectionRef} className="relative p-3 bg-[#1a1a1a] transition-filter duration-500">
+        <section ref={sectionRef} className="relative pt-3 pb-1 px-3 bg-[#1a1a1a] transition-filter duration-500">
             <motion.div style={{ filter: `blur(${blurValue}px)` }} className="relative w-full h-full rounded-3xl overflow-hidden shadow-lg flex flex-col">
                 <div className="absolute inset-0 z-0">
                     <img src={featuresBackground} alt="Features Background" className="w-full h-full object-cover" />
