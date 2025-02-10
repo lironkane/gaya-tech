@@ -2,41 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base Styles */
+/* ---------------------
+   Base Styles
+   --------------------- */
 html {
   direction: rtl;
   scroll-behavior: smooth;
 }
 
-/* Animations */
+/* ---------------------
+   Animations Keyframes
+   --------------------- */
 @keyframes slideUp {
-  0% { 
-    transform: translateY(30px); 
-    opacity: 0; 
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
   }
-  100% { 
-    transform: translateY(0); 
-    opacity: 1; 
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes scaleIn {
-  0% { 
-    transform: scale(0.9); 
-    opacity: 0; 
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
   }
-  100% { 
-    transform: scale(1); 
-    opacity: 1; 
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-/* Animation Classes */
+/* ---------------------
+   Animation Classes
+   --------------------- */
 .animate-slide-up {
   opacity: 0;
   animation: slideUp 0.8s ease-out forwards;
@@ -53,45 +63,98 @@ html {
 }
 
 /* Animation Delays */
-.delay-200 { animation-delay: 200ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-600 { animation-delay: 600ms; }
+.delay-200 {
+  animation-delay: 200ms;
+}
 
-/* Custom Utility Classes */
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-600 {
+  animation-delay: 600ms;
+}
+
+/* ---------------------
+   Custom Utilities
+   --------------------- */
 @layer utilities {
   .text-shadow {
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
+
   .transition-gpu {
     transform: translateZ(0);
     backface-visibility: hidden;
   }
+
+  /* Utility for text glow */
+  .text-shadow-glow {
+    text-shadow:
+      0 0 15px rgba(255, 255, 255, 0.6),
+      0 0 30px rgba(255, 255, 255, 0.4),
+      0 0 45px rgba(255, 255, 255, 0.2),
+      0 10px 20px rgba(0, 0, 0, 0.3);
+  }
 }
+
 .relative.z-10 {
   position: relative;
   z-index: 10;
 }
 
-/* Add these keyframes to your CSS */
+/* ---------------------
+   Sparkle Animations
+   --------------------- */
 @keyframes sparkle-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0; }
-  25% { transform: translate(-10px, -10px) scale(1.5); opacity: 1; }
-  50% { transform: translate(10px, -20px) scale(0.5); opacity: 0; }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  25% {
+    transform: translate(-10px, -10px) scale(1.5);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(10px, -20px) scale(0.5);
+    opacity: 0;
+  }
 }
 
 @keyframes sparkle-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0; }
-  25% { transform: translate(10px, -15px) scale(2); opacity: 1; }
-  50% { transform: translate(-5px, -25px) scale(0.5); opacity: 0; }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  25% {
+    transform: translate(10px, -15px) scale(2);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-5px, -25px) scale(0.5);
+    opacity: 0;
+  }
 }
 
 @keyframes sparkle-3 {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0; }
-  25% { transform: translate(-15px, -5px) scale(1.5); opacity: 1; }
-  50% { transform: translate(5px, -15px) scale(0.5); opacity: 0; }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  25% {
+    transform: translate(-15px, -5px) scale(1.5);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(5px, -15px) scale(0.5);
+    opacity: 0;
+  }
 }
 
+/* Sparkle Classes */
 .animate-sparkle-1 {
   animation: sparkle-1 2s ease-in-out infinite;
 }
@@ -104,11 +167,21 @@ html {
   animation: sparkle-3 2s ease-in-out infinite 0.6s;
 }
 
-/* אפקט טקסט זוהר */
+/* אפקט טקסט זוהר – הרחבה */
 .glow-text {
-  text-shadow: 0 0 3px #fff, 0 0 6px #a29898, 0 0 9px #fff, 0 0 12px #007bff,
-    0 0 21px #007bff, 0 0 24px #007bff, 0 0 30px #007bff;
+  text-shadow:
+    0 0 3px #fff,
+    0 0 6px #a29898,
+    0 0 9px #fff,
+    0 0 12px #007bff,
+    0 0 21px #007bff,
+    0 0 24px #007bff,
+    0 0 30px #007bff;
 }
+
+/* ---------------------
+   Full-Height Section
+   --------------------- */
 .motion.section {
   height: 100vh; /* כל סקשן תופס את גובה המסך המלא */
   scroll-snap-align: start; /* עצירה בתחילת הסקשן */
@@ -116,10 +189,11 @@ html {
   justify-content: center;
   align-items: center;
   font-size: 3rem;
-  /* סגנון בסיסי לטקסט, לא חובה */
 }
 
-/* אנימציית הקלדה */
+/* ---------------------
+   Typing Animation
+   --------------------- */
 .typewriter {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   white-space: nowrap; /* Keeps the content on a single line */
@@ -127,7 +201,6 @@ html {
   letter-spacing: 0.15em; /* Adjust as needed */
 }
 
-/* The typing effect */
 @keyframes typing {
   from {
     width: 0; /* Start with full width */
@@ -137,18 +210,19 @@ html {
   }
 }
 
-/* The typewriter cursor effect */
 @keyframes blink-caret {
   from,
   to {
     border-color: transparent;
   }
   50% {
-    border-color: orange; 
+    border-color: orange;
   }
 }
 
-/* חלקיקים מרחפים */
+/* ---------------------
+   Hover Particles
+   --------------------- */
 .particle-container {
   position: absolute;
   top: 0;
@@ -188,14 +262,6 @@ html {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
-@layer utilities {
-  .text-shadow-glow {
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
-                 0 0 30px rgba(255, 255, 255, 0.4),
-                 0 0 45px rgba(255, 255, 255, 0.2);
-  }
-}
-
 @keyframes particle-animation {
   0% {
     transform: translateY(0) scale(1);
@@ -211,6 +277,9 @@ html {
   }
 }
 
+/* ---------------------
+   3D Screen
+   --------------------- */
 .screen {
   position: relative;
   display: flex;
@@ -271,43 +340,43 @@ html {
   transform: rotateX(-123deg);
 }
 
-/* Image hover effects */
+/* ---------------------
+   Image Hover Effects
+   --------------------- */
 .image-card {
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .image-card:hover {
   transform: scale(1.05);
 }
 
-/* Gradient overlays */
+/* ---------------------
+   Gradient Overlays
+   --------------------- */
 .gradient-overlay {
-  background: linear-gradient(to bottom, 
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0.7) 100%
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.7) 100%
   );
 }
 
-/* הוסף את זה לקובץ ה-CSS הראשי שלך (לדוגמה, index.css) */
+/* ---------------------
+   Animated Gradient
+   --------------------- */
 .animate-gradient {
   background-size: 400% 400%;
 }
 
-@layer utilities {
-  .text-shadow-glow {
-    text-shadow: 
-      0 0 15px rgba(255, 255, 255, 0.6),
-      0 0 30px rgba(255, 255, 255, 0.4),
-      0 0 45px rgba(255, 255, 255, 0.2),
-      0 10px 20px rgba(0, 0, 0, 0.3);
-  }
-}
-
+/* ---------------------
+   Liquid Hover
+   --------------------- */
 @keyframes liquid-hover {
-  0%, 100% { 
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; 
-  } 
-  50% { 
-    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; 
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
   }
 }

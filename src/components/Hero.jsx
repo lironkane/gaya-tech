@@ -1,27 +1,31 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
+import { motion, useTransform, useScroll, useSpring } from 'framer-motion';
 import Lottie from 'lottie-react';
-import { motion, useTransform, useScroll, useSpring, useMotionValue, useAnimate } from 'framer-motion';
 import handshakeAnimation from '../assets/animations/arrow.json';
 import { Global } from '@emotion/react';
 
+/* -------------------------------------------------------------------------- */
+/*     Component: DotsSphere                                                  */
+/* -------------------------------------------------------------------------- */
 const DotsSphere = () => {
   const sphereRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef(null);
-  
+
+  // מחושב פעם אחת בלבד – יצירת נקודות על הכדור
   const dots = useMemo(() => {
     const numberOfDots = 400;
     const sphereRadius = 200; // הגדלת רדיוס הכדור
     const points = [];
-    
+
     for (let i = 0; i < numberOfDots; i++) {
       const phi = Math.acos(-1 + (2 * i) / numberOfDots);
       const theta = Math.sqrt(numberOfDots * Math.PI) * phi;
-      
+
       const x = sphereRadius * Math.cos(theta) * Math.sin(phi);
       const y = sphereRadius * Math.sin(theta) * Math.sin(phi);
       const z = sphereRadius * Math.cos(phi);
-      
+
       points.push({
         initial: { x: x * 3, y: y * 3, z: -300 },
         target: { x, y, z },
@@ -34,10 +38,11 @@ const DotsSphere = () => {
   }, []);
 
   const [isInitialized, setIsInitialized] = useState(false);
-  
+
   useEffect(() => {
+    // אתחול הנקודות לפי הערכים ההתחלתיים
     if (!isInitialized) {
-      dots.forEach(dot => {
+      dots.forEach((dot) => {
         dot.current = { ...dot.initial };
       });
       setIsInitialized(true);
@@ -51,7 +56,7 @@ const DotsSphere = () => {
     let currentRotationX = 0;
     let currentRotationY = 0;
     let lastTime = 0;
-    
+
     const handleMouseMove = (e) => {
       const rect = sphere.getBoundingClientRect();
       mouseX = (e.clientX - rect.left - rect.width / 2) * 0.005;
@@ -60,36 +65,40 @@ const DotsSphere = () => {
     };
 
     const animate = (time) => {
+      // נוודא שהאנימציה לא רצה מהר מדי
       if (time - lastTime < 20) {
         animationFrameRef.current = requestAnimationFrame(animate);
         return;
       }
       lastTime = time;
 
+      // עידכון רוטציה לפי מיקום העכבר
       currentRotationX += (mouseY - currentRotationX) * 0.1;
       currentRotationY += (mouseX - currentRotationY) * 0.1;
-      
       sphere.style.transform = `rotateX(${-currentRotationX * 20}deg) rotateY(${currentRotationY * 20}deg)`;
 
       const mousePos = mouseRef.current;
-      
+
       dots.forEach((dot, index) => {
         const dotElement = sphere.children[index];
         if (!dotElement) return;
 
+        // מעבר הדרגתי מערכי initial ל־target
         if (!dot.initialized) {
           const dx = (dot.target.x - dot.current.x) * 0.08;
           const dy = (dot.target.y - dot.current.y) * 0.08;
           const dz = (dot.target.z - dot.current.z) * 0.08;
-          
+
           dot.current.x += dx;
           dot.current.y += dy;
           dot.current.z += dz;
-          
+
+          // סימון שהנקודה סיימה את האנימציה הראשונית
           if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1 && Math.abs(dz) < 0.1) {
             dot.initialized = true;
           }
         } else {
+          // ריחוף קל של הנקודות
           const t = time * 0.001;
           dot.current.x = dot.target.x + Math.sin(t * dot.speed + dot.phase) * 1.2;
           dot.current.y = dot.target.y + Math.cos(t * dot.speed + dot.phase) * 1.2;
@@ -100,28 +109,32 @@ const DotsSphere = () => {
           mousePos.x - (rect.left + rect.width / 2),
           mousePos.y - (rect.top + rect.height / 2)
         );
-        
-        const glowIntensity = Math.max(0, 1 - distanceToMouse / 40); // הגדלת רדיוס הזוהר
-        const depth = (dot.current.z + 120) / 240; // עדכון נרמול העומק
+
+        // הגדרות זוהר וגודל
+        const glowRadius = 40; // מרחק מקסימלי לזוהר
+        const glowIntensity = Math.max(0, 1 - distanceToMouse / glowRadius);
+        const depth = (dot.current.z + 120) / 240; // נרמול עומק
         const baseOpacity = 0.3 + depth * 0.7;
-        
+
+        // עדכון המיקום במרחב
         const transform = `translate(-50%, -50%) translate3d(${dot.current.x}px, ${dot.current.y}px, ${dot.current.z}px)`;
         if (dotElement.style.transform !== transform) {
           dotElement.style.transform = transform;
         }
-        
-        if (glowIntensity > 0.1 || !dotElement.style.backgroundColor) {
-          dotElement.style.backgroundColor = `rgba(0, 0, 0, ${baseOpacity + glowIntensity * 0.3})`;
-          dotElement.style.width = `${1.5 + glowIntensity}px`; // הגדלת גודל הנקודות
-          dotElement.style.height = `${1.5 + glowIntensity}px`;
-          if (glowIntensity > 0.5) {
-            dotElement.style.boxShadow = `0 0 ${glowIntensity * 2}px rgba(0,0,0,0.3)`;
-          } else {
-            dotElement.style.boxShadow = 'none';
-          }
+
+        // עדכון הצבע, הגודל והצל בהתאם למרחק מהעכבר
+        dotElement.style.backgroundColor = `rgba(0, 0, 0, ${baseOpacity + glowIntensity * 0.3})`;
+        dotElement.style.width = `${1.5 + glowIntensity}px`; 
+        dotElement.style.height = `${1.5 + glowIntensity}px`;
+
+        if (glowIntensity > 0.5) {
+          dotElement.style.boxShadow = `0 0 ${glowIntensity * 2}px rgba(0,0,0,0.3)`;
+        } else {
+          dotElement.style.boxShadow = 'none';
         }
       });
 
+      // לולאת אנימציה
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
@@ -137,21 +150,22 @@ const DotsSphere = () => {
   }, [dots, isInitialized]);
 
   return (
-    <div className="relative" style={{ 
-      width: '250px',  // הגדלת אזור המיכל
-      height: '250px',
-      perspective: '1000px',
-      position: 'absolute',
-      left: 'calc(50% + 350px)',     // הזזה 100px ימינה
-      top: 'calc(50% + 200px)',      // הזזה 100px למטה
-      transform: 'translate(-50%, -50%)'  // הזזה למרכז המדויק
-    }}>
+    <div
+      className="relative"
+      style={{
+        width: '250px',   // הגדלת אזור המיכל
+        height: '250px',
+        perspective: '1000px',
+        position: 'absolute',
+        left: 'calc(50% + 350px)',
+        top: 'calc(50% + 200px)',
+        transform: 'translate(-50%, -50%)'
+      }}
+    >
       <div
         ref={sphereRef}
         className="w-full h-full relative transform-gpu will-change-transform"
-        style={{
-          transformStyle: 'preserve-3d'
-        }}
+        style={{ transformStyle: 'preserve-3d' }}
       >
         {dots.map((dot, i) => (
           <div
@@ -170,10 +184,11 @@ const DotsSphere = () => {
   );
 };
 
-
+/* -------------------------------------------------------------------------- */
+/*     Component: RotatingLogo                                               */
+/* -------------------------------------------------------------------------- */
 const RotatingLogo = () => {
-  const [rotation, setRotation] = useState(0);
-
+  const [rotation] = useState(0);
 
   return (
     <div className="relative w-[16vw] h-[16vw] max-w-[200px] max-h-[200px] min-w-[80px] min-h-[80px]">
@@ -190,26 +205,54 @@ const RotatingLogo = () => {
   );
 };
 
+/* -------------------------------------------------------------------------- */
+/*     Component: RotatingCubeButton                                         */
+/* -------------------------------------------------------------------------- */
 const RotatingCubeButton = () => {
   return (
     <>
-      <div 
-        className="cube-wrapper group relative" 
-        style={{ 
-          width: 'clamp(100px, 10vw, 180px)', 
+      <div
+        className="cube-wrapper group relative"
+        style={{
+          width: 'clamp(100px, 10vw, 180px)',
           height: 'clamp(40px, 5vh, 60px)',
-          marginRight: '50px',  // הוספת margin קבוע של 50px
-          transform: 'translateX(50px)' // הוספת הזזה של 50px ימינה
+          marginRight: '50px',
+          transform: 'translateX(50px)', // הזזה של 50px ימינה
         }}
       >
-        <a href="/contact" className="absolute inset-0 z-20 cursor-pointer" aria-label="Contact us" />
+        <a
+          href="/contact"
+          className="absolute inset-0 z-20 cursor-pointer"
+          aria-label="Contact us"
+        />
         <div className="cube">
-          <div className="cube-face front" style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}>בואו נדבר</div>
-          <div className="cube-face back" style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}>בואו נדבר</div>
-          <div className="cube-face top" style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}>בואו נדבר</div>
-          <div className="cube-face bottom" style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}>בואו נדבר</div>
+          <div
+            className="cube-face front"
+            style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}
+          >
+            בואו נדבר
+          </div>
+          <div
+            className="cube-face back"
+            style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}
+          >
+            בואו נדבר
+          </div>
+          <div
+            className="cube-face top"
+            style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}
+          >
+            בואו נדבר
+          </div>
+          <div
+            className="cube-face bottom"
+            style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}
+          >
+            בואו נדבר
+          </div>
         </div>
       </div>
+
       <Global
         styles={`
           .cube-wrapper {
@@ -266,18 +309,26 @@ const RotatingCubeButton = () => {
   );
 };
 
-
-
+/* -------------------------------------------------------------------------- */
+/*     Main Component: Hero                                                  */
+/* -------------------------------------------------------------------------- */
 const Hero = () => {
+  // רפרנס לחלק החיצוני של הסקשן
   const heroRef = useRef(null);
+
   const maxHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
   const minHeight = 50;
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 1200
+  );
+
+  // Hooks של Framer Motion
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"],
+    offset: ['start start', 'end start'],
   });
 
+  // כדי לקבל את הטקסט – שיטה טובה להעביר כ־function
   const getTitleContent = () => {
     return (
       <>
@@ -290,29 +341,32 @@ const Hero = () => {
     );
   };
 
+  // שליטה על גודל הטקסט בכותרת
   const [h1FontSize, setH1FontSize] = useState('6vw');
   const h1Ref = useRef(null);
-  const MAX_LINES = 3;
+  const MAX_LINES = 3; // הגבלת כמות שורות
 
   useEffect(() => {
     const calculateH1FontSize = () => {
       if (!h1Ref.current) return;
-
       const container = h1Ref.current.parentElement;
-      const containerWidth = container.clientWidth;
 
       let fontSize = 6;
       h1Ref.current.style.fontSize = `${fontSize}vw`;
       h1Ref.current.style.lineHeight = `calc(1.1em + 0.5vw)`;
       h1Ref.current.style.whiteSpace = 'pre-line';
 
+      // התאמה הדרגתית של גודל הטקסט
       while (h1Ref.current.scrollHeight > h1Ref.current.offsetHeight && fontSize > 1) {
         fontSize -= 0.1;
         h1Ref.current.style.fontSize = `${fontSize}vw`;
         h1Ref.current.style.lineHeight = `calc(1.1em + 0.5vw)`;
       }
 
-      const computedLineHeight = parseFloat(window.getComputedStyle(h1Ref.current).lineHeight);
+      // בדיקת מס׳ השורות בפועל
+      const computedLineHeight = parseFloat(
+        window.getComputedStyle(h1Ref.current).lineHeight
+      );
       const numLines = h1Ref.current.scrollHeight / computedLineHeight;
 
       while (numLines > MAX_LINES && fontSize > 1) {
@@ -336,15 +390,23 @@ const Hero = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [screenWidth]);
 
+  // אנימציות גובה, סקייל, בלור
   const heightValue = useTransform(scrollYProgress, [0, 1], [maxHeight, minHeight]);
   const scaleValue = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   const blurValueNumeric = useTransform(scrollYProgress, [0, 0.2, 0.6, 1], [0, 0, 8, 16]);
-  const heightSpring = useSpring(heightValue, { stiffness: 80, damping: 30 });
+
+  // Spring = הפחתה הדרגתית של ערכי האנימציה
+  const heightSpring = useSpring(heightValue, { stiffness: 50, damping: 25 });
   const scaleSpring = useSpring(scaleValue, { stiffness: 80, damping: 30 });
   const blurSpring = useSpring(blurValueNumeric, { stiffness: 80, damping: 30 });
   const blurFilter = useTransform(blurSpring, (v) => `blur(${v}px)`);
+
+  // הזזה פנימית של התוכן
   const innerDivTranslateY = useTransform(scrollYProgress, [0, 1], [0, maxHeight * 0.8]);
-  const innerDivTranslateYSpring = useSpring(innerDivTranslateY, { stiffness: 80, damping: 30 });
+  const innerDivTranslateYSpring = useSpring(innerDivTranslateY, {
+    stiffness: 80,
+    damping: 30,
+  });
 
   return (
     <motion.section
@@ -365,19 +427,28 @@ const Hero = () => {
           willChange: 'transform, filter',
         }}
       >
+        {/* כדור הנקודות */}
         <div className="absolute left-[5vw] top-[calc(8vh+50px)]">
-        <DotsSphere />
-      </div>
+          <DotsSphere />
+        </div>
 
+        {/* ניווט ראשוני (כרגע ריק) */}
         <nav className="flex justify-end mb-8 gap-4">
-          <a style={{ marginRight: '1.5vw', marginLeft: '1.5vw' }} href="/about" className="text-black hover:text-gray-600"></a>
+          <a
+            style={{ marginRight: '1.5vw', marginLeft: '1.5vw' }}
+            href="/about"
+            className="text-black hover:text-gray-600"
+          >
+            {/* כאן אפשר להוסיף טקסט או אייקון */}
+          </a>
         </nav>
 
+        {/* תוכן מרכזי */}
         <div className="flex flex-col justify-end min-h-[calc(100vh-200px)] pb-16">
           <div className="flex flex-col gap-12 items-end">
             <div className="flex flex-col md:flex-row gap-8 md:gap-[2vw] items-start md:items-center w-full justify-end">
-              <h1 
-                ref={h1Ref} 
+              <h1
+                ref={h1Ref}
                 className="text-right h1-responsive whitespace-pre-line"
                 style={{
                   fontSize: h1FontSize,
@@ -389,11 +460,14 @@ const Hero = () => {
                 {getTitleContent()}
               </h1>
 
+              {/* לוגו מסתובב */}
               <div className="order-first md:order-none mb-4 md:mb-0">
                 <RotatingLogo />
               </div>
 
-              <p className="text-right md:max-w-md font-arimo mobile-paragraph"
+              {/* טקסט תיאור קצר */}
+              <p
+                className="text-right md:max-w-md font-arimo mobile-paragraph"
                 style={{
                   fontSize: 'clamp(1rem, 2vw, 1.5rem)',
                   lineHeight: 'clamp(1.5rem, 2.5vw, 2rem)',
@@ -405,12 +479,14 @@ const Hero = () => {
               </p>
             </div>
 
+            {/* כפתור קובייה מסתובבת */}
             <div className="flex justify-end w-full">
               <RotatingCubeButton />
             </div>
           </div>
         </div>
 
+        {/* אנימציית לוטי – חץ/לחיצת יד (Handshake) */}
         <div
           className="w-24 h-48 absolute"
           style={{
@@ -427,6 +503,7 @@ const Hero = () => {
         </div>
       </motion.div>
 
+      {/* הגדרות גלובליות ספציפיות ל-H1 וגרסאות רספונסיביות */}
       <Global
         styles={`
           .h1-responsive {

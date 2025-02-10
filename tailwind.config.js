@@ -6,14 +6,17 @@ export default {
   ],
   theme: {
     extend: {
+      // הגדרות פונטים
       fontFamily: {
-        'amatic': ['Secular One', 'cursive'],
-        'arimo': ['Arimo', 'cursive'],
+        amatic: ['Secular One', 'cursive'],
+        arimo: ['Arimo', 'cursive'],
       },
+
+      // הגדרות צבעים
       colors: {
         // צבעים ראשיים - בהשראת אפל
         primary: {
-          DEFAULT: "#8E8E93",    // אפור מטאלי
+          DEFAULT: "#8E8E93",    // ערך דיפולטי
           light: "#C7C7CC",      // אפור בהיר
           dark: "#636366",       // אפור כהה
           100: "#F2F2F7",
@@ -38,15 +41,16 @@ export default {
         // רקעים
         background: "#000000",    // שחור טהור
         "background-alt": "#1C1C1E", // רקע משני
-        
+
         // שכבות זכוכית
         glass: {
           light: "rgba(255, 255, 255, 0.03)",
           medium: "rgba(255, 255, 255, 0.06)",
           dark: "rgba(28, 28, 30, 0.9)",
-        }
+        },
       },
 
+      // הגדרות תמונת רקע מותאמות
       backgroundImage: {
         'gradient-pro': 'linear-gradient(170deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02))',
         'gradient-glass': 'linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02))',
@@ -54,18 +58,21 @@ export default {
         'gradient-dark': 'linear-gradient(to bottom, #000000, #1C1C1E)',
       },
 
+      // הצללות
       boxShadow: {
-        'frosted': '0 4px 30px rgba(0, 0, 0, 0.3)',
-        'pro': '0 8px 32px rgba(0, 0, 0, 0.4)',
-        'subtle': '0 2px 10px rgba(0, 0, 0, 0.2)',
+        frosted: '0 4px 30px rgba(0, 0, 0, 0.3)',
+        pro: '0 8px 32px rgba(0, 0, 0, 0.4)',
+        subtle: '0 2px 10px rgba(0, 0, 0, 0.2)',
         'inner-light': 'inset 0 0 20px rgba(255, 255, 255, 0.05)',
       },
 
+      // פילטרים לרקע
       backdropFilter: {
-        'frosted': 'blur(10px) saturate(100%)',
-        'pro': 'blur(20px) saturate(180%)',
+        frosted: 'blur(10px) saturate(100%)',
+        pro: 'blur(20px) saturate(180%)',
       },
 
+      // אנימציות
       keyframes: {
         'subtle-float': {
           '0%, 100%': { 
@@ -92,13 +99,12 @@ export default {
           '100%': { backgroundPosition: '-200% 0' }
         }
       },
-
       animation: {
         'subtle-float': 'subtle-float 4s ease-in-out infinite',
         'fade-in': 'fade-in 0.8s ease-out forwards',
-        'highlight-scan': 'highlight-scan 8s linear infinite'
-      }
+        'highlight-scan': 'highlight-scan 8s linear infinite',
+      },
     },
   },
   plugins: [],
-}
+};
