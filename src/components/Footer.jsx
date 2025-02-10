@@ -73,13 +73,13 @@ const Footer = () => {
 
             <div className="relative mb-16 group perspective-1000">
               <div className="absolute inset-0 bg-glass-medium rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500" />
-              <h2 className="text-7xl font-bold mb-8 bg-gradient-metal bg-clip-text text-transparent relative z-10 transform transition-transform duration-500 group-hover:scale-105">
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 bg-gradient-metal bg-clip-text text-transparent relative z-10 transform transition-transform duration-500 group-hover:scale-105 drop-shadow-lg">
                 Ready to #makeitbetter
                 <div className="absolute inset-0 bg-gradient-glass opacity-0 group-hover:opacity-30 transition-opacity duration-500 blur-lg" />
               </h2>
             </div>
             
-            <p className="text-primary-300 text-2xl mb-12 max-w-2xl mx-auto animate-fade-in">
+            <p className="text-xl md:text-2xl mb-12 max-w-2xl mx-auto animate-fade-in text-white drop-shadow-md">
               נפגש ונהפוך את החלום הדיגיטלי שלך למציאות מרהיבה
             </p>
 
@@ -97,11 +97,11 @@ const Footer = () => {
               <div className="absolute -inset-1 bg-gradient-metal opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
               
               {/* Content with Enhanced Animation */}
-              <span className="relative z-10 text-primary-100 transform transition-transform duration-300 group-hover:scale-110">
+              <span className="relative z-10 text-white transform transition-transform duration-300 group-hover:scale-110">
                 בואו ניצור משהו מיוחד
               </span>
-              <Sparkles className="relative z-10 w-6 h-6 text-primary-100 animate-subtle-float" />
-              <ArrowRight className="relative z-10 w-6 h-6 text-primary-100 transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110" />
+              <Sparkles className="relative z-10 w-6 h-6 text-white animate-subtle-float" />
+              <ArrowRight className="relative z-10 w-6 h-6 text-white transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110" />
             </Link>
           </div>
 
@@ -109,10 +109,11 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-20">
             {/* Vision Section */}
             <div className="group space-y-6 p-8 rounded-3xl bg-glass-medium backdrop-blur-lg border border-accent-frost shadow-frosted hover:shadow-pro transition-all duration-500 hover:-translate-y-2">
-              <h3 className="text-2xl font-bold bg-gradient-metal bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
-                החזון שלנו
+              <h3 className="text-xl md:text-2xl font-bold text-white group-hover:scale-105 transition-transform duration-300 drop-shadow-lg relative">
+                <span className="relative z-10">החזון שלנו</span>
+                <div className="absolute inset-0 bg-gradient-metal opacity-50 blur-sm"></div>
               </h3>
-              <p className="text-primary-300 leading-relaxed group-hover:text-primary-100 transition-colors duration-300">
+              <p className="text-gray-200 leading-relaxed group-hover:text-white transition-colors duration-300">
                 אנחנו מאמינים שכל מוצר דיגיטלי צריך להיות לא רק פונקציונלי, אלא גם מרהיב ומעורר השראה. 
                 זו הסיבה שאנחנו משקיעים בכל פרט ופרט.
               </p>
@@ -120,8 +121,9 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div className="group space-y-6 p-8 rounded-3xl bg-glass-medium backdrop-blur-lg border border-accent-frost shadow-frosted hover:shadow-pro transition-all duration-500 hover:-translate-y-2">
-              <h3 className="text-2xl font-bold bg-gradient-metal bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
-                ניווט מהיר
+              <h3 className="text-xl md:text-2xl font-bold text-white group-hover:scale-105 transition-transform duration-300 drop-shadow-lg relative">
+                <span className="relative z-10">ניווט מהיר</span>
+                <div className="absolute inset-0 bg-gradient-metal opacity-50 blur-sm"></div>
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -133,7 +135,7 @@ const Footer = () => {
                   <Link
                     key={link.name}
                     to={link.path}
-                    className="group/link text-primary-300 transition-all duration-300 hover:text-primary-100"
+                    className="group/link text-gray-200 transition-all duration-300 hover:text-white"
                   >
                     <span className="relative inline-block">
                       {link.name}
@@ -146,8 +148,9 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div className="group space-y-6 p-8 rounded-3xl bg-glass-medium backdrop-blur-lg border border-accent-frost shadow-frosted hover:shadow-pro transition-all duration-500 hover:-translate-y-2">
-              <h3 className="text-2xl font-bold bg-gradient-metal bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
-                צור קשר
+              <h3 className="text-xl md:text-2xl font-bold text-white group-hover:scale-105 transition-transform duration-300 drop-shadow-lg relative">
+                <span className="relative z-10">צור קשר</span>
+                <div className="absolute inset-0 bg-gradient-metal opacity-50 blur-sm"></div>
               </h3>
               <div className="space-y-4">
                 {[
@@ -158,10 +161,10 @@ const Footer = () => {
                   const Content = () => (
                     <>
                       <div className="relative p-2 rounded-full bg-glass-light group-hover:bg-glass-medium transition-all duration-300 transform group-hover:scale-110">
-                        <item.Icon className="w-5 h-5" />
+                        <item.Icon className="w-5 h-5 text-white" />
                         <div className="absolute inset-0 bg-gradient-metal opacity-0 group-hover:opacity-20 rounded-full blur-md transition-opacity duration-300" />
                       </div>
-                      <span className="relative">
+                      <span className="relative text-gray-200 group-hover:text-white">
                         {item.text}
                         <span className="absolute inset-x-0 -bottom-1 h-px bg-gradient-metal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                       </span>
@@ -172,14 +175,14 @@ const Footer = () => {
                     <a
                       key={index}
                       href={item.href}
-                      className="group flex items-center gap-3 text-primary-300 transition-colors duration-300 hover:text-primary-100"
+                      className="group flex items-center gap-3 transition-colors duration-300"
                     >
                       <Content />
                     </a>
                   ) : (
                     <div
                       key={index}
-                      className="group flex items-center gap-3 text-primary-300 transition-colors duration-300 hover:text-primary-100"
+                      className="group flex items-center gap-3 transition-colors duration-300"
                     >
                       <Content />
                     </div>
@@ -194,10 +197,10 @@ const Footer = () => {
             <div className="absolute inset-0 bg-glass-dark backdrop-blur-md opacity-50" />
             <div className="relative border-t border-accent-frost pt-8">
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div className="text-2xl font-bold bg-gradient-metal bg-clip-text text-transparent animate-subtle-float">
+                <div className="text-xl md:text-2xl font-bold bg-gradient-metal bg-clip-text text-transparent animate-subtle-float">
                   #makeitbetter
                 </div>
-                <div className="text-sm text-primary-300">
+                <div className="text-sm text-gray-200">
                   © {new Date().getFullYear()} סטרט טק. כל הזכויות שמורות.
                 </div>
               </div>
