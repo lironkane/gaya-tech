@@ -56,7 +56,7 @@ const DotsSphere = () => {
 
     const animate = (time) => {
       // נוודא שהאנימציה לא רצה מהר מדי (בערך 60FPS)
-      if (time - lastTime < 16) {
+      if (time - lastTime < 30) {
         animationFrameRef.current = requestAnimationFrame(animate);
         return;
       }
