@@ -49,7 +49,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="relative py-16 px-3 bg-black">
+    <section className="relative pt-5 pb-1 px-3 bg-black">
       {/* מכולה פנימית עם רקע אפור, קצוות מעוגלים וצל */}
       <div className="w-full max-w-7xl mx-auto rounded-3xl shadow-lg bg-[#EAEAEA] p-8">
         <h2 className="font-arimo text-black text-4xl md:text-5xl lg:text-6xl font-black text-center mb-8">

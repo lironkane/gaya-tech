@@ -78,7 +78,7 @@ const RotatingCubeButton = () => {
           }
 
           .cube-wrapper:hover .cube-face {
-            background: #1a654a;
+            background: #B4B4B4;
             box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4);
             text-shadow: 2px 2px 0px #000;
           }

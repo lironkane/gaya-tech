@@ -19,7 +19,7 @@ import ContactCTA from './components/ContactCTA';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Timeline from './components/Timeline';
-import Features from './components/Features';
+import WhyChooseUs from './components/WhyChooseUs';
 import Footer from './components/Footer';
 import SeoOptimizationGuide2024 from './pages/blog/SeoOptimizationGuide2024';
 import LinkBuildingStrategies from './pages/blog/LinkBuildingStrategies';
