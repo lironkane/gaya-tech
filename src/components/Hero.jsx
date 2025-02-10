@@ -537,12 +537,12 @@ export default function Hero() {
       >
         {/* עוברים prop של isScrolling למטה */}
         <div className="absolute left-[5vw] top-[calc(8vh+50px)]">
-          <DotsSphere 
+          {/* <DotsSphere 
             isInView={isInView}
             prefersReducedMotion={prefersReducedMotion}
             isMobile={isMobile}
             isScrolling={isScrolling} // <--- מעביר כאן
-          />
+          /> */}
         </div>
 
         {/* ניווט ראשוני (כרגע ריק) */}
