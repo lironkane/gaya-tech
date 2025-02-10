@@ -7,9 +7,9 @@ import { Global } from '@emotion/react';
 /* --------------------------------------------------------------------------
    1) קומפוננטה פנימית: DotsSphereAnimation
    - מכילה את כל ההוקים הנוגעים לאנימציה (useMemo, useEffect וכו').
-   - לעולם לא מחזירה JSX מוקדם. אם אין צורך באנימציה, לא נקרא לה בכלל.
+   - עוצרת את האנימציה אם props.isHeroFullyInView === false
 -------------------------------------------------------------------------- */
-function DotsSphereAnimation({ isMobile, isScrolling }) {
+function DotsSphereAnimation({ isMobile, isHeroFullyInView }) {
   const sphereRef = useRef(null);
   const animationFrameRef = useRef(null);
 
@@ -59,15 +59,13 @@ function DotsSphereAnimation({ isMobile, isScrolling }) {
     let reqId = null;
 
     function animate(time) {
-      // אם גוללים – לא ממשיכים את האנימציה (לא מבצעים עדכונים),
-      // אבל כן נקרא שוב ל־requestAnimationFrame כדי שלא "יתקע".
-      // אם רוצים ממש להפסיק, אפשר לבטל גם את הקריאה החוזרת.
-      if (isScrolling) {
-        reqId = requestAnimationFrame(animate);
+      // אם ה-Hero לא 100% במסך, מפסיקים את האנימציה לגמרי
+      if (!isHeroFullyInView) {
+        // לא קוראים שוב ל-requestAnimationFrame => ממש עוצר
         return;
       }
 
-      // להגבלת קצב עד ~30FPS
+      // להגביל קצב ~30FPS
       if (time - lastTime < 30) {
         reqId = requestAnimationFrame(animate);
         return;
@@ -110,7 +108,7 @@ function DotsSphereAnimation({ isMobile, isScrolling }) {
         dotElement.style.transform = `translate(-50%, -50%) translate3d(${dot.current.x}px, ${dot.current.y}px, ${dot.current.z}px)`;
       });
 
-      // מפעילים שוב
+      // ממשיכים אנימציה
       reqId = requestAnimationFrame(animate);
     }
 
@@ -122,7 +120,7 @@ function DotsSphereAnimation({ isMobile, isScrolling }) {
         cancelAnimationFrame(reqId);
       }
     };
-  }, [dots, isInitialized, isScrolling]);
+  }, [dots, isInitialized, isHeroFullyInView]);
 
   return (
     <div
@@ -160,12 +158,10 @@ function DotsSphereAnimation({ isMobile, isScrolling }) {
 
 /* --------------------------------------------------------------------------
    2) קומפוננטה חיצונית: DotsSphere
-   - מכילה רק לוגיקה פשוטה: אם (!isInView || prefersReducedMotion) => מציגה "גרסה סטטית" במקום האנימציה
-   - כך אנחנו לא "מדלגים" על Hooks. ה-DotsSphereAnimation לא נוצר בכלל אם אין צורך באנימציה.
 -------------------------------------------------------------------------- */
-function DotsSphere({ isInView, prefersReducedMotion, isMobile, isScrolling }) {
+function DotsSphere({ isHeroFullyInView, prefersReducedMotion, isMobile }) {
   // אם איננו רוצים להפעיל אנימציה, נחזיר אלמנט סטטי:
-  if (!isInView || prefersReducedMotion) {
+  if (!isHeroFullyInView || prefersReducedMotion) {
     return (
       <div
         style={{
@@ -176,13 +172,13 @@ function DotsSphere({ isInView, prefersReducedMotion, isMobile, isScrolling }) {
           top: '100px',
         }}
       >
-        {/* אפשר כאן לשים משהו סטטי (תמונה) או כלום */}
+        {/* אפשר לשים משהו סטטי (או כלום) */}
       </div>
     );
   }
 
   // אם רוצים אנימציה, מחזירים את הקומפוננטה
-  return <DotsSphereAnimation isMobile={isMobile} isScrolling={isScrolling} />;
+  return <DotsSphereAnimation isMobile={isMobile} isHeroFullyInView={true} />;
 }
 
 /* --------------------------------------------------------------------------
@@ -312,55 +308,17 @@ const RotatingCubeButton = () => {
 
 /* --------------------------------------------------------------------------
    Main Component: Hero
-   כולל:
-   - IntersectionObserver לזיהוי כניסה/יציאה מהמסך (isInView)
-   - זיהוי prefersReducedMotion
-   - זיהוי מובייל (userAgent)
-   - אנימציות Framer Motion (גובה, סקייל, בלור)
-   - שימוש ב-DotsSphere עם הפרדת DotsSphereAnimation
+   - מחליף את ה-IntersectionObserver לסף 1 (threshold: 1)
+   - שומר state בשם isHeroFullyInView
+   - אם hero לא 100% במסך => עוצרים/לא מציגים את האנימציה בכדור
 -------------------------------------------------------------------------- */
 export default function Hero() {
   const heroRef = useRef(null);
 
-  // הגדרות ראשוניות...
-  const maxHeight =
-    typeof window !== 'undefined' ? window.innerHeight : 800;
-  const minHeight = 50;
-
-  // useState וכדומה...
   const [screenWidth, setScreenWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
 
-  // מוסיפים state חדש: האם גוללים כעת?
-  const [isScrolling, setIsScrolling] = useState(false);
-
-  useEffect(() => {
-    let scrollTimer = null;
-
-    const handleScroll = () => {
-      setIsScrolling(true); 
-      if (scrollTimer) {
-        clearTimeout(scrollTimer);
-      }
-      // נמתין 150 מילישניות אחרי שהמשתמש הפסיק לגלול – אז נניח שלא גוללים
-      scrollTimer = setTimeout(() => {
-        setIsScrolling(false);
-      }, 150);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (scrollTimer) {
-        clearTimeout(scrollTimer);
-      }
-    };
-  }, []);
-
-  /* -----------------------------
-     prefers-reduced-motion
-  ----------------------------- */
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -379,9 +337,6 @@ export default function Hero() {
     }
   }, []);
 
-  /* -----------------------------
-     זיהוי מובייל (פשוט)
-  ----------------------------- */
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -390,23 +345,19 @@ export default function Hero() {
     }
   }, []);
 
-  /* -----------------------------
-     Intersection Observer
-  ----------------------------- */
-  const [isInView, setIsInView] = useState(true);
+  // הערך שקובע האם ה-Hero "100%" על המסך
+  const [isHeroFullyInView, setIsHeroFullyInView] = useState(true);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.target === heroRef.current) {
-            setIsInView(entry.isIntersecting);
-          }
+          // אם intersectionRatio < 1 => לא 100% במסך
+          setIsHeroFullyInView(entry.intersectionRatio === 1);
         });
       },
       {
-        root: null,
-        threshold: 0.1,
+        threshold: 1, // צריך כיסוי מלא של 100%
       }
     );
 
@@ -422,28 +373,33 @@ export default function Hero() {
     };
   }, []);
 
-  /* -----------------------------
-     Framer Motion Hooks
-  ----------------------------- */
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
+  // אנימציות גובה וכולי (כפי שהיה)
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
+  const maxHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
+  const minHeight = 50;
+
+  const heightValue = useTransform(scrollYProgress, [0, 1], [maxHeight, minHeight]);
+  const scaleValue = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+  const blurValueNumeric = useTransform(scrollYProgress, [0, 0.2, 0.6, 1], [0, 0, 8, 16]);
+
+  const heightSpring = useSpring(heightValue, { stiffness: 50, damping: 25 });
+  const scaleSpring = useSpring(scaleValue, { stiffness: 80, damping: 30 });
+  const blurSpring = useSpring(blurValueNumeric, { stiffness: 80, damping: 30 });
+  const blurFilter = useTransform(blurSpring, (v) => `blur(${v}px)`);
+
+  const innerDivTranslateY = useTransform(scrollYProgress, [0, 1], [0, maxHeight * 0.8]);
+  const innerDivTranslateYSpring = useSpring(innerDivTranslateY, {
+    stiffness: 80,
+    damping: 30,
   });
 
-  // פונקציה שחוזרת על טקסט הכותרת
-  const getTitleContent = () => {
-    return (
-      <>
-        {'בניית אתרים.'}
-        {'\n'}
-        {'שיווק דיגיטלי.'}
-        {'\n'}
-        {'הצלחה עסקית.'}
-      </>
-    );
-  };
+  // אם יש Reduce Motion, מבטלים
+  const finalHeight = prefersReducedMotion ? '100vh' : heightSpring;
+  const finalScale = prefersReducedMotion ? 1 : scaleSpring;
+  const finalFilter = prefersReducedMotion ? 'none' : blurFilter;
+  const finalTranslateY = prefersReducedMotion ? 0 : innerDivTranslateYSpring;
 
-  // שליטה בגודל הטקסט בכותרת
+  // גודל כותרת דינאמי
   const [h1FontSize, setH1FontSize] = useState('6vw');
   const h1Ref = useRef(null);
   const MAX_LINES = 3;
@@ -476,8 +432,7 @@ export default function Hero() {
         h1Ref.current.style.fontSize = `${fontSize}vw`;
         h1Ref.current.style.lineHeight = `calc(1.1em + 0.5vw)`;
 
-        const updatedNumLines =
-          h1Ref.current.scrollHeight / computedLineHeight;
+        const updatedNumLines = h1Ref.current.scrollHeight / computedLineHeight;
         if (updatedNumLines <= MAX_LINES) break;
       }
 
@@ -494,27 +449,17 @@ export default function Hero() {
     return () => window.removeEventListener('resize', handleResize);
   }, [screenWidth]);
 
-  // אנימציות גובה, סקייל, בלור
-  const heightValue = useTransform(scrollYProgress, [0, 1], [maxHeight, minHeight]);
-  const scaleValue = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
-  const blurValueNumeric = useTransform(scrollYProgress, [0, 0.2, 0.6, 1], [0, 0, 8, 16]);
-
-  const heightSpring = useSpring(heightValue, { stiffness: 50, damping: 25 });
-  const scaleSpring = useSpring(scaleValue, { stiffness: 80, damping: 30 });
-  const blurSpring = useSpring(blurValueNumeric, { stiffness: 80, damping: 30 });
-  const blurFilter = useTransform(blurSpring, (v) => `blur(${v}px)`);
-
-  const innerDivTranslateY = useTransform(scrollYProgress, [0, 1], [0, maxHeight * 0.8]);
-  const innerDivTranslateYSpring = useSpring(innerDivTranslateY, {
-    stiffness: 80,
-    damping: 30,
-  });
-
-  // אם יש Reduce Motion, נבטל/נצמצם את האנימציות
-  const finalHeight = prefersReducedMotion ? '100vh' : heightSpring;
-  const finalScale = prefersReducedMotion ? 1 : scaleSpring;
-  const finalFilter = prefersReducedMotion ? 'none' : blurFilter;
-  const finalTranslateY = prefersReducedMotion ? 0 : innerDivTranslateYSpring;
+  const getTitleContent = () => {
+    return (
+      <>
+        {'בניית אתרים.'}
+        {'\n'}
+        {'שיווק דיגיטלי.'}
+        {'\n'}
+        {'הצלחה עסקית.'}
+      </>
+    );
+  };
 
   return (
     <motion.section
@@ -535,14 +480,13 @@ export default function Hero() {
           willChange: 'transform, filter',
         }}
       >
-        {/* עוברים prop של isScrolling למטה */}
+        {/* הכדור: מציגים אנימציה רק אם hero ב-100% מסך ואין reduce motion */}
         <div className="absolute left-[5vw] top-[calc(8vh+50px)]">
-          {/* <DotsSphere 
-            isInView={isInView}
+          <DotsSphere
+            isHeroFullyInView={isHeroFullyInView}
             prefersReducedMotion={prefersReducedMotion}
             isMobile={isMobile}
-            isScrolling={isScrolling} // <--- מעביר כאן
-          /> */}
+          />
         </div>
 
         {/* ניווט ראשוני (כרגע ריק) */}
@@ -599,7 +543,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* אנימציית Lottie */}
+        {/* אנימציית Lottie (החץ) */}
         <div
           className="w-24 h-48 absolute"
           style={{
