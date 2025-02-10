@@ -1,19 +1,25 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 import { motion, useTransform, useScroll, useSpring } from 'framer-motion';
 import Lottie from 'lottie-react';
-import handshakeAnimation from '../assets/animations/arrow.json';
+import arrowAnimation from '../assets/animations/arrow.json';
 import { Global } from '@emotion/react';
 
-const DotsSphere = () => {
+/* --------------------------------------------------------------------------
+   1) קומפוננטה פנימית: DotsSphereAnimation
+   - מכילה את כל ההוקים הנוגעים לאנימציה (useMemo, useEffect וכו').
+   - לעולם לא מחזירה JSX מוקדם. אם אין צורך באנימציה, לא נקרא לה בכלל.
+-------------------------------------------------------------------------- */
+function DotsSphereAnimation({ isMobile }) {
   const sphereRef = useRef(null);
   const animationFrameRef = useRef(null);
 
-  // אפשר להפחית את כמות הנקודות אם רוצים להקל עוד יותר על הביצועים
-  const dots = useMemo(() => {
-    const numberOfDots = 250;
-    const sphereRadius = 180; // אפשר להתאים לפי רצונך
-    const points = [];
+  // מפחיתים מספר נקודות למובייל, להקטנת העומס
+  const numberOfDots = isMobile ? 100 : 250;
+  const sphereRadius = 180;
 
+  // מחושבים פעם אחת
+  const dots = useMemo(() => {
+    const points = [];
     for (let i = 0; i < numberOfDots; i++) {
       const phi = Math.acos(-1 + (2 * i) / numberOfDots);
       const theta = Math.sqrt(numberOfDots * Math.PI) * phi;
@@ -23,25 +29,23 @@ const DotsSphere = () => {
       const z = sphereRadius * Math.cos(phi);
 
       points.push({
-        // נקודת פתיחה רחוקה יותר וזום לאחור, כדי שתהיה אנימציית כניסה:
         initial: { x: x * 3, y: y * 3, z: -600 },
         target: { x, y, z },
         current: { x, y, z },
         initialized: false,
-        // קצת "ריחוף" – אפשר לבטל אם לא רוצים נענוע עדין
         phase: Math.random() * Math.PI * 2,
         speed: 0.15 + Math.random() * 0.2,
       });
     }
     return points;
-  }, []);
+  }, [numberOfDots, sphereRadius]);
 
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
+    // אתחול ערכי current לנקודות
     if (!isInitialized) {
-      // מאתחלים את כל הנקודות במצב ההתחלתי
-      dots.forEach(dot => {
+      dots.forEach((dot) => {
         dot.current = { ...dot.initial };
       });
       setIsInitialized(true);
@@ -54,22 +58,20 @@ const DotsSphere = () => {
     let rotationY = 0;
     let lastTime = 0;
 
-    const animate = (time) => {
-      // נוודא שהאנימציה לא רצה מהר מדי (בערך 60FPS)
+    function animate(time) {
+      // מפחיתים לקצב של כ-30FPS
       if (time - lastTime < 30) {
         animationFrameRef.current = requestAnimationFrame(animate);
         return;
       }
       lastTime = time;
 
-      // מסובבים את הכדור באיטיות
-      rotationX += 0.05; 
+      // סיבוב הכדור
+      rotationX += 0.05;
       rotationY += 0.08;
-
-      // החלת הסיבוב על כל הקבוצה
       sphere.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
 
-      // מעבר כל נקודה מערכי initial לערכי target + ריחוף קל
+      // מעבר מהערך ההתחלתי לערך היעד + ריחוף עדין (אופציונלי)
       dots.forEach((dot, index) => {
         const dotElement = sphere.children[index];
         if (!dotElement) return;
@@ -83,29 +85,28 @@ const DotsSphere = () => {
           dot.current.y += dy;
           dot.current.z += dz;
 
-          if (Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2 && Math.abs(dz) < 0.2) {
+          if (
+            Math.abs(dx) < 0.2 &&
+            Math.abs(dy) < 0.2 &&
+            Math.abs(dz) < 0.2
+          ) {
             dot.initialized = true;
           }
         } else {
-          // פה אפשר להכניס ריחוף עדין (wave) אם רוצים
+          // ריחוף מתמיד (מינימלי). אם לא רוצים, אפשר לבטל
           const t = time * 0.001;
           dot.current.x = dot.target.x + Math.sin(t * dot.speed + dot.phase) * 1;
           dot.current.y = dot.target.y + Math.cos(t * dot.speed + dot.phase) * 1;
-          // אם לא רוצים ריחוף, אפשר פשוט dot.current = dot.target
         }
 
-        const transform = `translate(-50%, -50%) translate3d(${dot.current.x}px, ${dot.current.y}px, ${dot.current.z}px)`;
-        dotElement.style.transform = transform;
+        dotElement.style.transform = `translate(-50%, -50%) translate3d(${dot.current.x}px, ${dot.current.y}px, ${dot.current.z}px)`;
       });
 
-      // ממשיכים ללולאה הבאה
       animationFrameRef.current = requestAnimationFrame(animate);
-    };
+    }
 
-    // מפעילים את הלולאה הראשית
     animationFrameRef.current = requestAnimationFrame(animate);
 
-    // פינוי
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -117,12 +118,12 @@ const DotsSphere = () => {
     <div
       className="relative"
       style={{
-        width: '300px',  
+        width: '300px',
         height: '300px',
         perspective: '1000px',
         position: 'relative',
-        left: '100px',        // הוספת הזזה 100הוספת הזזה px ימינה
-        top: '100px',         // הוספת הזזה 200הוספת הזזה px למטה
+        left: '100px',
+        top: '100px',
       }}
     >
       <div
@@ -145,12 +146,38 @@ const DotsSphere = () => {
       </div>
     </div>
   );
-};
+}
 
+/* --------------------------------------------------------------------------
+   2) קומפוננטה חיצונית: DotsSphere
+   - מכילה רק לוגיקה פשוטה: אם (!isInView || prefersReducedMotion) => מציגה "גרסה סטטית" במקום האנימציה
+   - כך אנחנו לא "מדלגים" על Hooks. ה-DotsSphereAnimation לא נוצר בכלל אם אין צורך באנימציה.
+-------------------------------------------------------------------------- */
+function DotsSphere({ isInView, prefersReducedMotion, isMobile }) {
+  // אם איננו רוצים להפעיל אנימציה, נחזיר אלמנט ריק/סטטי:
+  if (!isInView || prefersReducedMotion) {
+    return (
+      <div
+        style={{
+          width: '300px',
+          height: '300px',
+          position: 'relative',
+          left: '100px',
+          top: '100px',
+        }}
+      >
+        {/* אפשר כאן לשים משהו סטטי (תמונה?) או להשאיר ריק */}
+      </div>
+    );
+  }
 
-/* -------------------------------------------------------------------------- */
-/*     Component: RotatingLogo                                               */
-/* -------------------------------------------------------------------------- */
+  // אם רוצים אנימציה, מחזירים את הקומפוננטה שיש בה את כל ה-Hooks
+  return <DotsSphereAnimation isMobile={isMobile} />;
+}
+
+/* --------------------------------------------------------------------------
+   Component: RotatingLogo
+-------------------------------------------------------------------------- */
 const RotatingLogo = () => {
   const [rotation] = useState(0);
 
@@ -169,9 +196,9 @@ const RotatingLogo = () => {
   );
 };
 
-/* -------------------------------------------------------------------------- */
-/*     Component: RotatingCubeButton                                         */
-/* -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Component: RotatingCubeButton
+-------------------------------------------------------------------------- */
 const RotatingCubeButton = () => {
   return (
     <>
@@ -181,7 +208,7 @@ const RotatingCubeButton = () => {
           width: 'clamp(100px, 10vw, 180px)',
           height: 'clamp(40px, 5vh, 60px)',
           marginRight: '50px',
-          transform: 'translateX(50px)', // הזזה של 50px ימינה
+          transform: 'translateX(50px)',
         }}
       >
         <a
@@ -273,26 +300,98 @@ const RotatingCubeButton = () => {
   );
 };
 
-/* -------------------------------------------------------------------------- */
-/*     Main Component: Hero                                                  */
-/* -------------------------------------------------------------------------- */
-const Hero = () => {
-  // רפרנס לחלק החיצוני של הסקשן
+/* --------------------------------------------------------------------------
+   Main Component: Hero
+   כולל:
+   - IntersectionObserver לזיהוי כניסה/יציאה מהמסך (isInView)
+   - זיהוי prefersReducedMotion
+   - זיהוי מובייל (userAgent)
+   - אנימציות Framer Motion (גובה, סקייל, בלור)
+   - שימוש ב-DotsSphere עם הפרדת DotsSphereAnimation
+-------------------------------------------------------------------------- */
+export default function Hero() {
   const heroRef = useRef(null);
 
-  const maxHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
+  const maxHeight =
+    typeof window !== 'undefined' ? window.innerHeight : 800;
   const minHeight = 50;
   const [screenWidth, setScreenWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
 
-  // Hooks של Framer Motion
+  /* -----------------------------
+     prefers-reduced-motion
+  ----------------------------- */
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      setPrefersReducedMotion(mediaQuery.matches);
+
+      const handleChange = () => {
+        setPrefersReducedMotion(mediaQuery.matches);
+      };
+      mediaQuery.addEventListener('change', handleChange);
+
+      return () => {
+        mediaQuery.removeEventListener('change', handleChange);
+      };
+    }
+  }, []);
+
+  /* -----------------------------
+     זיהוי מובייל (פשוט)
+  ----------------------------- */
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const checkMobile = /Mobi|Android/i.test(navigator.userAgent);
+      setIsMobile(checkMobile);
+    }
+  }, []);
+
+  /* -----------------------------
+     Intersection Observer
+  ----------------------------- */
+  const [isInView, setIsInView] = useState(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === heroRef.current) {
+            setIsInView(entry.isIntersecting);
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.1, // מתי נחשב "בתצוגה" (לפחות 10% חשיפה)
+      }
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => {
+      if (heroRef.current) {
+        observer.unobserve(heroRef.current);
+      }
+      observer.disconnect();
+    };
+  }, []);
+
+  /* -----------------------------
+     Framer Motion Hooks
+  ----------------------------- */
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
 
-  // כדי לקבל את הטקסט – שיטה טובה להעביר כ־function
+  // פונקציה שחוזרת על טקסט הכותרת
   const getTitleContent = () => {
     return (
       <>
@@ -305,29 +404,29 @@ const Hero = () => {
     );
   };
 
-  // שליטה על גודל הטקסט בכותרת
+  // שליטה בגודל הטקסט בכותרת
   const [h1FontSize, setH1FontSize] = useState('6vw');
   const h1Ref = useRef(null);
-  const MAX_LINES = 3; // הגבלת כמות שורות
+  const MAX_LINES = 3;
 
   useEffect(() => {
     const calculateH1FontSize = () => {
       if (!h1Ref.current) return;
-      const container = h1Ref.current.parentElement;
 
       let fontSize = 6;
       h1Ref.current.style.fontSize = `${fontSize}vw`;
       h1Ref.current.style.lineHeight = `calc(1.1em + 0.5vw)`;
       h1Ref.current.style.whiteSpace = 'pre-line';
 
-      // התאמה הדרגתית של גודל הטקסט
-      while (h1Ref.current.scrollHeight > h1Ref.current.offsetHeight && fontSize > 1) {
+      while (
+        h1Ref.current.scrollHeight > h1Ref.current.offsetHeight &&
+        fontSize > 1
+      ) {
         fontSize -= 0.1;
         h1Ref.current.style.fontSize = `${fontSize}vw`;
         h1Ref.current.style.lineHeight = `calc(1.1em + 0.5vw)`;
       }
 
-      // בדיקת מס׳ השורות בפועל
       const computedLineHeight = parseFloat(
         window.getComputedStyle(h1Ref.current).lineHeight
       );
@@ -337,7 +436,9 @@ const Hero = () => {
         fontSize -= 0.1;
         h1Ref.current.style.fontSize = `${fontSize}vw`;
         h1Ref.current.style.lineHeight = `calc(1.1em + 0.5vw)`;
-        const updatedNumLines = h1Ref.current.scrollHeight / computedLineHeight;
+
+        const updatedNumLines =
+          h1Ref.current.scrollHeight / computedLineHeight;
         if (updatedNumLines <= MAX_LINES) break;
       }
 
@@ -359,7 +460,7 @@ const Hero = () => {
   const scaleValue = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   const blurValueNumeric = useTransform(scrollYProgress, [0, 0.2, 0.6, 1], [0, 0, 8, 16]);
 
-  // Spring = הפחתה הדרגתית של ערכי האנימציה
+  // Spring = הפחתת "נוקשות"
   const heightSpring = useSpring(heightValue, { stiffness: 50, damping: 25 });
   const scaleSpring = useSpring(scaleValue, { stiffness: 80, damping: 30 });
   const blurSpring = useSpring(blurValueNumeric, { stiffness: 80, damping: 30 });
@@ -372,28 +473,38 @@ const Hero = () => {
     damping: 30,
   });
 
+  // אם יש Reduce Motion, נבטל/נצמצם את האנימציות
+  const finalHeight = prefersReducedMotion ? '100vh' : heightSpring;
+  const finalScale = prefersReducedMotion ? 1 : scaleSpring;
+  const finalFilter = prefersReducedMotion ? 'none' : blurFilter;
+  const finalTranslateY = prefersReducedMotion ? 0 : innerDivTranslateYSpring;
+
   return (
     <motion.section
       ref={heroRef}
       initial={{ opacity: 1 }}
       className="relative min-h-screen bg-black min-w-[320px]"
       style={{
-        height: heightSpring,
-        scale: scaleSpring,
+        height: finalHeight,
+        scale: finalScale,
         willChange: 'height, transform',
       }}
     >
       <motion.div
         className="w-full h-full rounded-3xl relative shadow-lg bg-[#EAEAEA] px-[550vw] py-[8vh] padding-container"
         style={{
-          translateY: innerDivTranslateYSpring,
-          filter: blurFilter,
+          translateY: finalTranslateY,
+          filter: finalFilter,
           willChange: 'transform, filter',
         }}
       >
-        {/* כדור הנקודות */}
+        {/* כאן אנחנו מטעינים את DotsSphere, שמחליטה לבד אם להראות אנימציה או לא */}
         <div className="absolute left-[5vw] top-[calc(8vh+50px)]">
-          <DotsSphere />
+          <DotsSphere 
+            isInView={isInView}
+            prefersReducedMotion={prefersReducedMotion}
+            isMobile={isMobile}
+          />
         </div>
 
         {/* ניווט ראשוני (כרגע ריק) */}
@@ -450,24 +561,24 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* אנימציית לוטי – חץ/לחיצת יד (Handshake) */}
+        {/* אנימציית Lottie */}
         <div
           className="w-24 h-48 absolute"
           style={{
-            bottom: 'calc(8vh + 50px)',
-            right: '4vw',
+            bottom: 'calc(8vh + 20px)',
+            right: '-6vw',
             transform: 'rotateY(180deg) rotateX(180deg) rotateZ(40deg)',
           }}
         >
           <Lottie
-            animationData={handshakeAnimation}
+            animationData={arrowAnimation}
             loop={true}
             className="transition-all duration-300 hover:scale-105"
           />
         </div>
       </motion.div>
 
-      {/* הגדרות גלובליות ספציפיות ל-H1 וגרסאות רספונסיביות */}
+      {/* CSS גלובלי המתייחס ל-H1 ולרספונסיביות */}
       <Global
         styles={`
           .h1-responsive {
@@ -519,6 +630,4 @@ const Hero = () => {
       />
     </motion.section>
   );
-};
-
-export default Hero;
+}
