@@ -11,62 +11,92 @@ export default {
         'arimo': ['Arimo', 'cursive'],
       },
       colors: {
-        primary: "#1a654a",
-        "primary-dark": "#0E3B2A", // ירוק כהה יותר (נשאר)
-        secondary: "#8B0000", // אדום כהה
-        "secondary-dark": "#6B0000", // אדום כהה יותר
-        accent: "#A50000", // אדום כהה להדגשות
-        background: "#1A1A1A", // רקע כהה (נשאר)
-        "background-dark": "#0C3222", // ירוק כהה יותר
-        surface: "#282828", // רקע כהה יותר
-        "surface-dark": "#124A36", // ירוק כהה (נשאר)
-        "text-primary": "#FFFFFF", // טקסט לבן (נשאר)
-        "text-secondary": "#A0A0A0", // אפור בהיר
-        highlight: "#A3C5B8", // ירוק בהיר (נשאר)
-        deep: "#FFF8F0", // שמנת (אופציונלי)
+        // צבעים ראשיים - בהשראת אפל
+        primary: {
+          DEFAULT: "#8E8E93",    // אפור מטאלי
+          light: "#C7C7CC",      // אפור בהיר
+          dark: "#636366",       // אפור כהה
+          100: "#F2F2F7",
+          200: "#E5E5EA",
+          300: "#D1D1D6",
+          400: "#C7C7CC",
+          500: "#8E8E93",
+          600: "#636366",
+          700: "#48484A",
+          800: "#3A3A3C",
+          900: "#2C2C2E"
+        },
+
+        // אקסנטים מתכתיים
+        accent: {
+          silver: "#D6D6D6",     // כסף מט
+          space: "#B4B4B4",      // Space Gray
+          titanium: "#A8A8A8",   // טיטניום
+          frost: "rgba(255, 255, 255, 0.05)", // אפקט פרוסטד
+        },
+
+        // רקעים
+        background: "#000000",    // שחור טהור
+        "background-alt": "#1C1C1E", // רקע משני
+        
+        // שכבות זכוכית
+        glass: {
+          light: "rgba(255, 255, 255, 0.03)",
+          medium: "rgba(255, 255, 255, 0.06)",
+          dark: "rgba(28, 28, 30, 0.9)",
+        }
+      },
+
+      backgroundImage: {
+        'gradient-pro': 'linear-gradient(170deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02))',
+        'gradient-glass': 'linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02))',
+        'gradient-metal': 'linear-gradient(to right, #8E8E93, #636366)',
+        'gradient-dark': 'linear-gradient(to bottom, #000000, #1C1C1E)',
+      },
+
+      boxShadow: {
+        'frosted': '0 4px 30px rgba(0, 0, 0, 0.3)',
+        'pro': '0 8px 32px rgba(0, 0, 0, 0.4)',
+        'subtle': '0 2px 10px rgba(0, 0, 0, 0.2)',
+        'inner-light': 'inset 0 0 20px rgba(255, 255, 255, 0.05)',
+      },
+
+      backdropFilter: {
+        'frosted': 'blur(10px) saturate(100%)',
+        'pro': 'blur(20px) saturate(180%)',
       },
 
       keyframes: {
-        'blob': {
-          '0%': { transform: 'translate(0px, 0px) scale(1)' },
-          '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-          '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-          '100%': { transform: 'translate(0px, 0px) scale(1)' }
+        'subtle-float': {
+          '0%, 100%': { 
+            transform: 'translateY(0px)',
+            opacity: 0.8
+          },
+          '50%': { 
+            transform: 'translateY(-5px)',
+            opacity: 1
+          }
         },
-        'fade-slide-in': {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' }
+        'fade-in': {
+          '0%': { 
+            opacity: 0,
+            backdropFilter: 'blur(0px)'
+          },
+          '100%': { 
+            opacity: 1,
+            backdropFilter: 'blur(10px)'
+          }
         },
-        'card-pop': {
-          '0%': { opacity: '0', transform: 'scale(0.9)' },
-          '100%': { opacity: '1', transform: 'scale(1)' }
-        },
-        'glow': {
-          '0%, 100%': { 'box-shadow': '0 0 20px rgba(255, 169, 232, 0.5)' },
-          '50%': { 'box-shadow': '0 0 40px rgba(255, 169, 232, 0.8)' }
-        },
-        'fade-slide-in': {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' }
-        },
-        'gradient-move': {
-          '0%': { 'background-position': '0% 50%' },
-          '50%': { 'background-position': '100% 50%' },
-          '100%': { 'background-position': '0% 50%' }
+        'highlight-scan': {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' }
         }
       },
+
       animation: {
-        'blob': 'blob 7s infinite',
-        'fade-slide-in': 'fade-slide-in 0.8s ease-out forwards',
-        'card-pop': 'card-pop 0.5s ease-out forwards',
-        'glow': 'glow 2s ease-in-out infinite',
-        'gradient': 'gradient-move 15s ease infinite',
-        'fade-slide-in': 'fade-slide-in 0.8s ease-out forwards',
-      },
-      backgroundImage: {
-        'gradient-main': 'linear-gradient(to bottom right, #FFA9E8, #E7F6F3, #2C2C54)',
-        'gradient-soft': 'linear-gradient(to bottom, #FFFFFF, #F5F5F5)',
-        'gradient-accent': 'linear-gradient(to right, #FFA9E8, #E7F6F3, #535353)'
+        'subtle-float': 'subtle-float 4s ease-in-out infinite',
+        'fade-in': 'fade-in 0.8s ease-out forwards',
+        'highlight-scan': 'highlight-scan 8s linear infinite'
       }
     },
   },

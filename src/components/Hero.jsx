@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useMemo } from 'react';
 import Lottie from 'lottie-react';
 import { motion, useTransform, useScroll, useSpring, useMotionValue, useAnimate } from 'framer-motion';
 import handshakeAnimation from '../assets/animations/arrow.json';
@@ -6,75 +6,162 @@ import { Global } from '@emotion/react';
 
 const DotsSphere = () => {
   const sphereRef = useRef(null);
-  const [dots] = useState(() => {
-    const numberOfDots = 700;
-    const sphereRadius = 80;
-    return Array.from({ length: numberOfDots }, () => {
-      const theta = Math.random() * 2 * Math.PI;
-      const phi = Math.random() * Math.PI;
-      return {
-        x: sphereRadius * Math.sin(phi) * Math.cos(theta),
-        y: sphereRadius * Math.sin(phi) * Math.sin(theta),
-        z: sphereRadius * Math.cos(phi)
-      };
-    });
-  });
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const animationFrameRef = useRef(null);
+  
+  const dots = useMemo(() => {
+    const numberOfDots = 400;
+    const sphereRadius = 200; // הגדלת רדיוס הכדור
+    const points = [];
+    
+    for (let i = 0; i < numberOfDots; i++) {
+      const phi = Math.acos(-1 + (2 * i) / numberOfDots);
+      const theta = Math.sqrt(numberOfDots * Math.PI) * phi;
+      
+      const x = sphereRadius * Math.cos(theta) * Math.sin(phi);
+      const y = sphereRadius * Math.sin(theta) * Math.sin(phi);
+      const z = sphereRadius * Math.cos(phi);
+      
+      points.push({
+        initial: { x: x * 3, y: y * 3, z: -300 },
+        target: { x, y, z },
+        current: { x, y, z },
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.15 + Math.random() * 0.2,
+      });
+    }
+    return points;
+  }, []);
 
+  const [isInitialized, setIsInitialized] = useState(false);
+  
   useEffect(() => {
+    if (!isInitialized) {
+      dots.forEach(dot => {
+        dot.current = { ...dot.initial };
+      });
+      setIsInitialized(true);
+    }
+
     const sphere = sphereRef.current;
     if (!sphere) return;
 
-    let rafId;
     let mouseX = 0;
     let mouseY = 0;
-    let targetX = 0;
-    let targetY = 0;
-    const ease = 0.1;
-
+    let currentRotationX = 0;
+    let currentRotationY = 0;
+    let lastTime = 0;
+    
     const handleMouseMove = (e) => {
       const rect = sphere.getBoundingClientRect();
-      mouseX = e.clientX - rect.left - rect.width / 2;
-      mouseY = e.clientY - rect.top - rect.height / 2;
+      mouseX = (e.clientX - rect.left - rect.width / 2) * 0.005;
+      mouseY = (e.clientY - rect.top - rect.height / 2) * 0.005;
+      mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     };
 
-    const animate = () => {
-      targetX += (mouseX - targetX) * ease;
-      targetY += (mouseY - targetY) * ease;
+    const animate = (time) => {
+      if (time - lastTime < 20) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      lastTime = time;
 
-      const rotateX = targetY * 0.05;
-      const rotateY = targetX * 0.05;
+      currentRotationX += (mouseY - currentRotationX) * 0.1;
+      currentRotationY += (mouseX - currentRotationY) * 0.1;
+      
+      sphere.style.transform = `rotateX(${-currentRotationX * 20}deg) rotateY(${currentRotationY * 20}deg)`;
 
-      sphere.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
-      rafId = requestAnimationFrame(animate);
+      const mousePos = mouseRef.current;
+      
+      dots.forEach((dot, index) => {
+        const dotElement = sphere.children[index];
+        if (!dotElement) return;
+
+        if (!dot.initialized) {
+          const dx = (dot.target.x - dot.current.x) * 0.08;
+          const dy = (dot.target.y - dot.current.y) * 0.08;
+          const dz = (dot.target.z - dot.current.z) * 0.08;
+          
+          dot.current.x += dx;
+          dot.current.y += dy;
+          dot.current.z += dz;
+          
+          if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1 && Math.abs(dz) < 0.1) {
+            dot.initialized = true;
+          }
+        } else {
+          const t = time * 0.001;
+          dot.current.x = dot.target.x + Math.sin(t * dot.speed + dot.phase) * 1.2;
+          dot.current.y = dot.target.y + Math.cos(t * dot.speed + dot.phase) * 1.2;
+        }
+
+        const rect = dotElement.getBoundingClientRect();
+        const distanceToMouse = Math.hypot(
+          mousePos.x - (rect.left + rect.width / 2),
+          mousePos.y - (rect.top + rect.height / 2)
+        );
+        
+        const glowIntensity = Math.max(0, 1 - distanceToMouse / 40); // הגדלת רדיוס הזוהר
+        const depth = (dot.current.z + 120) / 240; // עדכון נרמול העומק
+        const baseOpacity = 0.3 + depth * 0.7;
+        
+        const transform = `translate(-50%, -50%) translate3d(${dot.current.x}px, ${dot.current.y}px, ${dot.current.z}px)`;
+        if (dotElement.style.transform !== transform) {
+          dotElement.style.transform = transform;
+        }
+        
+        if (glowIntensity > 0.1 || !dotElement.style.backgroundColor) {
+          dotElement.style.backgroundColor = `rgba(0, 0, 0, ${baseOpacity + glowIntensity * 0.3})`;
+          dotElement.style.width = `${1.5 + glowIntensity}px`; // הגדלת גודל הנקודות
+          dotElement.style.height = `${1.5 + glowIntensity}px`;
+          if (glowIntensity > 0.5) {
+            dotElement.style.boxShadow = `0 0 ${glowIntensity * 2}px rgba(0,0,0,0.3)`;
+          } else {
+            dotElement.style.boxShadow = 'none';
+          }
+        }
+      });
+
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    sphere.addEventListener('mousemove', handleMouseMove);
-    animate();
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
-      sphere.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(rafId);
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
-  }, []);
+  }, [dots, isInitialized]);
 
   return (
-    <div className="w-40 h-40 relative" style={{ perspective: '1000px' }}>
+    <div className="relative" style={{ 
+      width: '250px',  // הגדלת אזור המיכל
+      height: '250px',
+      perspective: '1000px',
+      position: 'absolute',
+      left: 'calc(50% + 350px)',     // הזזה 100px ימינה
+      top: 'calc(50% + 200px)',      // הזזה 100px למטה
+      transform: 'translate(-50%, -50%)'  // הזזה למרכז המדויק
+    }}>
       <div
         ref={sphereRef}
-        className="w-full h-full relative transform-gpu"
+        className="w-full h-full relative transform-gpu will-change-transform"
         style={{
-          transformStyle: 'preserve-3d',
-          transition: 'transform 0.1s ease-out'
+          transformStyle: 'preserve-3d'
         }}
       >
         {dots.map((dot, i) => (
           <div
             key={i}
-            className="absolute left-1/2 top-1/2 w-0.5 h-0.5 rounded-full"
+            className="absolute left-1/2 top-1/2 rounded-full"
             style={{
-              transform: `translate(-50%, -50%) translate3d(${dot.x}px, ${dot.y}px, ${dot.z}px)`,
-              backgroundColor: `rgba(0, 0, 0, ${0.5 + dot.z / 160})`,
-              boxShadow: '0 0 2px rgba(0, 0, 0, 0.5)',
+              width: '1.5px',
+              height: '1.5px',
+              transform: `translate(-50%, -50%) translate3d(${dot.initial.x}px, ${dot.initial.y}px, ${dot.initial.z}px)`,
+              backgroundColor: 'rgba(0, 0, 0, 0.4)',
             }}
           />
         ))}
@@ -82,15 +169,11 @@ const DotsSphere = () => {
     </div>
   );
 };
+
+
 const RotatingLogo = () => {
   const [rotation, setRotation] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRotation((prevRotation) => prevRotation + 1);
-    }, 20);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div className="relative w-[16vw] h-[16vw] max-w-[200px] max-h-[200px] min-w-[80px] min-h-[80px]">
@@ -110,7 +193,15 @@ const RotatingLogo = () => {
 const RotatingCubeButton = () => {
   return (
     <>
-      <div className="cube-wrapper group relative" style={{ width: 'clamp(100px, 10vw, 180px)', height: 'clamp(40px, 5vh, 60px)' }}>
+      <div 
+        className="cube-wrapper group relative" 
+        style={{ 
+          width: 'clamp(100px, 10vw, 180px)', 
+          height: 'clamp(40px, 5vh, 60px)',
+          marginRight: '50px',  // הוספת margin קבוע של 50px
+          transform: 'translateX(50px)' // הוספת הזזה של 50px ימינה
+        }}
+      >
         <a href="/contact" className="absolute inset-0 z-20 cursor-pointer" aria-label="Contact us" />
         <div className="cube">
           <div className="cube-face front" style={{ fontSize: 'clamp(14px, 1.5vw, 20px)' }}>בואו נדבר</div>
@@ -174,6 +265,8 @@ const RotatingCubeButton = () => {
     </>
   );
 };
+
+
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -265,7 +358,7 @@ const Hero = () => {
       }}
     >
       <motion.div
-        className="w-full h-full rounded-3xl relative shadow-lg bg-[#EAEAEA] px-[5vw] py-[8vh] padding-container"
+        className="w-full h-full rounded-3xl relative shadow-lg bg-[#EAEAEA] px-[550vw] py-[8vh] padding-container"
         style={{
           translateY: innerDivTranslateYSpring,
           filter: blurFilter,
@@ -319,8 +412,10 @@ const Hero = () => {
         </div>
 
         <div
-          className="w-24 h-48 absolute bottom-[calc(8vh-5px)] right-[4vw] transform animation-container"
+          className="w-24 h-48 absolute"
           style={{
+            bottom: 'calc(8vh + 50px)',
+            right: '4vw',
             transform: 'rotateY(180deg) rotateX(180deg) rotateZ(40deg)',
           }}
         >
