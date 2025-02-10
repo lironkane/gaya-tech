@@ -10,7 +10,7 @@ const DotsSphere = () => {
 
   // אפשר להפחית את כמות הנקודות אם רוצים להקל עוד יותר על הביצועים
   const dots = useMemo(() => {
-    const numberOfDots = 400;
+    const numberOfDots = 250;
     const sphereRadius = 180; // אפשר להתאים לפי רצונך
     const points = [];
 
