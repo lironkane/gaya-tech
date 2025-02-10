@@ -4,18 +4,14 @@ import Lottie from 'lottie-react';
 import handshakeAnimation from '../assets/animations/arrow.json';
 import { Global } from '@emotion/react';
 
-/* -------------------------------------------------------------------------- */
-/*     Component: DotsSphere                                                  */
-/* -------------------------------------------------------------------------- */
 const DotsSphere = () => {
   const sphereRef = useRef(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef(null);
 
-  // מחושב פעם אחת בלבד – יצירת נקודות על הכדור
+  // אפשר להפחית את כמות הנקודות אם רוצים להקל עוד יותר על הביצועים
   const dots = useMemo(() => {
     const numberOfDots = 400;
-    const sphereRadius = 200; // הגדלת רדיוס הכדור
+    const sphereRadius = 180; // אפשר להתאים לפי רצונך
     const points = [];
 
     for (let i = 0; i < numberOfDots; i++) {
@@ -27,9 +23,12 @@ const DotsSphere = () => {
       const z = sphereRadius * Math.cos(phi);
 
       points.push({
-        initial: { x: x * 3, y: y * 3, z: -300 },
+        // נקודת פתיחה רחוקה יותר וזום לאחור, כדי שתהיה אנימציית כניסה:
+        initial: { x: x * 3, y: y * 3, z: -600 },
         target: { x, y, z },
         current: { x, y, z },
+        initialized: false,
+        // קצת "ריחוף" – אפשר לבטל אם לא רוצים נענוע עדין
         phase: Math.random() * Math.PI * 2,
         speed: 0.15 + Math.random() * 0.2,
       });
@@ -40,9 +39,9 @@ const DotsSphere = () => {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // אתחול הנקודות לפי הערכים ההתחלתיים
     if (!isInitialized) {
-      dots.forEach((dot) => {
+      // מאתחלים את כל הנקודות במצב ההתחלתי
+      dots.forEach(dot => {
         dot.current = { ...dot.initial };
       });
       setIsInitialized(true);
@@ -51,98 +50,63 @@ const DotsSphere = () => {
     const sphere = sphereRef.current;
     if (!sphere) return;
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let currentRotationX = 0;
-    let currentRotationY = 0;
+    let rotationX = 0;
+    let rotationY = 0;
     let lastTime = 0;
 
-    const handleMouseMove = (e) => {
-      const rect = sphere.getBoundingClientRect();
-      mouseX = (e.clientX - rect.left - rect.width / 2) * 0.005;
-      mouseY = (e.clientY - rect.top - rect.height / 2) * 0.005;
-      mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-    };
-
     const animate = (time) => {
-      // נוודא שהאנימציה לא רצה מהר מדי
-      if (time - lastTime < 20) {
+      // נוודא שהאנימציה לא רצה מהר מדי (בערך 60FPS)
+      if (time - lastTime < 16) {
         animationFrameRef.current = requestAnimationFrame(animate);
         return;
       }
       lastTime = time;
 
-      // עידכון רוטציה לפי מיקום העכבר
-      currentRotationX += (mouseY - currentRotationX) * 0.1;
-      currentRotationY += (mouseX - currentRotationY) * 0.1;
-      sphere.style.transform = `rotateX(${-currentRotationX * 20}deg) rotateY(${currentRotationY * 20}deg)`;
+      // מסובבים את הכדור באיטיות
+      rotationX += 0.05; 
+      rotationY += 0.08;
 
-      const mousePos = mouseRef.current;
+      // החלת הסיבוב על כל הקבוצה
+      sphere.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
 
+      // מעבר כל נקודה מערכי initial לערכי target + ריחוף קל
       dots.forEach((dot, index) => {
         const dotElement = sphere.children[index];
         if (!dotElement) return;
 
-        // מעבר הדרגתי מערכי initial ל־target
         if (!dot.initialized) {
-          const dx = (dot.target.x - dot.current.x) * 0.08;
-          const dy = (dot.target.y - dot.current.y) * 0.08;
-          const dz = (dot.target.z - dot.current.z) * 0.08;
+          const dx = (dot.target.x - dot.current.x) * 0.1;
+          const dy = (dot.target.y - dot.current.y) * 0.1;
+          const dz = (dot.target.z - dot.current.z) * 0.1;
 
           dot.current.x += dx;
           dot.current.y += dy;
           dot.current.z += dz;
 
-          // סימון שהנקודה סיימה את האנימציה הראשונית
-          if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1 && Math.abs(dz) < 0.1) {
+          if (Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2 && Math.abs(dz) < 0.2) {
             dot.initialized = true;
           }
         } else {
-          // ריחוף קל של הנקודות
+          // פה אפשר להכניס ריחוף עדין (wave) אם רוצים
           const t = time * 0.001;
-          dot.current.x = dot.target.x + Math.sin(t * dot.speed + dot.phase) * 1.2;
-          dot.current.y = dot.target.y + Math.cos(t * dot.speed + dot.phase) * 1.2;
+          dot.current.x = dot.target.x + Math.sin(t * dot.speed + dot.phase) * 1;
+          dot.current.y = dot.target.y + Math.cos(t * dot.speed + dot.phase) * 1;
+          // אם לא רוצים ריחוף, אפשר פשוט dot.current = dot.target
         }
 
-        const rect = dotElement.getBoundingClientRect();
-        const distanceToMouse = Math.hypot(
-          mousePos.x - (rect.left + rect.width / 2),
-          mousePos.y - (rect.top + rect.height / 2)
-        );
-
-        // הגדרות זוהר וגודל
-        const glowRadius = 40; // מרחק מקסימלי לזוהר
-        const glowIntensity = Math.max(0, 1 - distanceToMouse / glowRadius);
-        const depth = (dot.current.z + 120) / 240; // נרמול עומק
-        const baseOpacity = 0.3 + depth * 0.7;
-
-        // עדכון המיקום במרחב
         const transform = `translate(-50%, -50%) translate3d(${dot.current.x}px, ${dot.current.y}px, ${dot.current.z}px)`;
-        if (dotElement.style.transform !== transform) {
-          dotElement.style.transform = transform;
-        }
-
-        // עדכון הצבע, הגודל והצל בהתאם למרחק מהעכבר
-        dotElement.style.backgroundColor = `rgba(0, 0, 0, ${baseOpacity + glowIntensity * 0.3})`;
-        dotElement.style.width = `${1.5 + glowIntensity}px`; 
-        dotElement.style.height = `${1.5 + glowIntensity}px`;
-
-        if (glowIntensity > 0.5) {
-          dotElement.style.boxShadow = `0 0 ${glowIntensity * 2}px rgba(0,0,0,0.3)`;
-        } else {
-          dotElement.style.boxShadow = 'none';
-        }
+        dotElement.style.transform = transform;
       });
 
-      // לולאת אנימציה
+      // ממשיכים ללולאה הבאה
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    // מפעילים את הלולאה הראשית
     animationFrameRef.current = requestAnimationFrame(animate);
 
+    // פינוי
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -153,13 +117,12 @@ const DotsSphere = () => {
     <div
       className="relative"
       style={{
-        width: '250px',   // הגדלת אזור המיכל
-        height: '250px',
+        width: '300px',  
+        height: '300px',
         perspective: '1000px',
-        position: 'absolute',
-        left: 'calc(50% + 350px)',
-        top: 'calc(50% + 200px)',
-        transform: 'translate(-50%, -50%)'
+        position: 'relative',
+        left: '100px',        // הוספת הזזה 100הוספת הזזה px ימינה
+        top: '100px',         // הוספת הזזה 200הוספת הזזה px למטה
       }}
     >
       <div
@@ -172,10 +135,10 @@ const DotsSphere = () => {
             key={i}
             className="absolute left-1/2 top-1/2 rounded-full"
             style={{
-              width: '1.5px',
-              height: '1.5px',
+              width: '2px',
+              height: '2px',
+              backgroundColor: 'rgba(0, 0, 0, 0.6)',
               transform: `translate(-50%, -50%) translate3d(${dot.initial.x}px, ${dot.initial.y}px, ${dot.initial.z}px)`,
-              backgroundColor: 'rgba(0, 0, 0, 0.4)',
             }}
           />
         ))}
@@ -183,6 +146,7 @@ const DotsSphere = () => {
     </div>
   );
 };
+
 
 /* -------------------------------------------------------------------------- */
 /*     Component: RotatingLogo                                               */
