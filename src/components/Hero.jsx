@@ -1,10 +1,88 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
-import { motion, useTransform, useScroll, useSpring } from 'framer-motion';
+import { motion, useTransform, useScroll, useSpring, useMotionValue, useAnimate } from 'framer-motion';
 import handshakeAnimation from '../assets/animations/arrow.json';
 import { Global } from '@emotion/react';
 
-const RotatingLogoWithText = () => {
+const DotsSphere = () => {
+  const sphereRef = useRef(null);
+  const [dots] = useState(() => {
+    const numberOfDots = 700;
+    const sphereRadius = 80;
+    return Array.from({ length: numberOfDots }, () => {
+      const theta = Math.random() * 2 * Math.PI;
+      const phi = Math.random() * Math.PI;
+      return {
+        x: sphereRadius * Math.sin(phi) * Math.cos(theta),
+        y: sphereRadius * Math.sin(phi) * Math.sin(theta),
+        z: sphereRadius * Math.cos(phi)
+      };
+    });
+  });
+
+  useEffect(() => {
+    const sphere = sphereRef.current;
+    if (!sphere) return;
+
+    let rafId;
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    const ease = 0.1;
+
+    const handleMouseMove = (e) => {
+      const rect = sphere.getBoundingClientRect();
+      mouseX = e.clientX - rect.left - rect.width / 2;
+      mouseY = e.clientY - rect.top - rect.height / 2;
+    };
+
+    const animate = () => {
+      targetX += (mouseX - targetX) * ease;
+      targetY += (mouseY - targetY) * ease;
+
+      const rotateX = targetY * 0.05;
+      const rotateY = targetX * 0.05;
+
+      sphere.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+      rafId = requestAnimationFrame(animate);
+    };
+
+    sphere.addEventListener('mousemove', handleMouseMove);
+    animate();
+
+    return () => {
+      sphere.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  return (
+    <div className="w-40 h-40 relative" style={{ perspective: '1000px' }}>
+      <div
+        ref={sphereRef}
+        className="w-full h-full relative transform-gpu"
+        style={{
+          transformStyle: 'preserve-3d',
+          transition: 'transform 0.1s ease-out'
+        }}
+      >
+        {dots.map((dot, i) => (
+          <div
+            key={i}
+            className="absolute left-1/2 top-1/2 w-0.5 h-0.5 rounded-full"
+            style={{
+              transform: `translate(-50%, -50%) translate3d(${dot.x}px, ${dot.y}px, ${dot.z}px)`,
+              backgroundColor: `rgba(0, 0, 0, ${0.5 + dot.z / 160})`,
+              boxShadow: '0 0 2px rgba(0, 0, 0, 0.5)',
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+const RotatingLogo = () => {
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
@@ -14,15 +92,10 @@ const RotatingLogoWithText = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const text = "אנחנו זמינים לעבודה ";
-  const repeatedText = text.repeat(3);
-  const textLength = repeatedText.length;
-  const radius = '8vw';
-
   return (
-    <div className="relative w-[12vw] h-[12vw] max-w-[150px] max-h-[150px] min-w-[60px] min-h-[60px]">
+    <div className="relative w-[16vw] h-[16vw] max-w-[200px] max-h-[200px] min-w-[80px] min-h-[80px]">
       <motion.img
-        src="/images/Tech-Start.jpg"
+        src="/logo.png"
         alt="Tech Start Logo"
         className="rounded-full w-full h-full object-cover"
         style={{
@@ -30,20 +103,6 @@ const RotatingLogoWithText = () => {
           willChange: 'transform',
         }}
       />
-
-      <div className="absolute inset-0 flex items-center justify-center">
-        {Array.from(repeatedText).map((char, index) => (
-          <span
-            key={index}
-            className="absolute text-[clamp(8px,1.2vw,12px)] font-semibold text-black"
-            style={{
-              transform: `rotate(${index * (360 / textLength)}deg) translate(${radius}) rotate(${-index * (360 / textLength)}deg)`,
-            }}
-          >
-            {char}
-          </span>
-        ))}
-      </div>
     </div>
   );
 };
@@ -127,23 +186,15 @@ const Hero = () => {
   });
 
   const getTitleContent = () => {
-    if (screenWidth < 780) {
-      return (
-        <>
-          בניית<br />אתרים.<br />
-          שיווק<br />דיגיטלי.<br />
-          הצלחה<br />עסקית.
-        </>
-      );
-    } else {
-      return (
-        <>
-          בניית אתרים.<br />
-          שיווק דיגיטלי.<br />
-          הצלחה עסקית.
-        </>
-      );
-    }
+    return (
+      <>
+        {'בניית אתרים.'}
+        {'\n'}
+        {'שיווק דיגיטלי.'}
+        {'\n'}
+        {'הצלחה עסקית.'}
+      </>
+    );
   };
 
   const [h1FontSize, setH1FontSize] = useState('6vw');
@@ -221,14 +272,20 @@ const Hero = () => {
           willChange: 'transform, filter',
         }}
       >
+        <div className="absolute left-[5vw] top-[calc(8vh+50px)]">
+        <DotsSphere />
+      </div>
+
         <nav className="flex justify-end mb-8 gap-4">
           <a style={{ marginRight: '1.5vw', marginLeft: '1.5vw' }} href="/about" className="text-black hover:text-gray-600"></a>
         </nav>
 
         <div className="flex flex-col justify-end min-h-[calc(100vh-200px)] pb-16">
           <div className="flex flex-col gap-12 items-end">
-            <div className="flex flex-col md:flex-row gap-8 md:gap-[5vw] items-start md:items-center w-full justify-end">
-              <h1 ref={h1Ref} className="text-right h1-responsive"
+            <div className="flex flex-col md:flex-row gap-8 md:gap-[2vw] items-start md:items-center w-full justify-end">
+              <h1 
+                ref={h1Ref} 
+                className="text-right h1-responsive whitespace-pre-line"
                 style={{
                   fontSize: h1FontSize,
                   lineHeight: `calc(1.1em + 0.5vw)`,
@@ -240,13 +297,13 @@ const Hero = () => {
               </h1>
 
               <div className="order-first md:order-none mb-4 md:mb-0">
-                <RotatingLogoWithText />
+                <RotatingLogo />
               </div>
 
-              <p className="text-right md:max-w-md font-arimo"
+              <p className="text-right md:max-w-md font-arimo mobile-paragraph"
                 style={{
-                  fontSize: 'clamp(0.7rem, 2vw, 1.5rem)',
-                  lineHeight: 'clamp(1.2rem, 2.5vw, 2rem)',
+                  fontSize: 'clamp(1rem, 2vw, 1.5rem)',
+                  lineHeight: 'clamp(1.5rem, 2.5vw, 2rem)',
                   fontFamily: 'Arimo, sans-serif',
                 }}
               >
@@ -262,7 +319,7 @@ const Hero = () => {
         </div>
 
         <div
-          className="w-24 h-48 absolute bottom-[4vh] right-[4vw] transform animation-container"
+          className="w-24 h-48 absolute bottom-[calc(8vh-5px)] right-[4vw] transform animation-container"
           style={{
             transform: 'rotateY(180deg) rotateX(180deg) rotateZ(40deg)',
           }}
@@ -280,6 +337,7 @@ const Hero = () => {
           .h1-responsive {
             font-size: 6vw;
             line-height: calc(1.1em + 0.5vw);
+            white-space: pre-line !important;
           }
 
           .h1-small {
@@ -289,14 +347,14 @@ const Hero = () => {
 
           @media (max-width: 1150px) {
             .h1-responsive {
-              font-size: 3.5vw !important;
+              font-size: 3vw !important;
               line-height: 1.2 !important;
             }
           }
 
           @media (max-width: 1016px) {
             .h1-responsive {
-              font-size: 4.5vw !important;
+              font-size: 3.8vw !important;
               line-height: 1.2 !important;
             }
             .padding-container {
@@ -306,15 +364,19 @@ const Hero = () => {
               padding-bottom: 5vh !important;
             }
             .animation-container {
-              bottom: 3vh !important;
+              bottom: 6vh !important;
               right: 3vw !important;
             }
           }
 
           @media (max-width: 780px) {
             .h1-responsive {
-              font-size: 5vw !important;
+              font-size: 4.2vw !important;
               line-height: 1.2 !important;
+            }
+            .mobile-paragraph {
+              font-size: 1.2rem !important;
+              line-height: 1.8rem !important;
             }
           }
         `}

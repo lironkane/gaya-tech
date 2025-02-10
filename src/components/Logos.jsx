@@ -21,7 +21,7 @@ const Logo = ({ closeNavbar }) => {
       className="cursor-pointer"
       aria-label="לדף הבית"
     >
-      <img src="/logo.svg" alt="לוגו גאיה טק" className="h-10" />
+      <img src="/logo.png" alt="לוגו גאיה טק" className="h-20" />
       </Link>
   );
 };
