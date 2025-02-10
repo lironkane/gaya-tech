@@ -357,7 +357,7 @@ export default function Hero() {
         });
       },
       {
-        threshold: 0.8, // צריך כיסוי מלא של 100%
+        threshold: 0.6, // צריך כיסוי מלא של 100%
       }
     );
 
