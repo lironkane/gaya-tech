@@ -9,15 +9,13 @@ import { Global } from '@emotion/react';
    - מכילה את כל ההוקים הנוגעים לאנימציה (useMemo, useEffect וכו').
    - לעולם לא מחזירה JSX מוקדם. אם אין צורך באנימציה, לא נקרא לה בכלל.
 -------------------------------------------------------------------------- */
-function DotsSphereAnimation({ isMobile }) {
+function DotsSphereAnimation({ isMobile, isScrolling }) {
   const sphereRef = useRef(null);
   const animationFrameRef = useRef(null);
 
-  // מפחיתים מספר נקודות למובייל, להקטנת העומס
   const numberOfDots = isMobile ? 100 : 250;
   const sphereRadius = 180;
 
-  // מחושבים פעם אחת
   const dots = useMemo(() => {
     const points = [];
     for (let i = 0; i < numberOfDots; i++) {
@@ -43,25 +41,35 @@ function DotsSphereAnimation({ isMobile }) {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // אתחול ערכי current לנקודות
     if (!isInitialized) {
       dots.forEach((dot) => {
         dot.current = { ...dot.initial };
       });
       setIsInitialized(true);
     }
+  }, [dots, isInitialized]);
 
+  useEffect(() => {
     const sphere = sphereRef.current;
     if (!sphere) return;
 
     let rotationX = 0;
     let rotationY = 0;
     let lastTime = 0;
+    let reqId = null;
 
     function animate(time) {
-      // מפחיתים לקצב של כ-30FPS
+      // אם גוללים – לא ממשיכים את האנימציה (לא מבצעים עדכונים),
+      // אבל כן נקרא שוב ל־requestAnimationFrame כדי שלא "יתקע".
+      // אם רוצים ממש להפסיק, אפשר לבטל גם את הקריאה החוזרת.
+      if (isScrolling) {
+        reqId = requestAnimationFrame(animate);
+        return;
+      }
+
+      // להגבלת קצב עד ~30FPS
       if (time - lastTime < 30) {
-        animationFrameRef.current = requestAnimationFrame(animate);
+        reqId = requestAnimationFrame(animate);
         return;
       }
       lastTime = time;
@@ -71,7 +79,7 @@ function DotsSphereAnimation({ isMobile }) {
       rotationY += 0.08;
       sphere.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
 
-      // מעבר מהערך ההתחלתי לערך היעד + ריחוף עדין (אופציונלי)
+      // עדכון מיקום כל נקודה
       dots.forEach((dot, index) => {
         const dotElement = sphere.children[index];
         if (!dotElement) return;
@@ -93,7 +101,7 @@ function DotsSphereAnimation({ isMobile }) {
             dot.initialized = true;
           }
         } else {
-          // ריחוף מתמיד (מינימלי). אם לא רוצים, אפשר לבטל
+          // ריחוף קל
           const t = time * 0.001;
           dot.current.x = dot.target.x + Math.sin(t * dot.speed + dot.phase) * 1;
           dot.current.y = dot.target.y + Math.cos(t * dot.speed + dot.phase) * 1;
@@ -102,17 +110,19 @@ function DotsSphereAnimation({ isMobile }) {
         dotElement.style.transform = `translate(-50%, -50%) translate3d(${dot.current.x}px, ${dot.current.y}px, ${dot.current.z}px)`;
       });
 
-      animationFrameRef.current = requestAnimationFrame(animate);
+      // מפעילים שוב
+      reqId = requestAnimationFrame(animate);
     }
 
-    animationFrameRef.current = requestAnimationFrame(animate);
+    // מפעילים את האנימציה
+    reqId = requestAnimationFrame(animate);
 
     return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
+      if (reqId) {
+        cancelAnimationFrame(reqId);
       }
     };
-  }, [dots, isInitialized]);
+  }, [dots, isInitialized, isScrolling]);
 
   return (
     <div
@@ -153,8 +163,8 @@ function DotsSphereAnimation({ isMobile }) {
    - מכילה רק לוגיקה פשוטה: אם (!isInView || prefersReducedMotion) => מציגה "גרסה סטטית" במקום האנימציה
    - כך אנחנו לא "מדלגים" על Hooks. ה-DotsSphereAnimation לא נוצר בכלל אם אין צורך באנימציה.
 -------------------------------------------------------------------------- */
-function DotsSphere({ isInView, prefersReducedMotion, isMobile }) {
-  // אם איננו רוצים להפעיל אנימציה, נחזיר אלמנט ריק/סטטי:
+function DotsSphere({ isInView, prefersReducedMotion, isMobile, isScrolling }) {
+  // אם איננו רוצים להפעיל אנימציה, נחזיר אלמנט סטטי:
   if (!isInView || prefersReducedMotion) {
     return (
       <div
@@ -166,13 +176,13 @@ function DotsSphere({ isInView, prefersReducedMotion, isMobile }) {
           top: '100px',
         }}
       >
-        {/* אפשר כאן לשים משהו סטטי (תמונה?) או להשאיר ריק */}
+        {/* אפשר כאן לשים משהו סטטי (תמונה) או כלום */}
       </div>
     );
   }
 
-  // אם רוצים אנימציה, מחזירים את הקומפוננטה שיש בה את כל ה-Hooks
-  return <DotsSphereAnimation isMobile={isMobile} />;
+  // אם רוצים אנימציה, מחזירים את הקומפוננטה
+  return <DotsSphereAnimation isMobile={isMobile} isScrolling={isScrolling} />;
 }
 
 /* --------------------------------------------------------------------------
@@ -312,12 +322,41 @@ const RotatingCubeButton = () => {
 export default function Hero() {
   const heroRef = useRef(null);
 
+  // הגדרות ראשוניות...
   const maxHeight =
     typeof window !== 'undefined' ? window.innerHeight : 800;
   const minHeight = 50;
+
+  // useState וכדומה...
   const [screenWidth, setScreenWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
+
+  // מוסיפים state חדש: האם גוללים כעת?
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    let scrollTimer = null;
+
+    const handleScroll = () => {
+      setIsScrolling(true); 
+      if (scrollTimer) {
+        clearTimeout(scrollTimer);
+      }
+      // נמתין 150 מילישניות אחרי שהמשתמש הפסיק לגלול – אז נניח שלא גוללים
+      scrollTimer = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimer) {
+        clearTimeout(scrollTimer);
+      }
+    };
+  }, []);
 
   /* -----------------------------
      prefers-reduced-motion
@@ -367,7 +406,7 @@ export default function Hero() {
       },
       {
         root: null,
-        threshold: 0.1, // מתי נחשב "בתצוגה" (לפחות 10% חשיפה)
+        threshold: 0.1,
       }
     );
 
@@ -460,13 +499,11 @@ export default function Hero() {
   const scaleValue = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   const blurValueNumeric = useTransform(scrollYProgress, [0, 0.2, 0.6, 1], [0, 0, 8, 16]);
 
-  // Spring = הפחתת "נוקשות"
   const heightSpring = useSpring(heightValue, { stiffness: 50, damping: 25 });
   const scaleSpring = useSpring(scaleValue, { stiffness: 80, damping: 30 });
   const blurSpring = useSpring(blurValueNumeric, { stiffness: 80, damping: 30 });
   const blurFilter = useTransform(blurSpring, (v) => `blur(${v}px)`);
 
-  // הזזה פנימית של התוכן
   const innerDivTranslateY = useTransform(scrollYProgress, [0, 1], [0, maxHeight * 0.8]);
   const innerDivTranslateYSpring = useSpring(innerDivTranslateY, {
     stiffness: 80,
@@ -498,12 +535,13 @@ export default function Hero() {
           willChange: 'transform, filter',
         }}
       >
-        {/* כאן אנחנו מטעינים את DotsSphere, שמחליטה לבד אם להראות אנימציה או לא */}
+        {/* עוברים prop של isScrolling למטה */}
         <div className="absolute left-[5vw] top-[calc(8vh+50px)]">
           <DotsSphere 
             isInView={isInView}
             prefersReducedMotion={prefersReducedMotion}
             isMobile={isMobile}
+            isScrolling={isScrolling} // <--- מעביר כאן
           />
         </div>
 
@@ -514,7 +552,7 @@ export default function Hero() {
             href="/about"
             className="text-black hover:text-gray-600"
           >
-            {/* כאן אפשר להוסיף טקסט או אייקון */}
+            {/* אפשר טקסט / אייקון */}
           </a>
         </nav>
 
