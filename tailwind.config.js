@@ -103,9 +103,61 @@ export default {
         'subtle-float': 'subtle-float 4s ease-in-out infinite',
         'fade-in': 'fade-in 0.8s ease-out forwards',
         'highlight-scan': 'highlight-scan 8s linear infinite',
+        'grid-flow': 'grid 20s linear infinite',
+        'shimmer': 'shimmer 2s linear infinite',
+        'energyFlow': 'energyFlow 2s linear infinite',
+        'scanline': 'scanline 2s linear infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'glow': 'glow 1.5s ease-in-out infinite',
+        'gradient': 'gradient 8s linear infinite',
+        'typing': 'typing 1s steps(6, end)',
+        'grid-flow': 'grid-flow 20s linear infinite',
+        'scan': 'scan 4s linear infinite',
+      },
+      keyframes: {
+        grid: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(20px)' }
+        },
+        gradient: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' }
+        },
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' }
+        },
+        energyFlow: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(200%)' }
+        },
+        scanline: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(100%)' }
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' }
+        },
+        glow: {
+          '0%, 100%': { opacity: 0.6 },
+          '50%': { opacity: 1 }
+        },
+        typing: {
+          '0%': { width: '0' },
+          '100%': { width: '100%' }
+        },
+        'grid-flow': {
+          '0%': { transform: 'translate(0, 0)' },
+          '100%': { transform: 'translate(25px, 25px)' }
+        },
+        'scan': {
+          '0%': { transform: 'translateY(-50vh)', opacity: '0' },
+          '50%': { opacity: '1' },
+          '100%': { transform: 'translateY(50vh)', opacity: '0' }
+        }
       },
     },
   },
   plugins: [],
 };
-

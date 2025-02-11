@@ -1,367 +1,366 @@
 import React, { useState } from 'react';
-import { Monitor, Tablet, Hexagon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { Helmet } from 'react-helmet';
+import { Code, Globe, Users, Sparkles } from 'lucide-react';
 
-// סגנונות גלובליים
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes slowGif {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.03); }
-    100% { transform: scale(1); }
-  }
+// First, the AnimatedBackground component
+const AnimatedBackground = () => (
+  <div className="fixed inset-0 z-0">
+    {/* Base gradient background */}
+    <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-blue-900/10 to-black" />
+    
+    {/* Main grid */}
+    <div className="absolute inset-0" style={{
+      backgroundImage: 'linear-gradient(rgba(56,189,248,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.07) 1px, transparent 1px)',
+      backgroundSize: '25px 25px',
+      animation: 'grid-flow 20s linear infinite'
+    }} />
+    
+    {/* Larger grid */}
+    <div className="absolute inset-0" style={{
+      backgroundImage: 'linear-gradient(rgba(56,189,248,0.05) 2px, transparent 2px), linear-gradient(90deg, rgba(56,189,248,0.05) 2px, transparent 1px)',
+      backgroundSize: '100px 100px'
+    }} />
+    
+    {/* Diagonal lines */}
+    <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0" style={{
+        backgroundImage: 'linear-gradient(45deg, transparent 0%, rgba(56,189,248,0.07) 50%, transparent 100%)',
+        backgroundSize: '200px 200px'
+      }} />
+      <div className="absolute inset-0" style={{
+        backgroundImage: 'linear-gradient(-45deg, transparent 0%, rgba(56,189,248,0.07) 50%, transparent 100%)',
+        backgroundSize: '200px 200px'
+      }} />
+    </div>
+    
+    {/* Moving light */}
+    <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent animate-scan" />
+    </div>
 
-  .tech-border {
-    position: relative;
-    overflow: hidden;
-  }
+    {/* Glowing orbs */}
+    <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[128px] animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[128px] animate-pulse delay-700" />
+    </div>
 
-  .tech-border::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #4f46e5, #06b6d4, #3b82f6);
-    z-index: -1;
-    animation: borderRotate 4s linear infinite;
-  }
+    {/* Dots overlay */}
+    <div className="absolute inset-0" style={{
+      backgroundImage: 'radial-gradient(rgba(56,189,248,0.05) 1px, transparent 1px)',
+      backgroundSize: '40px 40px'
+    }} />
+  </div>
+);
 
-  @keyframes borderRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-    .device-frame {
-       position: relative;
-       overflow: hidden;
-       background-color: #000;
-       border-radius: 2rem;
-       box-shadow: 0 0 0 5px #000, 0 0 20px 5px rgba(0, 0, 0, 0.5);
-       /* מסגרת דמוית מק */
-       &:before {
-         content: '';
-         position: absolute;
-         bottom: -25px;
-         left: 50%;
-         transform: translateX(-50%);
-         width: 40%;
-         height: 6px;
-         background-color: #333;
-         border-radius: 6px;
-         z-index: 2;
-       }
-
-       &:after {
-         content: '';
-         position: absolute;
-         bottom: -35px; /* הזזה נוספת כלפי מטה */
-         left: 50%;
-         transform: translateX(-50%);
-         width: 15%; /* בסיס צר יותר */
-         height: 12px; /* גובה מוגדל */
-         background-color: #555;
-         border-radius: 0 0 12px 12px; /* עיגול רק בפינות התחתונות */
-          z-index: 1;
-       }
-     }
-
-     .device-frame.tablet {
-       border-radius: 1rem;
-
-       &:before,
-       &:after {
-         display: none; /* הסתרת החלק התחתון בטאבלט */
-       }
-     }
-       .device-content {
-       position: relative;
-       z-index: 3;
-       width: 100%;
-       height: 100%;
-       overflow:hidden;
-     }
-
-  .gif-container img {
-    animation: slowGif 16s ease-in-out infinite;
-    animation-play-state: paused;
-  }
-
-  .gif-container:hover img {
-    animation-play-state: running;
-  }
-
-  .slick-dots li button:before {
-    color: #60a5fa;
-    font-size: 10px;
-  }
-
-  .slick-dots li.slick-active button:before {
-    color: #3b82f6;
-    opacity: 1;
-  }
-
-  .slick-prev:before,
-  .slick-next:before {
-    color: #3b82f6;
-    font-size: 30px;
-  }
-`;
-document.head.appendChild(style);
-
-const ProjectImage = ({ project, onClick }) => {
-  return (
-    <div className="w-full h-full flex items-center justify-center bg-black gif-container">
+// Next, the ProjectImage component
+const ProjectImage = ({ project, onHover }) => (
+  <div 
+    className="relative w-full h-full group cursor-pointer"
+    onMouseEnter={() => onHover(true)}
+    onMouseLeave={() => onHover(false)}
+  >
+    <a 
+      href={project.websiteUrl} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="block w-full h-full"
+    >
       <img
         src={project.gifUrl}
         alt={project.title}
-        className="max-w-full max-h-full object-contain"
-        style={{
-          backgroundColor: 'black',
-          zIndex: 50,
-          transition: 'all 0.5s ease',
-        }}
-        onClick={onClick}
+        className="w-full h-full object-contain transition-all duration-700 group-hover:scale-105"
       />
+      {/* Hover effects */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-500/20 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,0.2),transparent_70%)]" />
+        
+        {/* Corners */}
+        <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-blue-400/50 transition-all duration-500 group-hover:scale-110 group-hover:border-blue-400" />
+        <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-blue-400/50 transition-all duration-500 group-hover:scale-110 group-hover:border-blue-400" />
+        <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-blue-400/50 transition-all duration-500 group-hover:scale-110 group-hover:border-blue-400" />
+        <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-blue-400/50 transition-all duration-500 group-hover:scale-110 group-hover:border-blue-400" />
+      </div>
+    </a>
+  </div>
+);
+
+// The DeviceFrame component
+const DeviceFrame = ({ children }) => (
+  <div className="relative mx-auto" style={{ maxWidth: '1000px' }}>
+    {/* Ambient glow */}
+    <div className="absolute -inset-10 opacity-50">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-300" />
     </div>
-  );
-};
-
-const DeviceFrame = ({ children, type }) => {
-    return (
-        <div
-            className={`device-frame ${type === 'tablet' ? 'tablet' : ''}`}
-            style={{
-                width: '500px',
-                maxWidth: '90vw',
-                margin: '0 auto',
-                aspectRatio: '16 / 10',
-            }}
-        >
-            <div className="device-content">
-                {children}
-            </div>
+    
+    <div className="relative bg-gradient-to-b from-gray-900 to-black rounded-2xl p-4 shadow-[0_0_50px_rgba(0,0,0,0.7)] backdrop-blur-xl border border-white/5">
+      {/* Top Bar */}
+      <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-r from-gray-900 via-blue-900/20 to-gray-900 rounded-t-2xl flex items-center justify-between px-4">
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-blue-500/80 rounded-full animate-glow" />
+          <div className="w-2 h-2 bg-purple-500/80 rounded-full animate-glow delay-75" />
+          <div className="w-2 h-2 bg-cyan-500/80 rounded-full animate-glow delay-150" />
         </div>
-    );
-};
+        <div className="text-xs text-blue-400/80 font-mono group">
+          <span className="group-hover:animate-pulse">&lt;/&gt;</span>
+        </div>
+      </div>
+      
+      {/* Screen */}
+      <div className="relative mt-4 rounded-xl overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-cyan-500 to-purple-500 animate-gradient opacity-80" />
+        <div className="relative bg-black m-[2px] rounded-xl aspect-video">
+          {children}
+        </div>
+      </div>
+      
+      {/* Stand */}
+      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-56 h-8">
+        <div className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 rounded-b-3xl border-t border-blue-500/20" />
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-72 h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent animate-pulse" />
+      </div>
+    </div>
+  </div>
+);
 
+// The ProjectDetails component
+const ProjectDetails = ({ project, isVisible }) => (
+  <AnimatePresence>
+    {isVisible && (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 20 }}
+        className="fixed left-0 right-0 bottom-0 mx-auto w-full bg-gradient-to-t from-black via-black/95 to-transparent pb-4 pt-12 z-20"
+      >
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.div 
+            className="bg-gradient-to-b from-gray-900/95 to-black/95 backdrop-blur-xl rounded-2xl border border-white/10 p-4 md:p-6 shadow-2xl relative overflow-hidden"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 100 }}
+          >
+            <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm md:text-base">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-blue-400">
+                  <Globe className="w-4 h-4 md:w-5 md:h-5 animate-pulse" />
+                  <h4 className="font-medium">אודות</h4>
+                </div>
+                <p className="text-gray-300 text-sm md:text-base">{project.description}</p>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-blue-400">
+                  <Code className="w-4 h-4 md:w-5 md:h-5" />
+                  <h4 className="font-medium">טכנולוגיות</h4>
+                </div>
+                <div className="flex flex-wrap gap-1.5 md:gap-2">
+                  {project.technologies.map((tech, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.1 * i }}
+                      className="px-2 md:px-3 py-0.5 md:py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs md:text-sm text-blue-400"
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-purple-400">
+                  <Sparkles className="w-4 h-4 md:w-5 md:h-5" />
+                  <h4 className="font-medium">חדשנות</h4>
+                </div>
+                <div className="flex flex-wrap gap-1.5 md:gap-2">
+                  {project.innovations.map((item, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.1 * i }}
+                      className="px-2 md:px-3 py-0.5 md:py-1 bg-purple-500/10 border border-purple-500/20 rounded-full text-xs md:text-sm text-purple-400"
+                    >
+                      {item}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-cyan-400">
+                  <Users className="w-4 h-4 md:w-5 md:h-5" />
+                  <h4 className="font-medium">יתרונות</h4>
+                </div>
+                <div className="flex flex-wrap gap-1.5 md:gap-2">
+                  {project.features.map((feature, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.1 * i }}
+                      className="px-2 md:px-3 py-0.5 md:py-1 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-xs md:text-sm text-cyan-400"
+                    >
+                      {feature}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
+// Finally, the main PortfolioPage component
 const PortfolioPage = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [deviceType, setDeviceType] = useState('laptop');
+  const [hoveredProject, setHoveredProject] = useState(null);
 
   const projects = [
     {
       id: 1,
       title: "Dental Website",
-      description: "אתר רספונסיבי מתקדם למרפאת שיניים",
+      description: "פלטפורמה חדשנית המשלבת טכנולוגיות מתקדמות לניהול וצפייה בטיפולי שיניים",
       gifUrl: "/gifs/Shinaim.gif",
-      technologies: ["React", "Node.js", "MongoDB"],
-      features: ["ממשק משתמש אינטואיטיבי", "מערכת ניהול תורים", "תמיכה בכל המכשירים"]
+      websiteUrl: "https://dental-website.com",
+      technologies: ["React", "Node.js", "MongoDB", "WebGL"],
+      features: ["ממשק משתמש אינטואיטיבי", "מערכת ניהול תורים חכמה", "תצוגת תלת-מימד"],
+      innovations: ["AI לאבחון", "מציאות רבודה", "צ'אט רפואי חכם"]
     },
     {
       id: 2,
       title: "Cosmetics Store",
-      description: "חנות אונליין לקוסמטיקה",
+      description: "חנות אונליין חדשנית עם חוויית קנייה מתקדמת ופרסונליזציה מלאה",
       gifUrl: "/gifs/Cosmetics.gif",
-      technologies: ["React", "Redux", "Node.js", "PostgreSQL"],
-      features: ["סל קניות מתקדם", "מערכת תשלומים", "ניהול מלאי"]
+      websiteUrl: "https://cosmetics-store.com",
+      technologies: ["React", "Redux", "Node.js", "AI"],
+      features: ["המלצות אישיות", "מציאות רבודה", "ניתוח עור AI"],
+      innovations: ["Virtual Try-On", "Smart Mirror", "פרסונליזציה מתקדמת"]
     },
     {
       id: 3,
       title: "Garage Doors",
-      description: "פלטפורמה להצגת עבודות",
+      description: "פלטפורמה חדשנית להצגת ועיצוב דלתות גראז' עם סימולציה בזמן אמת",
       gifUrl: "/gifs/GarageDoors.gif",
-      technologies: ["React", "Next.js", "Tailwind"],
-      features: ["אנימציות מתקדמות", "טעינה מהירה", "SEO אופטימלי"]
+      websiteUrl: "https://garage-doors.com",
+      technologies: ["React", "Three.js", "WebGL", "Firebase"],
+      features: ["תצוגת תלת-מימד", "סימולציה בזמן אמת", "התאמה אישית"],
+      innovations: ["3D Rendering", "מדידות AR", "עיצוב אוטומטי AI"]
     }
   ];
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 6000,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-          arrows: false
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: false
-        }
-      }
-    ]
-  };
-
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-blue-900/20 to-black text-white p-8" aria-label="Portfolio - tech-start">
-      <Helmet>
-        {/* Metadata SEO - Portfolio Page */}
-        <title>תיק עבודות | tech-start - פרויקטים נבחרים</title>
-        <meta
-          name="description"
-          content="תיק העבודות של tech-start: הצצה לפרויקטים נבחרים בתחום פיתוח התוכנה, בניית אתרים ואפליקציות, פתרונות ענן ועוד."
-        />
-        <meta
-          name="keywords"
-          content="תיק עבודות, tech-start, פיתוח תוכנה, בניית אתרים, אפליקציות, פתרונות ענן, פרויקטים"
-        />
-        {/* סוף Metadata SEO */}
-      </Helmet>
-      <div className="relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
+    <div className="relative min-h-screen overflow-x-hidden">
+      <AnimatedBackground />
+      
+      <div className="relative z-10 pt-16">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Hero Section */}
           <motion.div
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center justify-center p-1 mb-8 rounded-2xl bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-32 space-y-8"
           >
-            <div className="px-8 py-4 bg-gray-900 rounded-xl">
-              <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                תיק עבודות
-              </h1>
+            <div className="relative">
+              {/* Background glow effect */}
+              <div className="absolute -inset-10 opacity-50">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-24 bg-blue-500/20 rounded-full blur-3xl" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-24 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-300" />
+              </div>
+
+              {/* Main Title */}
+              <div className="relative">
+                <motion.h1 
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.2 }}
+                  className="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 pb-2"
+                >
+                  Portfolio
+                </motion.h1>
+                
+                {/* Animated underline */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 rounded-full animate-pulse" />
+              </div>
             </div>
-          </motion.div>
 
-          <div className="flex justify-center gap-4 mb-8">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setDeviceType('laptop')}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-all
-                ${deviceType === 'laptop'
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/30'
-                  : 'bg-gray-800 hover:bg-gray-700'}`}
-            >
-              <Monitor size={20} />
-              <span>מחשב נייד</span>
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setDeviceType('tablet')}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-all
-                ${deviceType === 'tablet'
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/30'
-                  : 'bg-gray-800 hover:bg-gray-700'}`}
-            >
-              <Tablet size={20} />
-              <span>טאבלט</span>
-            </motion.button>
-          </div>
-        </motion.div>
-
-        <Slider {...settings}>
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
+            {/* Subtitle */}
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              className="relative group px-4"
+              transition={{ duration: 1, delay: 0.4 }}
+              className="text-xl text-blue-200/80 max-w-3xl mx-auto font-light"
             >
-              <DeviceFrame type={deviceType}>
-                <ProjectImage
-                  project={project}
-                  onClick={() => setSelectedProject(project)}
-                />
-              </DeviceFrame>
+              יצירת חוויות דיגיטליות חדשניות המשלבות טכנולוגיות מתקדמות ועיצוב פורץ דרך
+            </motion.p>
+
+            {/* Tech Tags */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.6 }}
+              className="flex justify-center gap-4 pt-4"
+            >
+              <motion.div
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="group px-6 py-3 bg-gradient-to-r from-blue-500/10 to-blue-500/5 backdrop-blur rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300"
+              >
+                <span className="text-blue-400 text-sm font-medium">Full Stack Development</span>
+                <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.3 }}
-                className="mt-6 text-center"
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="group px-6 py-3 bg-gradient-to-r from-purple-500/10 to-purple-500/5 backdrop-blur rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300"
               >
-                <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                  {project.title}
-                </h3>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {project.technologies.map(tech => (
-                    <span key={tech} className="px-3 py-1 bg-blue-600/20 backdrop-blur-sm border border-blue-500/30 rounded-full text-xs">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                <span className="text-purple-400 text-sm font-medium">Modern Design</span>
+                <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="group px-6 py-3 bg-gradient-to-r from-cyan-500/10 to-cyan-500/5 backdrop-blur rounded-xl border border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300"
+              >
+                <span className="text-cyan-400 text-sm font-medium">Creative Solutions</span>
+                <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             </motion.div>
-          ))}
-        </Slider>
+          </motion.div>
 
-        <AnimatePresence>
-          {selectedProject && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-8 z-50"
-              onClick={() => setSelectedProject(null)}
-            >
+          {/* Projects */}
+          <div className="space-y-96 mb-48">
+            {projects.map((project, index) => (
               <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                className="max-w-5xl w-full bg-gray-900/90 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-blue-500/30"
-                onClick={e => e.stopPropagation()}
+                key={project.id}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                className="relative mb-48"
               >
-                <DeviceFrame type={deviceType}>
-                  <ProjectImage
-                    project={selectedProject}
+                <DeviceFrame>
+                  <ProjectImage 
+                    project={project}
+                    onHover={(isHovered) => setHoveredProject(isHovered ? project.id : null)}
                   />
                 </DeviceFrame>
-
-                <div className="p-8">
-                  <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                    {selectedProject.title}
-                  </h2>
-                  <p className="text-gray-300 mb-6">{selectedProject.description}</p>
-
-                  <h4 className="text-xl font-semibold mb-3 text-blue-400">תכונות עיקריות</h4>
-                  <ul className="grid grid-cols-2 gap-4 mb-6">
-                    {selectedProject.features.map(feature => (
-                      <li key={feature} className="flex items-center gap-2">
-                        <Hexagon size={16} className="text-blue-500" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="flex flex-wrap gap-3">
-                    {selectedProject.technologies.map(tech => (
-                      <span key={tech} className="px-4 py-2 bg-blue-600/20 backdrop-blur-sm border border-blue-500/30 rounded-full">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                
+                <ProjectDetails 
+                  project={project} 
+                  isVisible={hoveredProject === project.id}
+                />
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
