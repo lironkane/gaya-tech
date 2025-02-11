@@ -218,20 +218,7 @@ const Navbar = () => {
                     </div>
                   ))}
                 </div>
-                <button
-                  className="w-full bg-primary-dark/30 text-white p-6 rounded-lg border border-white/20 text-2xl mt-12 font-arimo relative group"
-                  onClick={closeNavbar}
-                  style={{
-                    transitionDelay: `${300 + (menuItems.length * 30)}ms`,
-                    opacity: isOpen ? 1 : 0,
-                    transform: isOpen ? 'translateY(0)' : 'translateY(20px)'
-                  }}
-                >
-                  <span className="relative">
-                    דבר איתנו
-                    <span className="absolute -bottom-1 right-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
-                  </span>
-                </button>
+           
               </div>
             </div>
           </div>

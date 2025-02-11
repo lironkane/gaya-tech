@@ -75,20 +75,39 @@ const ContactPage = () => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
       transition={{ duration: 0.3 }}
-      aria-label="Contact Us - tech-start"
     >
       <Helmet>
-        {/* Metadata SEO - Contact Page */}
-        <title>צור קשר | tech-start</title>
+        <title>צור קשר | גאיה-טק</title>
         <meta
           name="description"
-          content="צרו קשר עם tech-start לקבלת ייעוץ ראשוני ללא התחייבות. נשמח לעמוד לרשותכם ולענות על כל שאלה."
+          content="צרו קשר עם גאיה-טק לקבלת ייעוץ ראשוני ללא התחייבות. נשמח לעמוד לרשותכם ולענות על כל שאלה."
         />
         <meta
           name="keywords"
-          content="צור קשר, tech-start, פיתוח תוכנה, פתרונות ענן, קידום אתרים, ייעוץ טכנולוגי, יצירת קשר"
+          content="צור קשר, גאיה-טק, פיתוח תוכנה, פתרונות ענן, קידום אתרים, ייעוץ טכנולוגי, יצירת קשר"
         />
-        {/* סוף Metadata SEO */}
+        <meta name="author" content="גאיה-טק" />
+        <meta property="og:title" content="צור קשר | גאיה-טק" />
+        <meta
+          property="og:description"
+          content="השאירו פרטים ונחזור אליכם בהקדם, או התקשרו אלינו לייעוץ ראשוני."
+        />
+        <meta property="og:image" content="/path/to/your/contact-image.jpg" />
+        <meta
+          property="og:url"
+          content="https://www.yourwebsite.com/contact"
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="צור קשר | גאיה-טק" />
+        <meta
+          name="twitter:description"
+          content="צרו קשר עם גאיה-טק לכל שאלה או בקשה."
+        />
+        <meta
+          name="twitter:image"
+          content="/path/to/your/contact-image.jpg"
+        />
       </Helmet>
       <div className="min-h-screen bg-gray-100 pt-12 px-4 sm:px-6 lg:px-8 text-right font-assistant">
         <div className="pt-[15px]">
@@ -130,7 +149,7 @@ const ContactPage = () => {
                 <MapPin className="w-10 h-10 mx-auto mb-4 text-primary" />
                 <h3 className="font-semibold mb-2 text-primary">כתובת</h3>
                 <p className="font-amatic text-gray-600">
-                  הכתובת האמיתית שלך, או "ישראל"
+ישראל
                 </p>
               </div>
             </div>
