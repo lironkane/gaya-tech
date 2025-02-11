@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const CyberSecurityPage = () => {
   useEffect(() => {
-    document.title = 'אבטחת מידע וסייבר | גאיה-טק';
+    document.title = 'אבטחת מידע וסייבר | tech-start';
   }, []);
 
   const services = [
@@ -79,12 +79,14 @@ const CyberSecurityPage = () => {
   return (
     <>
       <Helmet>
-        <title>אבטחת מידע וסייבר | גאיה-טק</title>
-        <meta name="description" content="פתרונות אבטחת מידע וסייבר מתקדמים לעסקים - הגנה מפני איומים, ניטור ובקרה, והגנה על נכסים דיגיטליים" />
-        <meta name="keywords" content="אבטחת מידע, סייבר, הגנת סייבר, אבטחת רשת, ניטור אבטחה, הגנה מפני איומים" />
+        {/* Metadata SEO - Cyber Security Page */}
+        <title>פתרונות אבטחת מידע וסייבר לעסקים | tech-start</title>
+        <meta name="description" content="tech-start מספקת פתרונות אבטחת מידע וסייבר מתקדמים לעסקים. הגן על העסק שלך מפני איומי סייבר עם שירותי ניטור, הגנת רשת ואבטחת מידע." />
+        <meta name="keywords" content="אבטחת מידע, סייבר, הגנת סייבר, אבטחת רשת, ניטור אבטחה, הגנה מפני איומים, פתרונות אבטחה לעסקים" />
+        {/* סוף Metadata SEO */}
       </Helmet>
 
-      <div className="min-h-screen bg-[#FAF9F6]">
+      <div className="min-h-screen bg-[#FAF9F6]" aria-label="Cyber Security Solutions - tech-start">
         {/* Hero Section */}
         <div className="bg-[#124A36] py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

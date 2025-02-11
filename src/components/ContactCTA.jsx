@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Lightbulb, Users, Target, Sparkles, Heart } from 'lucide-react';
+import { Helmet } from 'react-helmet'; // ייבוא react-helmet
 
 const ContactCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,10 +43,17 @@ const ContactCTA = () => {
   ];
 
   return (
-    <section className="py-16 relative bg-gray-900 overflow-hidden">
+    <section className="py-16 relative bg-gray-900 overflow-hidden" aria-label="Contact CTA Section - Tech Start: צור קשר להתחלת הצמיחה העסקית שלך">
+      <Helmet>
+        {/* Metadata SEO - Contact CTA */}
+        <title>צרו קשר | Tech-Start - פיתוח אתרים וייעוץ שיווקי</title>
+        <meta name="description" content="צרו קשר עם Tech-Start לקבלת פתרונות פיתוח אתרים ושיווק דיגיטלי חכמים ומותאמים אישית. צוות מקצועי זמין לליווי צמיחת העסק שלך." />
+        <meta name="keywords" content="צור קשר, פיתוח אתרים, שיווק דיגיטלי, ייעוץ שיווקי, פתרונות חכמים, ליווי אישי, צוות מקצועי, קליניקות, רופאים, רופאי שיניים, בניית אתרים לרופאים, בניית אתרים לרופאי שיניים" />
+        {/* סוף Metadata SEO */}
+      </Helmet>
       {/* Subtle animated background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(255,255,255,0.03)_1px,transparent_1px)] bg-[length:32px_32px]"></div>
-      
+
       {/* Soft floating elements */}
       <div className="absolute inset-0">
         {[...Array(15)].map((_, i) => (
@@ -60,18 +68,18 @@ const ContactCTA = () => {
           />
         ))}
       </div>
-      
+
       {/* Soft gradient blobs */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl"></div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative" onMouseMove={handleMouseMove}>
         <div className={`transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           {/* Main Card */}
           <div className="rounded-[2.5rem] bg-white/80 backdrop-blur-xl shadow-2xl border-2 border-gray-100 overflow-hidden">
             <div className="p-8 md:p-12 relative">
               {/* Animated light effect */}
-              <div 
+              <div
                 className="absolute inset-0 opacity-30"
                 style={{
                   background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(139,92,246,0.1) 0%, transparent 60%)`
@@ -96,7 +104,7 @@ const ContactCTA = () => {
                     בדרך להצלחה
                   </span>
                 </h2>
-                
+
                 <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
                   הצוות המקצועי שלנו כאן כדי לעזור לך לצמוח ולהתפתח
                   עם פתרונות טכנולוגיים מותאמים בדיוק בשבילך

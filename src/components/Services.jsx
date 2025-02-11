@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { PenTool, Layout, Code, LineChart } from 'lucide-react';
 import featuresBackground from '../assets/background/features-background.jpg';
+import { Helmet } from 'react-helmet'; // ייבוא react-helmet
+
 
 const IconAnimation = ({ children, bgColor, color }) => (
     <motion.div
@@ -139,8 +141,8 @@ const Services = () => {
         [0, 0.1, 0.9, 1],  // נקודות המפתח לטרנספורמציה
         [20, 0, 0, 20]      // ערכי ה-blur המתאימים
     );
-    
-      useMotionValueEvent(scrollYProgress, "change", (latest) => {
+
+    useMotionValueEvent(scrollYProgress, "change", (latest) => {
         // console.log("scrollYProgress:", latest); //  לדיבג, אפשר להשאיר או להסיר
     });
 
@@ -170,7 +172,14 @@ const Services = () => {
     };
 
     return (
-        <section ref={sectionRef} className="relative pt-3 pb-1 px-3 bg-[#1a1a1a] transition-filter duration-500">
+        <section ref={sectionRef} className="relative pt-3 pb-1 px-3 bg-[#1a1a1a] transition-filter duration-500"  aria-label="Services Section - Tech Start: שירותי פיתוח אתרים ושיווק דיגיטלי">
+            <Helmet>
+                {/* Metadata SEO - שירותים */}
+                <title>שירותי פיתוח אתרים ושיווק דיגיטלי | Tech-Start</title>
+                <meta name="description" content="Tech-Start: מציעה שירותי פיתוח אתרים מתקדמים, עיצוב UX/UI חדשני ושיווק דיגיטלי ממוקד תוצאות. פתרונות דיגיטליים לעסקים וקליניקות." />
+                <meta name="keywords" content="שירותי פיתוח אתרים, שיווק דיגיטלי, עיצוב אתרים, UX UI, קידום אתרים, ביצועי שיווק, עיצוב וקריאייטיב, ממשק משתמש, חווית משתמש, פיתוח אתרים, שיווק באינטרנט" />
+                {/* סוף Metadata SEO */}
+            </Helmet>
             <motion.div style={{ filter: `blur(${blurValue}px)` }} className="relative w-full h-full rounded-3xl overflow-hidden shadow-lg flex flex-col">
                 <div className="absolute inset-0 z-0">
                     <img src={featuresBackground} alt="Features Background" className="w-full h-full object-cover" />

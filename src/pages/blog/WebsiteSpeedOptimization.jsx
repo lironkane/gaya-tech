@@ -4,42 +4,43 @@ import { Helmet } from 'react-helmet';
 
 const WebsiteSpeedOptimization = () => {
   return (
-    <div className="bg-[#FFF8F0] py-16">
+    <div className="bg-[#FFF8F0] py-16" aria-label="Blog Post: מדריך מהירות אתר - tech-start">
       <Helmet>
-        <title>מהירות אתר: איך לשפר ביצועים ולהשפיע על הקידום | גאיה טק</title>
+        {/* Metadata SEO - Blog Post: Website Speed Optimization Guide */}
+        <title>מהירות אתר | tech-start - מדריך לשיפור ביצועים וקידום אתרים</title>
         <meta
           name="description"
-          content="גלה כיצד מהירות טעינת האתר משפיעה על הדירוג שלך ואיך לשפר אותה. מהירות אתר היא גורם חשוב בחוויית המשתמש וב-SEO."
+          content="רוצה לשפר את מהירות האתר שלך? גלה כיצד מהירות טעינת האתר משפיעה על הדירוג שלך ואיך לשפר אותה. מדריך אופטימיזציה מקיף."
         />
         <meta
           name="keywords"
-          content="מהירות אתר, אופטימיזציית אתרים, SEO, חווית משתמש, PageSpeed Insights, GTmetrix, WebPageTest, אופטימיזציית תמונות, Caching, Minification, CDN"
+          content="מהירות אתר, אופטימיזציית מהירות אתר, SEO מהירות אתר, שיפור מהירות אתר, PageSpeed Insights, GTmetrix, WebPageTest, אופטימיזציית תמונות, Caching, Minification, CDN, מדריך מהירות אתר"
         />
         <meta name="author" content="גאיה טק" />
         <meta
           property="og:title"
-          content="מהירות אתר: איך לשפר את ביצועי האתר ולהשפיע על הקידום"
+          content="מהירות אתר: מדריך לשיפור ביצועים וקידום אתרים | tech-start"
         />
         <meta
           property="og:description"
-          content="גלה כיצד מהירות טעינת האתר משפיעה על הדירוג שלך ואיך לשפר אותה."
+          content="גלה כיצד מהירות טעינת האתר משפיעה על הדירוג שלך ואיך לשפר אותה. מדריך מקיף לשיפור מהירות אתר."
         />
-        <meta property="og:image" content="/images/blog/website-speed.jpg" />
+        <meta property="og:image" content="/images/blog/website-speed.jpg" /> {/* Replace with actual URL */}
         <meta
           property="og:url"
-          content="https://www.yourwebsite.com/blog/website-speed-optimization"
+          content="https://www.tech-start.co.il/blog/website-speed-optimization"
         />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="מהירות אתר: איך לשפר את ביצועי האתר ולהשפיע על הקידום"
+          content="מהירות אתר: מדריך לשיפור ביצועים וקידום אתרים | tech-start"
         />
         <meta
           name="twitter:description"
-          content="גלה כיצד מהירות טעינת האתר משפיעה על הדירוג שלך ואיך לשפר אותה."
+          content="מחפש לשפר את מהירות האתר? קבל את המדריך המלא למהירות אתר: איך לשפר ביצועים ולהשפיע על הקידום שלך בגוגל."
         />
-        <meta name="twitter:image" content="/images/blog/website-speed.jpg" />
+        <meta name="twitter:image" content="/images/blog/website-speed.jpg" /> {/* Replace with actual URL */}
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
@@ -58,7 +59,7 @@ const WebsiteSpeedOptimization = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#124A36]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div className="absolute left-4 bottom-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span className="font-bold text-lg">מהירות אתר</span>
+            <span className="font-bold text-lg font-amatic">מהירות אתר</span>
           </div>
         </div>
         <article className="mx-auto font-arimo">

@@ -9,6 +9,8 @@ import {
 } from 'lucide-react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import timelineBackground from '../assets/background/timeline-background.jpg';
+import { Helmet } from 'react-helmet'; // ייבוא react-helmet
+
 
 const Timeline = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -153,7 +155,15 @@ const Timeline = () => {
       style={{
         scale
       }}
+      aria-label="Timeline Section - Tech Start: תהליך עבודה מפורט"
     >
+      <Helmet>
+        {/* Metadata SEO - תהליך עבודה */}
+        <title>תהליך עבודה מפורט | Tech-Start - פיתוח אתרים ושיווק דיגיטלי</title>
+        <meta name="description" content="גלו את תהליך העבודה המפורט של Tech-Start בפיתוח אתרים ושיווק דיגיטלי. משלב האפיון ועד להשקה וצמיחה - הדרך שלך להצלחה דיגיטלית." />
+        <meta name="keywords" content="תהליך עבודה, פיתוח אתרים, שיווק דיגיטלי, אפיון, תכנון, פיתוח, עיצוב, קידום, הטמעה, השקה, צמיחה, קליניקות, רופאים, רופאי שיניים" />
+        {/* סוף Metadata SEO */}
+      </Helmet>
       <motion.div
         className="w-full h-full rounded-3xl relative shadow-lg p-8"
         style={{

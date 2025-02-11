@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 
 const CloudSolutionsPage = () => {
   useEffect(() => {
-    document.title = 'פתרונות ענן מתקדמים | גאיה-טק';
+    document.title = 'פתרונות ענן מתקדמים | tech-start';
   }, []);
 
   const solutions = [
@@ -107,19 +107,20 @@ const CloudSolutionsPage = () => {
   return (
     <>
       <Helmet>
-        <title>פתרונות ענן מתקדמים לעסקים | גאיה-טק</title>
+        {/* Metadata SEO - Cloud Solutions Page */}
+        <title>פתרונות ענן מתקדמים לעסקים | tech-start</title>
         <meta
           name="description"
-          content="גאיה-טק מציעה פתרונות ענן מתקדמים לעסקים, כולל תשתית היברידית, ניהול שרתים, אבטחת מידע וגיבוי אוטומטי. שפר את גמישות העסק, חסוך בעלויות והבטח את המידע שלך עם פתרונות הענן שלנו."
+          content="tech-start מציעה פתרונות ענן מתקדמים לעסקים, כולל תשתית היברידית, ניהול שרתים, אבטחת מידע וגיבוי אוטומטי. שפר את גמישות העסק, חסוך בעלויות והבטח את המידע שלך עם פתרונות הענן שלנו."
         />
         <meta
           name="keywords"
-          content="פתרונות ענן, ענן היברידי, ניהול שרתים, אבטחת ענן, גיבוי נתונים, שרתים וירטואליים, גאיה-טק, גמישות, חיסכון בעלויות, אבטחה מתקדמת, זמינות גבוהה"
+          content="פתרונות ענן, ענן היברידי, ניהול שרתים, אבטחת ענן, גיבוי נתונים, שרתים וירטואליים, tech-start, גמישות, חיסכון בעלויות, אבטחה מתקדמת, זמינות גבוהה"
         />
-        <meta name="author" content="גאיה-טק" />
+        <meta name="author" content="tech-start" />
         <meta
           property="og:title"
-          content="פתרונות ענן מתקדמים לעסקים | גאיה-טק"
+          content="פתרונות ענן מתקדמים לעסקים | tech-start"
         />
         <meta
           property="og:description"
@@ -129,13 +130,13 @@ const CloudSolutionsPage = () => {
         {/* הוסף תמונה רלוונטית */}
         <meta
           property="og:url"
-          content="https://www.yourwebsite.com/cloud-solutions"
+          content="https://www.tech-start.co.il/cloud-solutions"
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="פתרונות ענן מתקדמים לעסקים | גאיה-טק"
+          content="פתרונות ענן מתקדמים לעסקים | tech-start"
         />
         <meta
           name="twitter:description"
@@ -148,7 +149,7 @@ const CloudSolutionsPage = () => {
         {/* הוסף תמונה רלוונטית */}
       </Helmet>
 
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-gray-100" aria-label="Cloud Solutions for Business - tech-start">
         {/* Hero Section */}
         <div className="bg-primary text-white py-20 md:py-28">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">

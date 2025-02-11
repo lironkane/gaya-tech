@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Menu as MenuIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logos';
+import { Helmet } from 'react-helmet'; // ייבוא react-helmet
+
 
 const HamburgerIcon = ({ isOpen, toggleMenu }) => {
   return (
@@ -30,7 +32,7 @@ const MenuItem = ({ item, isOpen, onClose }) => {
 
   if (item.submenu) {
     return (
-      <div 
+      <div
         className="relative"
         onMouseEnter={() => setShowSubmenu(true)}
         onMouseLeave={() => setShowSubmenu(false)}
@@ -41,7 +43,7 @@ const MenuItem = ({ item, isOpen, onClose }) => {
             <span className="absolute -bottom-1 right-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
           </span>
         </div>
-        
+
         <div className={`
           overflow-hidden transition-all duration-500 ease-in-out
           ${showSubmenu ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
@@ -141,10 +143,18 @@ const Navbar = () => {
 
   return (
     <>
+      <Helmet>
+        {/* Metadata SEO - Navbar */}
+        <title>ניווט | Tech-Start - פיתוח אתרים ושיווק דיגיטלי</title>
+        <meta name="description" content="ניווט באתר Tech-Start. גישה מהירה לשירותים, תיק עבודות, בלוג וצור קשר. חוויית משתמש נוחה." />
+        <meta name="keywords" content="ניווט, תפריט, שירותים, תיק עבודות, בלוג, צור קשר, Tech-Start, פיתוח אתרים, שיווק דיגיטלי, בניית אתרים" />
+        {/* סוף Metadata SEO */}
+      </Helmet>
       <nav
         className={`fixed inset-x-2 top-8 z-50 transition-all duration-500 transform ${
           visible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
         }`}
+        aria-label="Main Navigation - Tech Start"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 h-8 flex justify-between items-center">
           <div className={`transition-all duration-500 transform ${
@@ -175,7 +185,7 @@ const Navbar = () => {
             <div className={`absolute top-0 right-0 w-full h-1/2 bg-primary shadow-xl transition-all duration-500 ease-in-out transform origin-bottom ${
               isOpen ? 'translate-y-0' : '-translate-y-full'
             }`} style={{ clipPath: 'inset(0 0 -1px 0)' }} />
-            
+
             {/* Bottom Half */}
             <div className={`absolute bottom-0 right-0 w-full h-1/2 bg-primary shadow-xl transition-all duration-500 ease-in-out transform origin-top ${
               isOpen ? 'translate-y-0' : 'translate-y-full'

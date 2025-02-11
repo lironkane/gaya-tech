@@ -1,6 +1,7 @@
 import React from 'react';
 import { Code, Globe, Users, LineChart, CheckCircle, HelpCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet';
 
 const ServicesPage = () => {
   const services = [
@@ -87,7 +88,21 @@ const ServicesPage = () => {
     animate={{ opacity: 1, x: 0 }}
     exit={{ opacity: 0, x: 20 }}
     transition={{ duration: 0.3 }}
+    aria-label="Services - tech-start"
   >
+    <Helmet>
+      {/* Metadata SEO - Services Page */}
+      <title>שירותי tech-start | פיתוח אתרים, קידום אתרים ועוד</title>
+      <meta
+        name="description"
+        content="tech-start מציעה מגוון שירותי דיגיטל: פיתוח אתרים רספונסיביים, קידום אתרים אורגני וממומן, ליווי אישי ועוד. פתרונות מקצועיים לעסק שלך."
+      />
+      <meta
+        name="keywords"
+        content="שירותי tech-start, פיתוח אתרים, קידום אתרים, קידום אורגני, קידום ממומן, ליווי אישי, שירותי דיגיטל"
+      />
+      {/* סוף Metadata SEO */}
+    </Helmet>
     <div className="min-h-screen bg-[#FFF8F0]">
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-b from-[#124A36] to-[#2A6B52] text-white relative overflow-hidden">
@@ -114,7 +129,7 @@ const ServicesPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <div 
+              <div
                 key={service.title}
                 className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-[#F5E6D3]"
               >
@@ -147,7 +162,7 @@ const ServicesPage = () => {
           </h2>
           <div className="space-y-6">
             {faqs.map((faq) => (
-              <div 
+              <div
                 key={faq.question}
                 className="bg-[#FFF8F0] rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300"
               >

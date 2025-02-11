@@ -1,47 +1,47 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import BackButton from '../../BackButton'; // עדכון הנתיב
 
 const SeoContentWriting = () => {
   return (
-    <div className="bg-[#FFF8F0] py-16">
+    <div className="bg-[#FFF8F0] py-16" aria-label="Blog Post: מדריך כתיבת תוכן SEO - tech-start">
       <Helmet>
-        <title>מדריך לכתיבת תוכן ידידותי ל-SEO בשנת 2024 | גאיה טק</title>
+        {/* Metadata SEO - Blog Post: SEO Content Writing Guide */}
+        <title>מדריך כתיבת תוכן SEO לשנת 2024 | tech-start - טיפים וטכניקות</title>
         <meta
           name="description"
-          content="למד איך לכתוב תוכן שגם ימשוך את הגולשים וגם יקודם בצורה אורגנית במנועי החיפוש. תוכן איכותי הוא המפתח לקידום אתרים מוצלח."
+          content="למד איך לכתוב תוכן SEO איכותי בשנת 2024! המדריך המלא לכתיבת תוכן ידידותי למנועי חיפוש ולגולשים, כולל טיפים וטכניקות מעשיות."
         />
         <meta
           name="keywords"
-          content="כתיבת תוכן, SEO, תוכן שיווקי, אופטימיזציית תוכן, מילות מפתח, גוגל, קידום אתרים, תוכן ידידותי ל-SEO"
+          content="כתיבת תוכן SEO, תוכן ידידותי ל SEO, קידום אתרים, תוכן שיווקי, אופטימיזציה, מילות מפתח, טיפים לכתיבת תוכן, מדריך כתיבת תוכן SEO"
         />
         <meta name="author" content="גאיה טק" />
         <meta
           property="og:title"
-          content="מדריך לכתיבת תוכן ידידותי ל-SEO בשנת 2024"
+          content="מדריך כתיבת תוכן SEO לשנת 2024 | tech-start"
         />
         <meta
           property="og:description"
-          content="למד איך לכתוב תוכן שגם ימשוך את הגולשים וגם יקודם בצורה אורגנית במנועי החיפוש."
+          content="רוצה לכתוב תוכן SEO מנצח בשנת 2024? קבל את המדריך המלא עם הטיפים והטכניקות שיעזרו לך לדרג גבוה בגוגל ולמשוך יותר גולשים."
         />
-        <meta property="og:image" content="/images/blog/seo-content.jpg" />
+        <meta property="og:image" content="/images/blog/seo-content.jpg" /> {/* Replace with actual URL */}
         <meta
           property="og:url"
-          content="https://www.yourwebsite.com/blog/seo-content-writing"
-        />{' '}
-        {/* עדכן את ה-URL */}
+          content="https://www.tech-start.co.il/blog/seo-content-writing"
+        />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="מדריך לכתיבת תוכן ידידותי ל-SEO בשנת 2024"
+          content="מדריך כתיבת תוכן SEO לשנת 2024 | tech-start"
         />
         <meta
           name="twitter:description"
-          content="למד איך לכתוב תוכן שגם ימשוך את הגולשים וגם יקודם בצורה אורגנית במנועי החיפוש."
+          content="מחפש טיפים לכתיבת תוכן SEO בשנת 2024?  המדריך הזה יראה לך איך ליצור תוכן איכותי שיקודם בגוגל וימשוך קהל רלוונטי."
         />
-        <meta name="twitter:image" content="/images/blog/seo-content.jpg" />
+        <meta name="twitter:image" content="/images/blog/seo-content.jpg" /> {/* Replace with actual URL */}
+        {/* סוף Metadata SEO */}
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
@@ -60,7 +60,7 @@ const SeoContentWriting = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#124A36]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div className="absolute left-4 bottom-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span className="font-bold text-lg">כתיבת תוכן SEO</span>
+            <span className="font-bold text-lg font-amatic">כתיבת תוכן SEO</span>
           </div>
         </div>
         <article className="mx-auto font-arimo">

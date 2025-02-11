@@ -4,42 +4,43 @@ import BackButton from '../../BackButton'; // עדכון הנתיב
 
 const TechnicalSeoGuide = () => {
   return (
-    <div className="bg-[#FFF8F0] py-16">
+    <div className="bg-[#FFF8F0] py-16" aria-label="Blog Post: מדריך קידום אתרים טכני - tech-start">
       <Helmet>
-        <title>קידום אתרים טכני: סודות האינדוקס והסריקה של גוגל | גאיה טק</title>
+        {/* Metadata SEO - Blog Post: Technical SEO Guide */}
+        <title>קידום אתרים טכני | tech-start - מדריך אינדוקס וסריקה בגוגל</title>
         <meta
           name="description"
-          content="המדריך המלא ל-SEO טכני, שיעזור לך להבטיח שגוגל יסרוק ויאנדקס את האתר שלך בצורה יעילה. קידום אתרים טכני הוא הבסיס לכל אסטרטגיית SEO."
+          content="רוצה לשפר את ה-SEO הטכני של האתר? המדריך המלא ל-SEO טכני, שיעזור לך להבטיח שגוגל יסרוק ויאנדקס את האתר שלך בצורה יעילה."
         />
         <meta
           name="keywords"
-          content="קידום אתרים טכני, SEO טכני, סריקה, אינדוקס, גוגל, מפת אתר XML, Robots.txt, כתובות URL, HTTPS"
+          content="קידום אתרים טכני, SEO טכני, סריקה, אינדוקס, גוגל, מפת אתר XML, Robots.txt, כתובות URL, HTTPS, מדריך SEO טכני"
         />
         <meta name="author" content="גאיה טק" />
         <meta
           property="og:title"
-          content="קידום אתרים טכני: סודות האינדוקס והסריקה של גוגל"
+          content="קידום אתרים טכני: מדריך אינדוקס וסריקה בגוגל | tech-start"
         />
         <meta
           property="og:description"
-          content="המדריך המלא ל-SEO טכני, שיעזור לך להבטיח שגוגל יסרוק ויאנדקס את האתר שלך בצורה יעילה."
+          content="המדריך המלא ל-SEO טכני: איך לשפר את האינדוקס והסריקה של האתר שלך בגוגל? כל הסודות לקידום אתרים טכני יעיל."
         />
-        <meta property="og:image" content="/images/blog/technical-seo.jpg" />
+        <meta property="og:image" content="/images/blog/technical-seo.jpg" /> {/* Replace with actual URL */}
         <meta
           property="og:url"
-          content="https://www.yourwebsite.com/blog/technical-seo-guide"
+          content="https://www.tech-start.co.il/blog/technical-seo-guide"
         />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="קידום אתרים טכני: סודות האינדוקס והסריקה של גוגל"
+          content="קידום אתרים טכני: מדריך אינדוקס וסריקה בגוגל | tech-start"
         />
         <meta
           name="twitter:description"
-          content="המדריך המלא ל-SEO טכני, שיעזור לך להבטיח שגוגל יסרוק ויאנדקס את האתר שלך בצורה יעילה."
+          content="מחפש מדריך SEO טכני מקיף? למד איך להבטיח שהאתר שלך נסרק ומאונדקס בצורה מושלמת בגוגל. מדריך חובה לכל מקדם אתרים."
         />
-        <meta name="twitter:image" content="/images/blog/technical-seo.jpg" />
+        <meta name="twitter:image" content="/images/blog/technical-seo.jpg" /> {/* Replace with actual URL */}
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
@@ -59,7 +60,7 @@ const TechnicalSeoGuide = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#124A36]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div className="absolute left-4 bottom-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span className="font-bold text-lg">קידום אתרים טכני</span>
+            <span className="font-bold text-lg font-amatic">קידום אתרים טכני</span>
           </div>
         </div>
         <article className="mx-auto font-arimo">

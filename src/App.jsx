@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import WebsiteQuestionnaire from './pages/WebsiteQuestionnaire';
+import PortfolioPage from './pages/PortfolioPage';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
@@ -74,6 +75,7 @@ function App() {
             <Route path="/services/cloud-solutions" element={<CloudSolutionsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/seo-optimization-guide-2024" element={<SeoOptimizationGuide2024 />} />
             <Route path="/blog/link-building-strategies" element={<LinkBuildingStrategies />} />

@@ -4,29 +4,28 @@ import BackButton from '../../BackButton'; // עדכן את הנתיב בהתא�
 
 const SeoOptimizationGuide2024 = () => {
   return (
-    <div className="bg-[#FFF8F0] py-16">
+    <div className="bg-[#FFF8F0] py-16" aria-label="Blog Post: מדריך אופטימיזציית אתרים 2024 - tech-start">
       <Helmet>
-        <title>
-          אופטימיזציית אתרים למנועי חיפוש: המדריך המלא ל-2024 | גאיה טק
-        </title>
+        {/* Metadata SEO - Blog Post: SEO Optimization Guide 2024 */}
+        <title>מדריך אופטימיזציית אתרים 2024 | tech-start - SEO למתקדמים</title>
         <meta
           name="description"
-          content="למד כיצד לשפר את דירוג האתר שלך במנועי החיפוש עם טיפים מעשיים ועדכניים ל-SEO. התמקד בשיפור חוויית המשתמש, מהירות האתר, והתאמה למובייל."
+          content="רוצה שהאתר שלך ידורג גבוה בגוגל ב-2024? המדריך המלא לאופטימיזציית אתרים למנועי חיפוש עם טיפים מעשיים ועדכניים ל-SEO."
         />
         <meta
           name="keywords"
-          content="אופטימיזציית אתרים, SEO, קידום אתרים, גוגל, דירוג, מנועי חיפוש, חווית משתמש, UX, מהירות אתר, מובייל"
+          content="אופטימיזציית אתרים, SEO, קידום אתרים, גוגל, דירוג אתר, מנועי חיפוש, חווית משתמש, מהירות אתר, מובייל, מדריך SEO 2024"
         />
         <meta name="author" content="גאיה טק" />
-        <meta property="og:title" content="אופטימיזציית אתרים למנועי חיפוש: המדריך המלא ל-2024" />
-        <meta property="og:description" content="למד כיצד לשפר את דירוג האתר שלך במנועי החיפוש עם טיפים מעשיים ועדכניים ל-SEO." />
-        <meta property="og:image" content="/images/blog/seo-optimization.jpg" />
-        <meta property="og:url" content="https://www.yourwebsite.com/blog/seo-optimization-guide-2024" /> {/* עדכן את ה-URL */}
+        <meta property="og:title" content="מדריך אופטימיזציית אתרים 2024: המדריך המלא | tech-start" />
+        <meta property="og:description" content="קבלו את המדריך המלא והמעודכן לאופטימיזציית אתרים בשנת 2024. למדו איך לשפר דירוג, חווית משתמש, מהירות אתר ועוד." />
+        <meta property="og:image" content="/images/blog/seo-optimization.jpg" /> {/* Replace with actual URL */}
+        <meta property="og:url" content="https://www.tech-start.co.il/blog/seo-optimization-guide-2024" /> {/* עדכן את ה-URL */}
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="אופטימיזציית אתרים למנועי חיפוש: המדריך המלא ל-2024" />
-        <meta name="twitter:description" content="למד כיצד לשפר את דירוג האתר שלך במנועי החיפוש עם טיפים מעשיים ועדכניים ל-SEO." />
-        <meta name="twitter:image" content="/images/blog/seo-optimization.jpg" />
+        <meta name="twitter:title" content="מדריך אופטימיזציית אתרים 2024 | tech-start" />
+        <meta name="twitter:description" content="מחפשים מדריך SEO מעודכן ל-2024?  למדו איך לבצע אופטימיזציה לאתר שלכם בצורה הטובה ביותר ולשפר את הנראות בגוגל." />
+        <meta name="twitter:image" content="/images/blog/seo-optimization.jpg" /> {/* Replace with actual URL */}
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
@@ -46,7 +45,7 @@ const SeoOptimizationGuide2024 = () => {
             />
           <div className="absolute inset-0 bg-gradient-to-t from-[#124A36]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div className="absolute left-4 bottom-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span className="font-bold text-lg">קידום אתרים</span>
+            <span className="font-bold text-lg font-amatic">קידום אתרים</span>
           </div>
         </div>
         <article className="mx-auto font-arimo">
@@ -89,16 +88,12 @@ const SeoOptimizationGuide2024 = () => {
             SEO הוא תהליך מתמשך שדורש עבודה עקבית. על ידי יישום הטיפים
             במדריך זה, תוכל לשפר את דירוג האתר שלך במנועי החיפוש ולהגיע
             לקהל רחב יותר בשנת 2024.
-          </p>   
-          
-          
-               </article>
-          
+          </p>
+        </article>
       </div>
       <div className="mt-8 flex justify-center">
-      <BackButton /> {/* הוסף את הקומפוננטה כאן */}
-
-</div>
+      <BackButton />
+      </div>
     </div>
   );
 };

@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 import Lottie from 'lottie-react';
-import { motion, useTransform, useScroll, useSpring, useMotionValue, useAnimate } from 'framer-motion';
+import { motion, useTransform, useScroll, useSpring, useMotionValue } from 'framer-motion';
 import handshakeAnimation from '../assets/animations/arrow.json';
 import { Global } from '@emotion/react';
+import { Helmet } from 'react-helmet'; // הוספתי ייבוא react-helmet
 
 
 const RotatingLogo = () => {
@@ -27,10 +28,10 @@ const RotatingLogo = () => {
 const RotatingCubeButton = () => {
   return (
     <>
-      <div 
-        className="cube-wrapper group relative" 
-        style={{ 
-          width: 'clamp(100px, 10vw, 180px)', 
+      <div
+        className="cube-wrapper group relative"
+        style={{
+          width: 'clamp(100px, 10vw, 180px)',
           height: 'clamp(40px, 5vh, 60px)',
           marginRight: '50px',  // הוספת margin קבוע של 50px
           transform: 'translateX(50px)' // הוספת הזזה של 50px ימינה
@@ -190,15 +191,24 @@ const Hero = () => {
         scale: scaleSpring,
         willChange: 'height, transform',
       }}
+      aria-label="Hero Section - Tech Start: בניית אתרים, שיווק דיגיטלי, הצלחה עסקית"
     >
+      <Helmet>
+        {/* Metadata SEO -  קידום אורגני לאתר */}
+        <title>Tech-Start - פיתוח אתרים | שיווק דיגיטלי | לרופאי שיניים ורופאים</title>
+        <meta name="description" content="Tech-Start: חברת פיתוח אתרים ושיווק דיגיטלי המתמחה בבניית אתרים וקידום קליניקות רפואיות ומרפאות שיניים. פתרונות דיגיטליים מתקדמים לרופאים ורופאי שיניים." />
+        <meta name="keywords" content="פיתוח אתרים לרופאי שיניים, בניית אתרים לרופאים, אתר מרפאת שיניים, אתר לקליניקה רפואית, קידום אתרים לרופאים, שיווק דיגיטלי לרופאי שיניים, עיצוב אתרים רפואיים, אתר תדמית לרופא, אתר תדמית למרפאת שיניים, קידום אורגני לרופאים" />
+        {/* סוף Metadata SEO */}
+      </Helmet>
       <motion.div
         className="w-full h-full rounded-3xl relative shadow-lg bg-[#EAEAEA] px-[5vw] py-[8vh] padding-container"
         style={{
           translateY: innerDivTranslateYSpring,
           filter: blurFilter,
           willChange: 'transform, filter',
-          
+
         }}
+        role="region" aria-labelledby="hero-title"
       >
 
         <nav className="flex justify-end mb-8 gap-4">
@@ -208,8 +218,8 @@ const Hero = () => {
         <div className="flex flex-col justify-end min-h-[calc(100vh-200px)] pb-16">
           <div className="flex flex-col gap-12 items-end">
             <div className="flex flex-col md:flex-row gap-8 md:gap-[2vw] items-start md:items-center w-full justify-end">
-              <h1 
-                ref={h1Ref} 
+              <h1
+                ref={h1Ref}
                 className="text-right h1-responsive whitespace-pre-line"
                 style={{
                   fontSize: h1FontSize,
@@ -217,6 +227,7 @@ const Hero = () => {
                   fontWeight: '900',
                   fontFamily: 'Arimo, sans-serif',
                 }}
+                id="hero-title"
               >
                 {getTitleContent()}
               </h1>

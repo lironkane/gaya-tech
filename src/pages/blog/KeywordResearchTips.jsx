@@ -4,27 +4,29 @@ import BackButton from '../../BackButton';
 
 const KeywordResearchTips = () => {
   return (
-    <div className="bg-[#FFF8F0] py-16">
+    <div className="bg-[#FFF8F0] py-16" aria-label="Blog Post: מחקר מילות מפתח - tech-start">
       <Helmet>
-        <title>מחקר מילות מפתח: מצא את הביטויים הנכונים לאתר שלך | גאיה טק</title>
+        {/* Metadata SEO - Blog Post: Keyword Research Tips */}
+        <title>מחקר מילות מפתח: מצא ביטויים לאתר | tech-start - טיפים SEO</title>
         <meta
           name="description"
           content="המדריך המלא למציאת מילות המפתח הרווחיות ביותר, שימשכו תנועה רלוונטית לאתר שלך. מחקר מילות מפתח הוא הבסיס לכל אסטרטגיית SEO מוצלחת."
         />
         <meta
           name="keywords"
-          content="מחקר מילות מפתח, מילות מפתח, SEO, תנועה אורגנית, גוגל, ביטויים, אופטימיזציה"
+          content="מחקר מילות מפתח, מילות מפתח, SEO, תנועה אורגנית, גוגל, ביטויים, אופטימיזציה, טיפים למחקר מילות מפתח"
         />
         <meta name="author" content="גאיה טק" />
-        <meta property="og:title" content="מחקר מילות מפתח: מצא את הביטויים הנכונים לקידום האתר שלך" />
-        <meta property="og:description" content="המדריך המלא למציאת מילות המפתח הרווחיות ביותר, שימשכו תנועה רלוונטית לאתר שלך." />
-        <meta property="og:image" content="/images/blog/keyword-research.jpg" />
-        <meta property="og:url" content="https://www.yourwebsite.com/blog/keyword-research-tips" /> {/* עדכן את ה-URL */}
+        <meta property="og:title" content="מחקר מילות מפתח: מצא ביטויים לאתר | tech-start" />
+        <meta property="og:description" content="גלה איך לבצע מחקר מילות מפתח יעיל ולמצוא את הביטויים שיקדמו את האתר שלך בגוגל ויביאו תנועה רלוונטית." />
+        <meta property="og:image" content="/images/blog/keyword-research.jpg" /> {/* Replace with actual URL */}
+        <meta property="og:url" content="https://www.tech-start.co.il/blog/keyword-research-tips" /> {/* Update with actual URL */}
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="מחקר מילות מפתח: מצא את הביטויים הנכונים לקידום האתר שלך" />
-        <meta name="twitter:description" content="המדריך המלא למציאת מילות המפתח הרווחיות ביותר, שימשכו תנועה רלוונטית לאתר שלך." />
-        <meta name="twitter:image" content="/images/blog/keyword-research.jpg" />
+        <meta name="twitter:title" content="מחקר מילות מפתח: מצא ביטויים לאתר | tech-start" />
+        <meta name="twitter:description" content="רוצה לשפר את ה-SEO של האתר שלך? התחל עם מחקר מילות מפתח! קבל טיפים מעשיים למציאת הביטויים הנכונים." />
+        <meta name="twitter:image" content="/images/blog/keyword-research.jpg" /> {/* Replace with actual URL */}
+        {/* סוף Metadata SEO */}
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">

@@ -138,44 +138,19 @@ const SoftwareDevPage = () => {
   return (
     <>
       <Helmet>
-        <title>פיתוח תוכנה | גאיה-טק</title>
+        {/* Metadata SEO - Software Development Page */}
+        <title>שירותי פיתוח תוכנה בהתאמה אישית | tech-start</title>
         <meta
           name="description"
-          content="גאיה-טק מציעה שירותי פיתוח תוכנה מתקדמים, כולל פיתוח Full Stack, DevOps, פיתוח אפליקציות מובייל ודסקטופ, ומערכות ליבה עסקיות."
+          content="tech-start מספקת שירותי פיתוח תוכנה מקצועיים לעסקים. פיתוח Full Stack, DevOps, אפליקציות מובייל ודסקטופ, ומערכות ליבה - הכל בהתאמה אישית."
         />
         <meta
           name="keywords"
-          content="פיתוח תוכנה, Full Stack, DevOps, אפליקציות מובייל, אפליקציות דסקטופ, React, Node.js, Python, CI/CD, אוטומציה, אבטחת מידע, תמיכה טכנית, גאיה-טק"
+          content="פיתוח תוכנה, שירותי פיתוח תוכנה, Full Stack, DevOps, אפליקציות מובייל, אפליקציות דסקטופ, פיתוח מערכות, tech-start"
         />
-        <meta name="author" content="גאיה-טק" />
-        <meta property="og:title" content="פיתוח תוכנה | גאיה-טק" />
-        <meta
-          property="og:description"
-          content="פתרונות תוכנה חדשניים ומותאמים אישית לצרכים העסקיים שלך."
-        />
-        <meta property="og:image" content="/path/to/your/image.jpg" />{' '}
-        {/* הוסף תמונה */}
-        <meta
-          property="og:url"
-          content="https://www.yourwebsite.com/software-development"
-        />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="פיתוח תוכנה | גאיה-טק"
-        />
-        <meta
-          name="twitter:description"
-          content="פתרונות תוכנה חדשניים ומותאמים אישית לצרכים העסקיים שלך."
-        />
-        <meta
-          name="twitter:image"
-          content="/path/to/your/image.jpg"
-        />{' '}
-        {/* הוסף תמונה */}
+        {/* סוף Metadata SEO */}
       </Helmet>
-      <div className="min-h-screen bg-gray-100 font-assistant">
+      <div className="min-h-screen bg-gray-100 font-assistant" aria-label="Software Development Services - tech-start">
         {/* Hero Section */}
         <div className="bg-primary text-white py-20 md:py-28">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -307,11 +282,11 @@ const SoftwareDevPage = () => {
             צוות המומחים שלנו כאן כדי להפוך את החזון שלכם למציאות
           </p>
           <Link
-                                    to="/contact"
-                                    className="inline-block bg-primary-dark hover:bg-primary-dark/80 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:-translate-y-1"
-                                  >
-                                    צור קשר לייעוץ טכנולוגי
-                                  </Link>
+            to="/contact"
+            className="inline-block bg-primary-dark hover:bg-primary-dark/80 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:-translate-y-1"
+          >
+            צור קשר לייעוץ טכנולוגי
+          </Link>
             </div>
           </div>
         </div>

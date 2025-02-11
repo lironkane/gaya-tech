@@ -1,6 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const BackButton = ({ handleBack }) => {
+const BackButton = () => {
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate('/blog'); // שנה את הנתיב לכתובת של עמוד הבלוג שלך
+  };
+
   return (
     <div className="mt-8 flex justify-center">
       <button

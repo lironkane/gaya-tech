@@ -1,8 +1,9 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 import { Users, Target, Award, Lightbulb } from 'lucide-react';
+import { Helmet } from 'react-helmet';
 const AboutPage = () => {
   useEffect(() => {
-    document.title = 'אודות גאיה-טק | חברת היי-טק מובילה בישראל';
+    document.title = 'אודות סטארט טק | חברת היי-טק מובילה בישראל';
   }, []);
 
   const values = [
@@ -32,7 +33,7 @@ const AboutPage = () => {
     {
       year: "2015",
       title: "הקמת החברה",
-      description: "ייסוד גאיה-טק כחברת פיתוח תוכנה וייעוץ טכנולוגי"
+      description: "ייסוד tech-start כחברת פיתוח תוכנה וייעוץ טכנולוגי"
     },
     {
       year: "2018",
@@ -53,19 +54,56 @@ const AboutPage = () => {
 
   return (
     <div>
-    <div className="min-h-screen bg-[#FAF9F6]">
+      <Helmet>
+        {/* Metadata SEO - About Us Page */}
+        <title>אודות tech-start | חברת היי-טק מובילה בישראל</title>
+        <meta
+          name="description"
+          content="tech-start היא חברת היי-טק מובילה בישראל, המתמחה בפיתוח תוכנה, פתרונות ענן, אבטחת מידע וייעוץ טכנולוגי. גלו את החזון, הערכים וציוני הדרך של החברה."
+        />
+        <meta
+          name="keywords"
+          content="אודות tech-start, tech-start, חברת היי-טק, פיתוח תוכנה, פתרונות ענן, אבטחת מידע, ייעוץ טכנולוגי, חזון החברה, ציוני דרך"
+        />
+        <meta name="author" content="tech-start" />
+        <meta property="og:title" content="אודות tech-start | חברת היי-טק מובילה בישראל" />
+        <meta
+          property="og:description"
+          content="tech-start היא חברת היי-טק מובילה בישראל, המתמחה בפיתוח תוכנה, פתרונות ענן, אבטחת מידע וייעוץ טכנולוגי."
+        />
+        <meta property="og:image" content="/path/to/your/image.jpg" /> {/* הוסף תמונה */}
+        <meta
+          property="og:url"
+          content="https://www.tech-start.co.il/about"
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="אודות tech-start | חברת היי-טק מובילה בישראל"
+        />
+        <meta
+          name="twitter:description"
+          content="tech-start היא חברת היי-טק מובילה בישראל, המתמחה בפיתוח תוכנה, פתרונות ענן, אבטחת מידע וייעוץ טכנולוגי."
+        />
+        <meta
+          name="twitter:image"
+          content="/path/to/your/image.jpg"
+        /> {/* הוסף תמונה */}
+      </Helmet>
+    <div className="min-h-screen bg-[#FAF9F6]" aria-label="About Us - tech-start">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section - Cream Background */}
         <section className="pt-32 pb-24">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-5xl font-bold text-[#124A36] mb-8 font-arimo leading-tight">
-              גאיה-טק
+              tech-start
               <span className="block text-2xl mt-4 text-[#1a654a] font-normal">
                 חברת היי-טק מובילה בישראל
               </span>
             </h1>
             <p className="font-amatic text-xl text-gray-600 font-assistant leading-relaxed">
-              אנחנו חברת טכנולוגיה מובילה המתמחה בפיתוח תוכנה, פתרונות ענן, ו-AI. 
+              אנחנו חברת טכנולוגיה מובילה המתמחה בפיתוח תוכנה, פתרונות ענן, ו-AI.
               הצוות המקצועי שלנו מספק פתרונות טכנולוגיים חדשניים המותאמים לצרכי העסק שלך.
             </p>
           </div>
@@ -98,11 +136,11 @@ const AboutPage = () => {
             </h2>
             <div className="space-y-6 text-right">
               <p className="text-lg text-gray-200 font-amatic leading-relaxed">
-                גאיה-טק מובילה בתחום פיתוח התוכנה והפתרונות הטכנולוגיים בישראל. 
+                tech-start מובילה בתחום פיתוח התוכנה והפתרונות הטכנולוגיים בישראל.
                 אנו מתמחים בפיתוח אפליקציות, מערכות ענן, ומערכות בינה מלאכותית מתקדמות.
               </p>
               <p className="text-lg text-gray-200 font-amatic leading-relaxed">
-                צוות המומחים שלנו כולל מפתחי Full Stack, מומחי DevOps, ומהנדסי תוכנה בכירים. 
+                צוות המומחים שלנו כולל מפתחי Full Stack, מומחי DevOps, ומהנדסי תוכנה בכירים.
                 אנו משלבים טכנולוגיות חדשניות לפיתוח פתרונות מותאמים אישית.
               </p>
             </div>
@@ -144,7 +182,7 @@ const AboutPage = () => {
             <p className="font-amatic text-xl text-gray-200 mb-8 font-assistant">
               צוות המומחים שלנו כאן כדי לעזור לכם להצליח בעידן הדיגיטלי
             </p>
-            <button 
+            <button
               onClick={() => window.location.href = '/contact'}
               className="bg-[#FAF9F6] text-[#124A36] px-10 py-4 rounded-xl text-lg font-heebo hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#FAF9F6] focus:ring-offset-2 transition-all duration-300 transform hover:-translate-y-1"
             >

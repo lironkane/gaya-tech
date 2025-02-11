@@ -4,42 +4,43 @@ import BackButton from '../../BackButton'; // עדכון הנתיב
 
 const WordpressSeoTips = () => {
   return (
-    <div className="bg-[#FFF8F0] py-16">
+    <div className="bg-[#FFF8F0] py-16" aria-label="Blog Post: מדריך WordPress SEO - tech-start">
       <Helmet>
-        <title>קידום אתרים בוורדפרס: טיפים וטריקים לשיפור הדירוג | גאיה טק</title>
+        {/* Metadata SEO - Blog Post: WordPress SEO Tips */}
+        <title>WordPress SEO | tech-start - טיפים לקידום אתרים בוורדפרס</title>
         <meta
           name="description"
-          content="למד איך לשפר את ה-SEO של אתר הוורדפרס שלך עם כלים וטכניקות יעילות. וורדפרס היא פלטפורמה מצוינת לקידום אתרים, אך יש להגדיר אותה נכון."
+          content="רוצה לשפר את ה-SEO של אתר וורדפרס? למד איך לשפר את ה-SEO של אתר הוורדפרס שלך עם כלים וטכניקות יעילות במדריך מקיף."
         />
         <meta
           name="keywords"
-          content="קידום אתרים, וורדפרס, SEO, תוספי וורדפרס, Yoast SEO, Rank Math, אופטימיזציה, טיפים, טריקים"
+          content="קידום אתרים וורדפרס, WordPress SEO, תוספי SEO וורדפרס, Yoast SEO, Rank Math, אופטימיזציה וורדפרס, טיפים ל WordPress SEO, מדריך וורדפרס SEO"
         />
         <meta name="author" content="גאיה טק" />
         <meta
           property="og:title"
-          content="קידום אתרים בוורדפרס: טיפים וטריקים לשיפור הדירוג"
+          content="WordPress SEO: טיפים לקידום אתרים בוורדפרס | tech-start"
         />
         <meta
           property="og:description"
-          content="למד איך לשפר את ה-SEO של אתר הוורדפרס שלך עם כלים וטכניקות יעילות."
+          content="קבלו את הטיפים הטובים ביותר לקידום אתרים בוורדפרס. למד איך לשפר את ה-SEO של אתר הוורדפרס שלך עם כלים וטכניקות יעילות."
         />
-        <meta property="og:image" content="/images/blog/wordpress-seo.jpg" />
+        <meta property="og:image" content="/images/blog/wordpress-seo.jpg" /> {/* Replace with actual URL */}
         <meta
           property="og:url"
-          content="https://www.yourwebsite.com/blog/wordpress-seo-tips"
+          content="https://www.tech-start.co.il/blog/wordpress-seo-tips"
         />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="קידום אתרים בוורדפרס: טיפים וטריקים לשיפור הדירוג"
+          content="WordPress SEO: טיפים לקידום אתרים בוורדפרס | tech-start"
         />
         <meta
           name="twitter:description"
-          content="למד איך לשפר את ה-SEO של אתר הוורדפרס שלך עם כלים וטכניקות יעילות."
+          content="מחפש טיפים לקידום אתרים בוורדפרס?  המדריך הזה יראה לך איך לשפר משמעותית את ה-SEO של האתר שלך."
         />
-        <meta name="twitter:image" content="/images/blog/wordpress-seo.jpg" />
+        <meta name="twitter:image" content="/images/blog/wordpress-seo.jpg" /> {/* Replace with actual URL */}
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">
@@ -59,7 +60,7 @@ const WordpressSeoTips = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#124A36]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div className="absolute left-4 bottom-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span className="font-bold text-lg">קידום אתרי וורדפרס</span>
+            <span className="font-bold text-lg font-amatic">קידום אתרי וורדפרס</span>
           </div>
         </div>
         <article className="mx-auto font-arimo">

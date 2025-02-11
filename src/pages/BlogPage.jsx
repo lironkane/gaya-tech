@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet';
 
 const BlogPage = () => {
   const blogPosts = [
@@ -102,7 +103,21 @@ const BlogPage = () => {
     animate={{ opacity: 1, x: 0 }}
     exit={{ opacity: 0, x: 20 }}
     transition={{ duration: 0.3 }}
+    aria-label="Blog Posts - tech-start"
   >
+    <Helmet>
+      {/* Metadata SEO - Blog Page */}
+      <title>בלוג קידום אתרים מקצועי | tech-start</title>
+      <meta
+        name="description"
+        content="הבלוג של tech-start מציע מדריכים, טיפים ואסטרטגיות לקידום אתרים אורגני, SEO, בניית קישורים, מחקר מילות מפתח ועוד. כל מה שצריך לדעת על קידום הנוכחות הדיגיטלית."
+      />
+      <meta
+        name="keywords"
+        content="בלוג קידום אתרים, קידום אתרים אורגני, SEO, בניית קישורים, מחקר מילות מפתח, אופטימיזציה למנועי חיפוש, tech-start"
+      />
+      {/* סוף Metadata SEO */}
+    </Helmet>
     <div className="bg-[#FFF8F0] py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold font-arimo text-center text-[#124A36] mb-8">

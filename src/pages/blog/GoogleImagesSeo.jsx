@@ -4,43 +4,44 @@ import BackButton from '../../BackButton'; // עדכון הנתיב
 
 const GoogleImagesSeo = () => {
   return (
-    <div className="bg-[#FFF8F0] py-16">
+    <div className="bg-[#FFF8F0] py-16" aria-label="Blog Post: קידום אתרים בגוגל תמונות - tech-start">
       <Helmet>
-        <title>קידום אתרים בגוגל תמונות | גאיה טק</title>
+        {/* Metadata SEO - Blog Post: Google Images SEO */}
+        <title>קידום אתרים בגוגל תמונות | tech-start - טיפים להצלחה</title>
         <meta
           name="description"
           content="הטמע את הטיפים האלה כדי להביא תנועה אורגנית נוספת לאתר שלך דרך גוגל תמונות. אופטימיזציה של תמונות היא חלק בלתי נפרד מתהליך ה-SEO."
         />
         <meta
           name="keywords"
-          content="גוגל תמונות, SEO תמונות, קידום אתרים, חיפוש תמונות, אופטימיזציית תמונות, תנועה אורגנית"
+          content="גוגל תמונות, SEO תמונות, קידום אתרים, חיפוש תמונות, אופטימיזציית תמונות, תנועה אורגנית, טיפים לקידום תמונות"
         />
         <meta name="author" content="גאיה טק" />
         <meta
           property="og:title"
-          content="קידום אתרים בגוגל תמונות: איך להופיע בתוצאות החיפוש הוויזואלי"
+          content="קידום אתרים בגוגל תמונות: איך להופיע בתוצאות החיפוש הוויזואלי | tech-start"
         />
         <meta
           property="og:description"
-          content="הטמע את הטיפים האלה כדי להביא תנועה אורגנית נוספת לאתר שלך דרך גוגל תמונות."
+          content="המדריך המלא לקידום אתרים בגוגל תמונות: טיפים מעשיים להגדלת התנועה האורגנית לאתר שלך באמצעות אופטימיזציה של תמונות."
         />
-        <meta property="og:image" content="/images/blog/google-images.jpg" />
+        <meta property="og:image" content="/images/blog/google-images.jpg" /> {/* Replace with actual URL */}
         <meta
           property="og:url"
-          content="https://www.yourwebsite.com/blog/google-images-seo"
-        />{' '}
-        {/* עדכן את ה-URL */}
+          content="https://www.tech-start.co.il/blog/google-images-seo"
+        />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="קידום אתרים בגוגל תמונות: איך להופיע בתוצאות החיפוש הוויזואלי"
+          content="קידום אתרים בגוגל תמונות: איך להופיע בתוצאות החיפוש הוויזואלי | tech-start"
         />
         <meta
           name="twitter:description"
-          content="הטמע את הטיפים האלה כדי להביא תנועה אורגנית נוספת לאתר שלך דרך גוגל תמונות."
+          content="רוצה להגדיל את התנועה האורגנית לאתר שלך? למד איך לקדם את האתר שלך בגוגל תמונות עם הטיפים המעשיים האלה."
         />
-        <meta name="twitter:image" content="/images/blog/google-images.jpg" />
+        <meta name="twitter:image" content="/images/blog/google-images.jpg" /> {/* Replace with actual URL */}
+        {/* סוף Metadata SEO */}
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-8 py-12 bg-white rounded-lg shadow-md">

@@ -8,6 +8,7 @@ import {
   MousePointer2
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet'; // ייבוא react-helmet
 
 const Footer = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -22,9 +23,16 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="relative text-primary-100 font-amatic min-h-screen overflow-hidden flex items-center" dir="rtl">
+    <footer className="relative text-primary-100 font-amatic min-h-screen overflow-hidden flex items-center" dir="rtl" aria-label="Footer - Tech Start: ניווט מהיר, יצירת קשר ומידע על החברה">
+      <Helmet>
+        {/* Metadata SEO - Footer */}
+        <title>Tech-Start - פיתוח אתרים, שיווק דיגיטלי ויצירת קשר</title>
+        <meta name="description" content="הגעתם לפוטר של Tech-Start. מצאו ניווט מהיר, פרטי יצירת קשר ומידע חיוני על החברה שלנו לפיתוח אתרים ושיווק דיגיטלי." />
+        <meta name="keywords" content="פוטר, ניווט מהיר, צור קשר, מייל, טלפון, כתובת, שירותים, תיק עבודות, אודות, בלוג, Tech-Start, פיתוח אתרים, שיווק דיגיטלי, קליניקות, רופאים, רופאי שיניים" />
+        {/* סוף Metadata SEO */}
+      </Helmet>
       {/* Dynamic Background with Mouse Movement */}
-      <div 
+      <div
         className="absolute inset-0 bg-background transition-transform duration-1000 ease-out"
         style={{
           transform: `translate(${(mousePosition.x - window.innerWidth / 2) * 0.02}px, ${(mousePosition.y - window.innerHeight / 2) * 0.02}px)`
@@ -32,31 +40,31 @@ const Footer = () => {
       >
         <div className="absolute inset-0 bg-gradient-dark opacity-80" />
         <div className="absolute inset-0 bg-gradient-pro opacity-30" />
-        
+
         {/* Interactive Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gradient-metal opacity-20 blur-3xl animate-subtle-float" 
-             style={{
-               transform: `translate(${(mousePosition.x - window.innerWidth / 2) * 0.05}px, ${(mousePosition.y - window.innerHeight / 2) * 0.05}px)`
-             }}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gradient-metal opacity-20 blur-3xl animate-subtle-float"
+          style={{
+            transform: `translate(${(mousePosition.x - window.innerWidth / 2) * 0.05}px, ${(mousePosition.y - window.innerHeight / 2) * 0.05}px)`
+          }}
         />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-gradient-glass opacity-20 blur-3xl animate-subtle-float animation-delay-1000"
-             style={{
-               transform: `translate(${(mousePosition.x - window.innerWidth / 2) * -0.05}px, ${(mousePosition.y - window.innerHeight / 2) * -0.05}px)`
-             }}
+          style={{
+            transform: `translate(${(mousePosition.x - window.innerWidth / 2) * -0.05}px, ${(mousePosition.y - window.innerHeight / 2) * -0.05}px)`
+          }}
         />
       </div>
 
       {/* Enhanced Grid Overlay */}
       <div className="absolute inset-0">
-        <div className="h-full w-full" 
-             style={{
-               backgroundImage: `
+        <div className="h-full w-full"
+          style={{
+            backgroundImage: `
                  linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
                  linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
                `,
-               backgroundSize: '4rem 4rem',
-               transform: `translate(${(mousePosition.x - window.innerWidth / 2) * 0.01}px, ${(mousePosition.y - window.innerHeight / 2) * 0.01}px)`
-             }}
+            backgroundSize: '4rem 4rem',
+            transform: `translate(${(mousePosition.x - window.innerWidth / 2) * 0.01}px, ${(mousePosition.y - window.innerHeight / 2) * 0.01}px)`
+          }}
         />
       </div>
 
@@ -78,7 +86,7 @@ const Footer = () => {
                 <div className="absolute inset-0 bg-gradient-glass opacity-0 group-hover:opacity-30 transition-opacity duration-500 blur-lg" />
               </h2>
             </div>
-            
+
             <p className="text-xl md:text-2xl mb-12 max-w-2xl mx-auto animate-fade-in text-white drop-shadow-md">
               נפגש ונהפוך את החלום הדיגיטלי שלך למציאות מרהיבה
             </p>
@@ -92,10 +100,10 @@ const Footer = () => {
               <div className="absolute inset-0 bg-glass-medium backdrop-blur-lg border border-accent-frost" />
               <div className="absolute inset-0 bg-gradient-glass opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-frost to-transparent bg-[length:200%_100%] animate-highlight-scan" />
-              
+
               {/* Glow Effect */}
               <div className="absolute -inset-1 bg-gradient-metal opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
-              
+
               {/* Content with Enhanced Animation */}
               <span className="relative z-10 text-white transform transition-transform duration-300 group-hover:scale-110">
                 בואו ניצור משהו מיוחד
@@ -114,7 +122,7 @@ const Footer = () => {
                 <div className="absolute inset-0 bg-gradient-metal opacity-50 blur-sm"></div>
               </h3>
               <p className="text-gray-200 leading-relaxed group-hover:text-white transition-colors duration-300">
-                אנחנו מאמינים שכל מוצר דיגיטלי צריך להיות לא רק פונקציונלי, אלא גם מרהיב ומעורר השראה. 
+                אנחנו מאמינים שכל מוצר דיגיטלי צריך להיות לא רק פונקציונלי, אלא גם מרהיב ומעורר השראה.
                 זו הסיבה שאנחנו משקיעים בכל פרט ופרט.
               </p>
             </div>

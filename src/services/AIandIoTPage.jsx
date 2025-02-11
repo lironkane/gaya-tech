@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const AIandIoTPage = () => {
   useEffect(() => {
-    document.title = 'פתרונות בינה מלאכותית ו-IoT | גאיה-טק';
+    document.title = 'פתרונות בינה מלאכותית ו-IoT | tech-start';
   }, []);
 
   const technologies = [
@@ -82,12 +82,14 @@ const AIandIoTPage = () => {
   return (
     <>
       <Helmet>
-        <title>פתרונות בינה מלאכותית ו-IoT | גאיה-טק</title>
-        <meta name="description" content="פתרונות בינה מלאכותית ו-IoT מתקדמים לעסקים - אוטומציה חכמה, ניתוח נתונים ומערכות IoT" />
-        <meta name="keywords" content="בינה מלאכותית, IoT, מכשירים חכמים, אוטומציה, Big Data, ניתוח נתונים, תעשייה חכמה" />
+        {/* Metadata SEO - AI and IoT Service Page */}
+        <title>פתרונות בינה מלאכותית ו-IoT לעסקים | tech-start</title>
+        <meta name="description" content="tech-start מציעה פתרונות בינה מלאכותית ו-IoT מתקדמים לעסקים. התייעלות עסקית באמצעות אוטומציה חכמה, ניתוח נתונים מתקדם ומערכות IoT חדשניות." />
+        <meta name="keywords" content="בינה מלאכותית, IoT, מכשירים חכמים, אוטומציה, Big Data, ניתוח נתונים, תעשייה חכמה, פתרונות לעסקים, טרנספורמציה דיגיטלית" />
+        {/* סוף Metadata SEO */}
       </Helmet>
 
-      <div className="min-h-screen bg-[#FAF9F6]">
+      <div className="min-h-screen bg-[#FAF9F6]" aria-label="AI and IoT Solutions - tech-start">
         {/* Hero Section */}
         <div className="bg-[#124A36] py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
