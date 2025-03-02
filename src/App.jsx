@@ -35,8 +35,22 @@ import GoogleImagesSeo from './pages/blog/GoogleImagesSeo';
 import TechnicalSeoGuide from './pages/blog/TechnicalSeoGuide';
 import WordpressSeoTips from './pages/blog/WordpressSeoTips';
 import ScrollToTop from './components/ScrollToTop';
+import { trackConversion } from './utils/analytics';
 
 import './parallax.js';
+
+// קומפוננט עוטף לעמוד יצירת הקשר עם מעקב המרות
+const ContactPageWithTracking = () => {
+  useEffect(() => {
+    // הפעל את קוד ההמרה כשהמשתמש מגיע לדף יצירת קשר
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {'send_to': 'AW-16893794531/gRzRCNmU66IaEOOxy_c-'});
+      console.log('Contact page conversion tracked');
+    }
+  }, []);
+
+  return <ContactPage />;
+};
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,12 +64,23 @@ function App() {
 
     setTimeout(() => setIsVisible(true), 100);
 
+    // התקנת Google Analytics אם צריך
+    if (typeof window !== 'undefined' && !window.gtag) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'AW-16893794531');
+      window.gtag = gtag;
+    }
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <Router>
-    <ScrollToTop />
+      <ScrollToTop />
 
       <div className="min-h-screen bg-background">
         <Navbar isScrolled={isScrolled} isVisible={isVisible} />
@@ -79,7 +104,7 @@ function App() {
             <Route path="/services/brand-website-page" element={<BrandWebsitePage />} />
             <Route path="/services/cloud-solutions" element={<CloudSolutionsPage />} />
             <Route path="/services/landing-page-service" element={<LandingPageService />} />
-            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/contact" element={<ContactPageWithTracking />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/blog" element={<BlogPage />} />
