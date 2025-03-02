@@ -14,13 +14,15 @@ import SoftwareDevPage from './services/SoftwareDevPage';
 import AIandIoTPage from './services/AIandIoTPage';
 import CyberSecurityPage from './services/CyberSecurityPage';
 import CloudSolutionsPage from './services/CloudSolutionsPage';
+import LandingPageService from './services/LandingPageService';
+import WebsiteDevelopmentPage from './services/WebsiteDevelopmentPage';
+import BrandWebsitePage from './services/BrandWebsitePage';
 import Navbar from './components/Navbar';
-import WhatWeDo from './components/Services.jsx';
+import ProfessionalReviews from './components/ProfessionalReviews.jsx';
 import ContactCTA from './components/ContactCTA';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Timeline from './components/Timeline';
-import WhyChooseUs from './components/WhyChooseUs';
 import Footer from './components/Footer';
 import SeoOptimizationGuide2024 from './pages/blog/SeoOptimizationGuide2024';
 import LinkBuildingStrategies from './pages/blog/LinkBuildingStrategies';
@@ -63,6 +65,7 @@ function App() {
                   <Hero isVisible={isVisible} />
                   <Services isVisible={isVisible}/>
                   <Timeline isVisible={isVisible} />
+                  <ProfessionalReviews isVisible={isVisible} />
                   <ContactCTA />
                 </>
               }
@@ -72,7 +75,10 @@ function App() {
             <Route path="/services/software-development" element={<SoftwareDevPage />} />
             <Route path="/services/cyber-security" element={<CyberSecurityPage />} />
             <Route path="/services/ai-iot" element={<AIandIoTPage />} />
+            <Route path="/services/website-development-page" element={<WebsiteDevelopmentPage />} />
+            <Route path="/services/brand-website-page" element={<BrandWebsitePage />} />
             <Route path="/services/cloud-solutions" element={<CloudSolutionsPage />} />
+            <Route path="/services/landing-page-service" element={<LandingPageService />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />

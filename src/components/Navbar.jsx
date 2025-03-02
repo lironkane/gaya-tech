@@ -103,6 +103,9 @@ const Navbar = () => {
       title: 'שירותים',
       path: '/services',
       submenu: [
+        { title: 'בניית אתרים', path: '/services/website-development-page' },
+        { title: 'אתרי תדמית', path: '/services/brand-website-page' },
+        { title: 'עמודי נחיתה', path: '/services/landing-page-service' },
         { title: 'פיתוח תוכנה', path: '/services/software-development' },
         { title: 'פתרונות ענן', path: '/services/cloud-solutions' },
         { title: 'אבטחת מידע', path: '/services/cyber-security' },

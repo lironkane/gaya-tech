@@ -68,11 +68,7 @@ const DeviceFrame = ({ children }) => (
       </div>
     </div>
 
-    {/* Monitor stand */}
-    <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-      <div className="w-32 h-8 bg-gradient-to-b from-gray-700 to-gray-800 rounded-b-lg" />
-      <div className="w-48 h-2 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 rounded-full mx-auto" />
-    </div>
+
   </div>
 );
 
