@@ -498,8 +498,9 @@ const ContactPage = () => {
                   custom={i}
                   variants={titleLetterVariants}
                   className="inline-block"
+                  style={{ marginLeft: letter === ' ' ? '0.15em' : '0' }}
                 >
-                  {letter}
+                  {letter === ' ' ? '\u00A0' : letter}
                 </motion.span>
               ))}
             </span>
