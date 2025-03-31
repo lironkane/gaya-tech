@@ -105,7 +105,7 @@ const RotatingCubeButton = () => {
 
 const Hero = () => {
   const heroRef = useRef(null);
-  const maxHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
+  const maxHeight = typeof window !== 'undefined' ? window.innerHeight - 50 : 800;
   const minHeight = 50;
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const { scrollYProgress } = useScroll({
@@ -185,7 +185,7 @@ const Hero = () => {
     <motion.section
       ref={heroRef}
       initial={{ opacity: 1 }}
-      className="relative min-h-screen bg-black min-w-[320px] pt-3 pb-1 px-3"
+      className="relative min-h-[calc(100vh-50px)] bg-black min-w-[320px] pt-3 pb-1 px-3 mb-8"
       style={{
         height: heightSpring,
         scale: scaleSpring,
@@ -201,12 +201,11 @@ const Hero = () => {
         {/* סוף Metadata SEO */}
       </Helmet>
       <motion.div
-        className="w-full h-full rounded-3xl relative shadow-lg bg-[#EAEAEA] px-[5vw] py-[8vh] padding-container"
+        className="w-full h-full rounded-3xl relative shadow-lg bg-[#EAEAEA] px-[5vw] py-[6vh] padding-container"
         style={{
           translateY: innerDivTranslateYSpring,
           filter: blurFilter,
           willChange: 'transform, filter',
-
         }}
         role="region" aria-labelledby="hero-title"
       >
@@ -215,7 +214,7 @@ const Hero = () => {
           <a style={{ marginRight: '1.5vw', marginLeft: '1.5vw' }} href="/about" className="text-black hover:text-gray-600"></a>
         </nav>
 
-        <div className="flex flex-col justify-end min-h-[calc(100vh-200px)] pb-16">
+        <div className="flex flex-col justify-end min-h-[calc(100vh-300px)] pb-12">
           <div className="flex flex-col gap-12 items-end">
             <div className="flex flex-col md:flex-row gap-8 md:gap-[2vw] items-start md:items-center w-full justify-end">
               <h1
@@ -267,6 +266,12 @@ const Hero = () => {
             loop={true}
             className="transition-all duration-300 hover:scale-105"
           />
+        </div>
+
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+          <div className="w-6 h-10 border-2 border-black rounded-full p-1">
+            <div className="w-1.5 h-1.5 bg-black rounded-full mx-auto animate-bounce"></div>
+          </div>
         </div>
       </motion.div>
 

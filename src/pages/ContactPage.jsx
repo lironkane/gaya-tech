@@ -713,14 +713,10 @@ const ContactPage = () => {
         >
           <div className="relative py-6">
             <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
-            <p className="relative z-10 bg-[#0c1129] inline-block px-6 text-blue-400 text-sm tracking-wider">
-              גאיה-טק | טכנולוגיה מתקדמת
-            </p>
+    
           </div>
           
-          <p className="mt-4 text-sm text-gray-500 max-w-md mx-auto">
-            © {new Date().getFullYear()} כל הזכויות שמורות. גאיה-טק פתרונות טכנולוגיים.
-          </p>
+
         </motion.div>
       </div>
     </div>

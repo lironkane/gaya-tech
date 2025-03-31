@@ -65,7 +65,7 @@ const ServiceCard = ({ icon: Icon, title, description, bgColor, color, index, li
         >
             <div className="absolute inset-x-0 -bottom-px h-[2px] bg-gradient-to-r from-transparent via-black/15 to-transparent" />
             <motion.div
-                className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-sky-200 to-pink-200"
+                className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-amber-200 to-rose-200"
                 initial={{ scaleX: 0 }}
                 style={{
                     scaleX: scrollYProgress,
@@ -104,7 +104,7 @@ const ServiceCard = ({ icon: Icon, title, description, bgColor, color, index, li
                         >
                             <Link 
                                 to={link} 
-                                className="inline-block mt-4 px-6 py-2 bg-gradient-to-r from-sky-500 to-indigo-500 text-white rounded-full font-semibold hover:from-sky-600 hover:to-indigo-600 transition-all shadow-md hover:shadow-lg"
+                                className="inline-block mt-4 px-6 py-2 bg-gradient-to-r from-amber-500 to-rose-500 text-white rounded-full font-semibold hover:from-amber-600 hover:to-rose-600 transition-all shadow-md hover:shadow-lg"
                             >
                                 למידע נוסף
                             </Link>
@@ -127,22 +127,22 @@ const DetailedServices = () => {
             icon: Globe,
             features: [
                 {
-                    icon: <Code className="w-8 h-8 text-[#124A36]" />,
+                    icon: <Code className="w-8 h-8 text-amber-700" />,
                     title: "פיתוח מותאם אישית",
                     description: "בניית אתרים בהתאמה מלאה לצרכים העסקיים שלך"
                 },
                 {
-                    icon: <Globe className="w-8 h-8 text-[#124A36]" />,
+                    icon: <Globe className="w-8 h-8 text-amber-700" />,
                     title: "עיצוב חווית משתמש",
                     description: "ממשק משתמש אינטואיטיבי המותאם לכל מכשיר וגודל מסך"
                 },
                 {
-                    icon: <Search className="w-8 h-8 text-[#124A36]" />,
+                    icon: <Search className="w-8 h-8 text-amber-700" />,
                     title: "אופטימיזציה לגוגל",
                     description: "אתר מותאם SEO לדירוג גבוה במנועי החיפוש"
                 },
                 {
-                    icon: <Zap className="w-8 h-8 text-[#124A36]" />,
+                    icon: <Zap className="w-8 h-8 text-amber-700" />,
                     title: "ביצועים מהירים",
                     description: "אתר מהיר ויעיל שנטען במהירות בכל פלטפורמה"
                 }
@@ -156,22 +156,22 @@ const DetailedServices = () => {
             icon: Award,
             features: [
                 {
-                    icon: <Award className="w-8 h-8 text-[#124A36]" />,
+                    icon: <Award className="w-8 h-8 text-amber-700" />,
                     title: "עיצוב פרימיום",
                     description: "עיצוב מרהיב ויוקרתי המדגיש את הערכים של המותג שלך"
                 },
                 {
-                    icon: <Layout className="w-8 h-8 text-[#124A36]" />,
+                    icon: <Layout className="w-8 h-8 text-amber-700" />,
                     title: "חווית משתמש מושלמת",
                     description: "ממשק אינטואיטיבי שמוביל את הגולש בדיוק לאן שצריך"
                 },
                 {
-                    icon: <MousePointer className="w-8 h-8 text-[#124A36]" />,
+                    icon: <MousePointer className="w-8 h-8 text-amber-700" />,
                     title: "קריאות לפעולה",
                     description: "הכוונה אפקטיבית של המבקרים להשגת המטרות העסקיות שלך"
                 },
                 {
-                    icon: <Layers className="w-8 h-8 text-[#124A36]" />,
+                    icon: <Layers className="w-8 h-8 text-amber-700" />,
                     title: "התאמה לכל מכשיר",
                     description: "עיצוב רספונסיבי מושלם למחשב, טאבלט וסמארטפון"
                 }
@@ -185,22 +185,22 @@ const DetailedServices = () => {
             icon: Target,
             features: [
                 {
-                    icon: <Target className="w-8 h-8 text-[#124A36]" />,
+                    icon: <Target className="w-8 h-8 text-amber-700" />,
                     title: "ממוקדי המרות",
                     description: "עמודי נחיתה ממוקדים בדיוק במטרה העסקית שלך"
                 },
                 {
-                    icon: <TrendingUp className="w-8 h-8 text-[#124A36]" />,
+                    icon: <TrendingUp className="w-8 h-8 text-amber-700" />,
                     title: "אופטימיזציה לקמפיינים",
                     description: "עמודים מותאמים לקמפיינים פרסומיים עם אחוזי המרה גבוהים"
                 },
                 {
-                    icon: <Users className="w-8 h-8 text-[#124A36]" />,
+                    icon: <Users className="w-8 h-8 text-amber-700" />,
                     title: "התאמה לקהל יעד",
                     description: "עיצוב ומסרים המותאמים במדויק לקהל היעד שלך"
                 },
                 {
-                    icon: <BarChart3 className="w-8 h-8 text-[#124A36]" />,
+                    icon: <BarChart3 className="w-8 h-8 text-amber-700" />,
                     title: "מעקב ומדידה",
                     description: "מערכות אנליטיקה מובנות למדידת ביצועים והמרות"
                 }
@@ -233,7 +233,7 @@ const DetailedServices = () => {
                         whileHover={{ scale: 1.05 }}
                         className={`px-6 py-3 rounded-full font-semibold flex items-center gap-2 ${
                             activeTab === index 
-                                ? "bg-gradient-to-r from-sky-500 to-indigo-500 text-white shadow-md" 
+                                ? "bg-gradient-to-r from-amber-500 to-rose-500 text-white shadow-md" 
                                 : "bg-white/80 text-gray-700 hover:bg-white hover:text-black"
                         }`}
                     >
@@ -251,14 +251,14 @@ const DetailedServices = () => {
                 className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl"
             >
                 <div className="mb-6 pb-6 border-b border-gray-200">
-                    <h3 className="text-3xl font-bold text-[#124A36] mb-4 flex items-center gap-3">
+                    <h3 className="text-3xl font-bold text-amber-700 mb-4 flex items-center gap-3">
                         {React.createElement(services[activeTab].icon, { size: 28 })}
                         {services[activeTab].title}
                     </h3>
                     <p className="text-lg text-gray-700">{services[activeTab].description}</p>
                     <Link 
                         to={services[activeTab].link} 
-                        className="inline-block mt-6 px-6 py-2 bg-gradient-to-r from-sky-500 to-indigo-500 text-white rounded-full font-semibold hover:from-sky-600 hover:to-indigo-600 transition-all shadow-md hover:shadow-lg"
+                        className="inline-block mt-6 px-6 py-2 bg-gradient-to-r from-amber-500 to-rose-500 text-white rounded-full font-semibold hover:from-amber-600 hover:to-rose-600 transition-all shadow-md hover:shadow-lg"
                     >
                         למידע נוסף
                     </Link>
@@ -276,7 +276,7 @@ const DetailedServices = () => {
                             <div className="flex justify-center mb-4">
                                 {feature.icon}
                             </div>
-                            <h4 className="text-lg font-bold text-[#124A36] text-center mb-2">
+                            <h4 className="text-lg font-bold text-amber-700 text-center mb-2">
                                 {feature.title}
                             </h4>
                             <p className="text-gray-600 text-center">
@@ -297,30 +297,30 @@ const Services = () => {
             icon: Globe,
             title: "בניית אתרים איכותיים",
             description: "אנו מתמחים בבניית אתרים מקצועיים, אתרי תדמית, עמודי נחיתה ופתרונות דיגיטליים מתקדמים. האתרים שלנו מעוצבים בקפידה ופותחו בטכנולוגיות המתקדמות ביותר, עם דגש על חווית משתמש, מהירות טעינה ואופטימיזציה למנועי חיפוש.",
-            bgColor: "bg-sky-50",
-            color: "bg-gradient-to-br from-sky-200 to-pink-200",
+            bgColor: "bg-amber-50",
+            color: "bg-gradient-to-br from-amber-200 to-rose-200",
             link: "/services/website-development-page"
         },
         {
             icon: PenTool,
             title: "עיצוב וקריאייטיב",
             description: "העיצוב הוא בלב כל מה שאנחנו עושים. צוות המעצבים והאנימטורים המוכשר שלנו מוכן ליצור חוויות ויזואליות יוצאות דופן שמשקפות את הערכים והייחודיות של המותג שלך.",
-            bgColor: "bg-pink-50",
-            color: "bg-gradient-to-br from-pink-200 to-sky-200",
+            bgColor: "bg-rose-50",
+            color: "bg-gradient-to-br from-rose-200 to-amber-200",
         },
         {
             icon: Layout,
             title: "ממשק וחווית משתמש",
             description: "פשוט ומענג. פונקציונלי ויוצא דופן. האתרים שלנו בנויים בתפיסת UX/UI מתקדמת המבטיחה חווית משתמש אופטימלית בכל מכשיר - ממחשב נייח ועד לטלפון נייד.",
-            bgColor: "bg-sky-50",
-            color: "bg-gradient-to-br from-sky-200 to-pink-200",
+            bgColor: "bg-amber-50",
+            color: "bg-gradient-to-br from-amber-200 to-rose-200",
         },
         {
             icon: LineChart,
             title: "שיווק ביצועים",
             description: "מומחי השיווק הדיגיטלי שלנו יהפכו את המותג שלך לבולט ונוכח ברשת. אנחנו משתמשים בכלים המתקדמים ביותר כדי להשיג תוצאות מדידות ואחוזי המרה גבוהים לקמפיינים שלך.",
-            bgColor: "bg-pink-50",
-            color: "bg-gradient-to-br from-pink-200 to-sky-200",
+            bgColor: "bg-rose-50",
+            color: "bg-gradient-to-br from-rose-200 to-amber-200",
         },
     ];
 
@@ -435,7 +435,7 @@ const Services = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
-                            className="bg-gradient-to-r from-sky-500 to-indigo-500 rounded-2xl p-12 text-center text-white shadow-xl"
+                            className="bg-gradient-to-r from-amber-500 to-rose-500 rounded-2xl p-12 text-center text-white shadow-xl"
                         >
                             <h3 className="text-3xl font-bold mb-4">מוכנים להתחיל?</h3>
                             <p className="text-xl mb-8 max-w-2xl mx-auto">
@@ -443,7 +443,7 @@ const Services = () => {
                             </p>
                             <Link 
                                 to="/contact" 
-                                className="inline-block px-10 py-4 bg-white text-sky-600 rounded-full font-bold text-lg shadow-md hover:shadow-lg hover:bg-sky-50 transition-all transform hover:-translate-y-1"
+                                className="inline-block px-10 py-4 bg-white text-amber-600 rounded-full font-bold text-lg shadow-md hover:shadow-lg hover:bg-amber-50 transition-all transform hover:-translate-y-1"
                             >
                                 דברו איתנו עכשיו
                             </Link>

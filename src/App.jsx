@@ -4,9 +4,14 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+
+import { HelmetProvider } from 'react-helmet-async';
+
 import WebsiteQuestionnaire from './pages/WebsiteQuestionnaire';
 import PortfolioPage from './pages/PortfolioPage';
 import ServicesPage from './pages/ServicesPage';
+import LandingPage from './pages/LandingPage';
+import MedicalSkeletonDemo from './components/MedicalSkeletonDemo';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
@@ -18,6 +23,7 @@ import LandingPageService from './services/LandingPageService';
 import WebsiteDevelopmentPage from './services/WebsiteDevelopmentPage';
 import BrandWebsitePage from './services/BrandWebsitePage';
 import Navbar from './components/Navbar';
+import MinimalDNADemo from './components/MinimalDNADemo';
 import ProfessionalReviews from './components/ProfessionalReviews.jsx';
 import ContactCTA from './components/ContactCTA';
 import Hero from './components/Hero';
@@ -79,6 +85,8 @@ function App() {
   }, []);
 
   return (
+    <HelmetProvider>
+
     <Router>
       <ScrollToTop />
 
@@ -90,13 +98,13 @@ function App() {
                   <Hero isVisible={isVisible} />
                   <Services isVisible={isVisible}/>
                   <Timeline isVisible={isVisible} />
-                  <ProfessionalReviews isVisible={isVisible} />
                   <ContactCTA />
                 </>
               }
             />
             <Route path="/questionnaire" element={<WebsiteQuestionnaire />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/MinimalDNADemo" element={<MinimalDNADemo />} />
             <Route path="/services/software-development" element={<SoftwareDevPage />} />
             <Route path="/services/cyber-security" element={<CyberSecurityPage />} />
             <Route path="/services/ai-iot" element={<AIandIoTPage />} />
@@ -105,6 +113,8 @@ function App() {
             <Route path="/services/cloud-solutions" element={<CloudSolutionsPage />} />
             <Route path="/services/landing-page-service" element={<LandingPageService />} />
             <Route path="/contact" element={<ContactPageWithTracking />} />
+            <Route path="/landing-page" element={<LandingPage />} />
+            <Route path="/MedicalSkeletonDemo" element={<MedicalSkeletonDemo />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/blog" element={<BlogPage />} />
@@ -122,6 +132,8 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </HelmetProvider>
+
   );
 }
 
