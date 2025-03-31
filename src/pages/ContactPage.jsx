@@ -253,7 +253,7 @@ const ContactPage = () => {
     document.head.appendChild(styleElement);
     
     // עדכון כותרת הדף
-    document.title = "צור קשר | גאיה-טק - פתרונות טכנולוגיים";
+    document.title = "צור קשר | tech-start - פתרונות טכנולוגיים";
     
     return () => {
       document.head.removeChild(styleElement);
@@ -666,7 +666,7 @@ const ContactPage = () => {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               {/* כפתור וואטסאפ */}
               <motion.a
-                href="https://api.whatsapp.com/send?phone=972546997625&text=היי%20גאיה-טק%20אני%20מתעניין%20ב..."
+                href="https://api.whatsapp.com/send?phone=972546997625&text=היי%20tech-start%20אני%20מתעניין%20ב..."
                 target="_blank"
                 rel="noreferrer"
                 variants={buttonVariants}
@@ -689,7 +689,7 @@ const ContactPage = () => {
               
               {/* כפתור אימייל */}
               <motion.a
-                href="mailto:lironkane1@gmail.com?subject=פנייה%20מאתר%20גאיה-טק"
+                href="mailto:lironkane1@gmail.com?subject=פנייה%20מאתר%20tech-start"
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
