@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, Quote, ChevronLeft, ChevronRight, Award, Heart, ThumbsUp } from 'lucide-react';
 
 const ProfessionalReviews = () => {
   // פונקציה להצגת כוכבים לפי דירוג
@@ -13,8 +13,8 @@ const ProfessionalReviews = () => {
         stars.push(
           <Star 
             key={i} 
-            className="text-yellow-400 fill-yellow-400" 
-            size={18} 
+            className="text-amber-400 fill-amber-400" 
+            size={20} 
           />
         );
       } else {
@@ -23,7 +23,7 @@ const ProfessionalReviews = () => {
           <Star 
             key={i} 
             className="text-gray-300" 
-            size={18} 
+            size={20} 
           />
         );
       }
@@ -225,31 +225,38 @@ const ProfessionalReviews = () => {
     setIsAutoPlay(true);
   };
   return (
-    <section className="relative w-full py-16 md:py-24 bg-gradient-to-br from-blue-50 via-white to-gray-100">
-      {/* רקע דקורטיבי */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <section className="relative w-full py-16 md:py-24 bg-gradient-to-br from-purple-50 via-white to-pink-50 overflow-hidden">
+      {/* אלמנטים דקורטיביים */}
+      <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5"></div>
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-bl from-purple-200 to-pink-200 rounded-full mix-blend-multiply opacity-10 blur-3xl animate-blob"></div>
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-gradient-to-tr from-violet-200 to-purple-200 rounded-full mix-blend-multiply opacity-10 blur-3xl animate-blob animation-delay-2000"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-7xl">
+        <div className="absolute top-20 left-20 w-12 h-12 bg-purple-400 rounded-full opacity-10 animate-ping animation-delay-3000"></div>
+        <div className="absolute top-3/4 right-1/4 w-12 h-12 bg-pink-400 rounded-full opacity-10 animate-ping animation-delay-1000"></div>
+        <div className="absolute bottom-20 left-1/3 w-12 h-12 bg-indigo-400 rounded-full opacity-10 animate-ping animation-delay-2000"></div>
+      </div>
       
       <div className="container relative z-10 mx-auto px-4 max-w-7xl">
         {/* כותרת ראשית עם אפקט זוהר */}
         <div className="text-center mb-16">
           <div className="relative inline-block">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 tracking-tight relative z-10">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4 tracking-tight relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-600">
               <span className="relative">
                 לקוחות ממליצים
-                <span className="absolute -bottom-1 left-0 w-full h-3 bg-blue-200 opacity-40 rounded-full -z-10"></span>
+                <span className="absolute -bottom-1 left-0 w-full h-3 bg-gradient-to-r from-purple-200 to-pink-200 opacity-60 rounded-full -z-10 transform animate-pulse"></span>
               </span>
             </h2>
-            <div className="absolute -top-6 -right-6 w-20 h-20 bg-yellow-300 rounded-full opacity-10 blur-2xl"></div>
-            <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-blue-400 rounded-full opacity-10 blur-2xl"></div>
+            <div className="absolute -top-6 -right-6 w-20 h-20 bg-purple-300 rounded-full opacity-20 blur-2xl"></div>
+            <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-pink-400 rounded-full opacity-20 blur-2xl"></div>
           </div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mt-4">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto mt-4 animated-gradient-text">
             המומחים מספרים על החוויה שלהם בפיתוח אתרים ודפי נחיתה
           </p>
         </div>
 
         {/* מכלול הסליידר */}
         <div 
-          className="relative shadow-xl rounded-2xl overflow-hidden bg-white"
+          className="relative shadow-2xl rounded-3xl overflow-hidden bg-white/95 backdrop-blur-sm border border-purple-100"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           ref={sliderRef}
@@ -260,18 +267,18 @@ const ProfessionalReviews = () => {
           {/* כפתורי ניווט */}
           <button 
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full bg-white/90 hover:bg-white shadow-lg transition-all duration-300 transform hover:scale-110 group focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full bg-white/90 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 shadow-lg transition-all duration-300 transform hover:scale-110 group focus:outline-none focus:ring-2 focus:ring-purple-400 hover:shadow-purple-200/50"
             aria-label="המלצה קודמת"
           >
-            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-800 transform group-hover:-translate-x-1 transition-transform" />
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-800 group-hover:text-purple-600 transform group-hover:-translate-x-1 transition-all" />
           </button>
           
           <button 
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full bg-white/90 hover:bg-white shadow-lg transition-all duration-300 transform hover:scale-110 group focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 md:p-4 rounded-full bg-white/90 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 shadow-lg transition-all duration-300 transform hover:scale-110 group focus:outline-none focus:ring-2 focus:ring-purple-400 hover:shadow-purple-200/50"
             aria-label="המלצה הבאה"
           >
-            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-800 transform group-hover:translate-x-1 transition-transform" />
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-800 group-hover:text-purple-600 transform group-hover:translate-x-1 transition-all" />
           </button>
 
           {/* קונטיינר הסליידר עם תמיכה ב-RTL */}
@@ -287,12 +294,13 @@ const ProfessionalReviews = () => {
                 >
                   <div className="max-w-4xl mx-auto h-full">
                     <div 
-                      className="bg-white rounded-2xl border border-gray-100 shadow-lg h-full
-                              transform transition-all duration-500 hover:shadow-xl p-6 md:p-8"
+                      className="bg-white rounded-2xl border border-purple-100 shadow-lg h-full
+                              transform transition-all duration-500 hover:shadow-xl hover:shadow-purple-100/50 p-6 md:p-8
+                              hover:border-purple-200 backdrop-blur-sm"
                     >
                       {/* מרכאות דקורטיביות */}
-                      <div className="absolute top-6 right-6 text-blue-100">
-                        <Quote size={40} strokeWidth={1} />
+                      <div className="absolute top-6 right-6 text-gradient-purple opacity-30">
+                        <Quote size={50} strokeWidth={1} className="animate-pulse-slow" />
                       </div>
                       
                       <div className="flex flex-col h-full">
@@ -300,38 +308,46 @@ const ProfessionalReviews = () => {
                           {/* פרטי הכותב וכוכבים */}
                           <div className="flex items-center gap-4">
                             <div className="relative">
-                              <div className="w-14 h-14 overflow-hidden rounded-full border-2 border-blue-100">
+                              <div className="w-16 h-16 overflow-hidden rounded-full border-2 border-purple-200 shadow-inner p-0.5 bg-gradient-to-r from-purple-100 to-pink-100 transform transition-transform duration-300 hover:scale-105">
                                 <img 
                                   src={review.imageUrl} 
                                   alt={review.author} 
-                                  className="w-full h-full object-cover"
+                                  className="w-full h-full object-cover rounded-full"
                                   onError={(e) => {
-                                    e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.author)}&background=0D8ABC&color=fff`;
+                                    e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.author)}&background=8B5CF6&color=fff`;
                                   }}
                                 />
                               </div>
+                              <div className="absolute -bottom-1 -right-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full p-1 shadow-md">
+                                <ThumbsUp size={12} className="fill-white" />
+                              </div>
                             </div>
                             <div>
-                              <h3 className="text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors">
+                              <h3 className="text-xl font-bold text-gray-800 hover:text-purple-600 transition-colors">
                                 {review.author}
                               </h3>
-                              <p className="text-gray-600 text-sm">{review.role}</p>
+                              <p className="text-gray-500 text-sm">{review.role}</p>
                             </div>
                           </div>
                           
-                          <div className="flex gap-1 mt-2 md:mt-0">{renderStars(review.rating)}</div>
+                          <div className="flex gap-1 mt-2 md:mt-0 animate-in slide-in-from-right">
+                            {renderStars(review.rating)}
+                          </div>
                         </div>
 
                         {/* סוג הפרויקט */}
-                        <div className="inline-block mb-6 self-start px-4 py-2 bg-gradient-to-r from-blue-50 to-blue-100
-                                    border border-blue-200 rounded-full text-blue-700 text-sm font-medium
-                                    hover:border-blue-300 transition-all duration-300">
-                          {review.projectType}
+                        <div className="inline-block mb-6 self-start px-4 py-2 bg-gradient-to-r from-purple-50 to-pink-50
+                                    border border-purple-200 rounded-full text-purple-700 text-sm font-medium
+                                    hover:from-purple-100 hover:to-pink-100 hover:border-purple-300 transition-all duration-300 shadow-sm">
+                          <div className="flex items-center gap-2">
+                            <Award size={14} className="text-pink-500" />
+                            {review.projectType}
+                          </div>
                         </div>
 
                         {/* תוכן המלצה */}
                         <p className="text-gray-700 text-lg leading-relaxed flex-grow">
-                          {review.content}
+                          "{review.content}"
                         </p>
                       </div>
                     </div>
@@ -342,10 +358,10 @@ const ProfessionalReviews = () => {
           </div>
 
           {/* חלק תחתון - מידע וניווט */}
-          <div className="bg-gray-50 border-t border-gray-100 p-4">
+          <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-t border-purple-100 p-4">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               {/* מידע על מספר המלצה */}
-              <div className="text-gray-500 font-medium text-sm">
+              <div className="text-gray-600 font-medium text-sm">
                 המלצה {currentIndex + 1} מתוך {reviews.length}
               </div>
               
@@ -357,7 +373,7 @@ const ProfessionalReviews = () => {
                     onClick={() => handleDotClick(index)}
                     className={`transition-all duration-300 focus:outline-none ${
                       index === currentIndex 
-                        ? 'w-8 h-2 bg-blue-500'
+                        ? 'w-10 h-2 bg-gradient-to-r from-purple-500 to-pink-500 shadow-md'
                         : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                     } rounded-full hover:scale-110`}
                     aria-label={`המלצה ${index + 1}`}
@@ -366,8 +382,9 @@ const ProfessionalReviews = () => {
               </div>
               
               {/* טקסט מעודד */}
-              <div className="hidden md:block text-sm text-gray-500 font-medium">
-                <span className="text-blue-600">100%</span> מהלקוחות מרוצים
+              <div className="hidden md:flex items-center gap-2 text-sm text-gray-600 font-medium">
+                <Heart size={14} className="text-pink-500 fill-pink-500 animate-pulse" />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600 font-bold">100%</span> מהלקוחות מרוצים
               </div>
             </div>
           </div>
@@ -377,9 +394,10 @@ const ProfessionalReviews = () => {
         <div className="mt-16 text-center">
           <a 
             href="#contact" 
-            className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold text-lg shadow-lg hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+            className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg shadow-lg hover:shadow-xl hover:shadow-purple-300/30 transform transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 group"
           >
-            רוצה אתר מקצועי כזה? צור קשר עכשיו
+            <span className="mr-2">רוצה אתר מקצועי כזה?</span>
+            <span className="bg-white text-purple-600 py-1 px-3 rounded-full text-sm font-bold group-hover:bg-purple-100 transition-colors">צור קשר עכשיו</span>
           </a>
         </div>
       </div>
@@ -387,9 +405,95 @@ const ProfessionalReviews = () => {
       {/* סגנונות CSS */}
       <style jsx>{`
         .bg-grid-pattern {
-          background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
-                           linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+          background-image: linear-gradient(to right, rgba(147, 51, 234, 0.03) 1px, transparent 1px),
+                           linear-gradient(to bottom, rgba(147, 51, 234, 0.03) 1px, transparent 1px);
           background-size: 20px 20px;
+        }
+        
+        .animate-blob {
+          animation: blob 7s infinite alternate;
+        }
+        
+        .animate-pulse-slow {
+          animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        .animation-delay-1000 {
+          animation-delay: 1s;
+        }
+        
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        
+        .animation-delay-3000 {
+          animation-delay: 3s;
+        }
+        
+        .text-gradient-purple {
+          background: linear-gradient(to right, #8b5cf6, #ec4899);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        
+        .animated-gradient-text {
+          background-size: 200% auto;
+          background-image: linear-gradient(to right, #8b5cf6, #ec4899, #8b5cf6);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: shine 3s ease-in-out infinite;
+          display: inline-block;
+        }
+        
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+        
+        @keyframes shine {
+          to {
+            background-position: 200% center;
+          }
+        }
+        
+        .animate-in {
+          animation: animateIn 0.3s ease-out forwards;
+        }
+        
+        @keyframes animateIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .slide-in-from-right {
+          animation: slideInFromRight 0.5s ease-out forwards;
+        }
+        
+        @keyframes slideInFromRight {
+          from {
+            opacity: 0;
+            transform: translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
         }
       `}</style>
     </section>

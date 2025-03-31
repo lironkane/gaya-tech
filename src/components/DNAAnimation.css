@@ -1,0 +1,78 @@
+/* src/components/DNAAnimation.css */
+.dna-animation-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .dna-animation-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+  /* מיקומים חדשים */
+  .dna-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%; /* תופס רק חצי מהרוחב - בצד ימין */
+    height: 100%;
+    z-index: 0;
+  }
+  
+  .dna-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%; /* תופס רק חצי מהרוחב - בצד שמאל */
+    height: 100%;
+    z-index: 0;
+  }
+  
+  .dna-center {
+    position: fixed;
+    top: 0;
+    left: 25%;
+    width: 50%; /* תופס חצי מהרוחב - במרכז */
+    height: 100%;
+    z-index: 0;
+  }
+  
+  /* כשמשתמשים בקומפוננטה כרקע מלא */
+  .dna-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }
+  
+  /* עבור שימוש בתוך סקשן */
+  .dna-section {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    min-height: 350px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* התאמה למסכים קטנים */
+  @media (max-width: 768px) {
+    .dna-section {
+      height: 350px;
+      min-height: 250px;
+    }
+    
+    .dna-left, .dna-right, .dna-center {
+      width: 100%;
+      left: 0;
+      right: 0;
+    }
+  }

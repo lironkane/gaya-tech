@@ -1,0 +1,638 @@
+/* /Users/lironcohen/Code/gaya-tech/src/pages/LandingPage.css */
+
+/* ------ משתנים גלובליים ------ */
+:root {
+  --primary-color: #4587FF;
+  --secondary-color: #54E9D1;
+  --gradient-text: linear-gradient(90deg, #54E9D1 0%, #4587FF 100%);
+  --gradient-button: linear-gradient(90deg, #4587FF 0%, #64ABFF 100%);
+  --text-dark: #0A1C3F;
+  --text-light: #555B6B;
+  --background-light: #F5F8FF;
+  --card-color: #E3F1FF;
+  --shadow-light: 0 10px 25px rgba(69, 135, 255, 0.1);
+  --shadow-medium: 0 15px 35px rgba(69, 135, 255, 0.15);
+  --border-radius-small: 10px;
+  --border-radius-large: 20px;
+  --border-radius-round: 50px;
+  --transition-normal: all 0.3s ease;
+}
+
+/* ------ ריסט וסגנון בסיסי ------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rubik', 'Assistant', 'Segoe UI', sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+.medical-page.modern {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.page-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ------ כותרות וטקסט ------ */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-text);
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ------ סקשן היתרונות ------ */
+.benefits-section {
+  padding: 6rem 0;
+  background-color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.benefit-card {
+  background-color: #fff;
+  border-radius: var(--border-radius-small);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-light);
+  border: 1px solid rgba(69, 135, 255, 0.1);
+}
+
+.benefit-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-medium);
+}
+
+.benefit-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.benefit-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.benefit-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.benefit-card p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+/* ------ סקשן אודות ------ */
+.about-section {
+  padding: 6rem 0;
+  background-color: var(--background-light);
+  position: relative;
+  z-index: 2;
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.about-image {
+  flex: 0 0 40%;
+  position: relative;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-medium);
+}
+
+.experience-badge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: var(--gradient-button);
+  color: white;
+  padding: 15px 25px;
+  border-radius: var(--border-radius-small);
+  box-shadow: var(--shadow-light);
+  text-align: center;
+}
+
+.experience-badge .years {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.experience-badge .text {
+  font-size: 0.9rem;
+}
+
+.about-text {
+  flex: 0 0 55%;
+}
+
+.about-title {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.about-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+.about-features {
+  margin-bottom: 2.5rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.feature-icon {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(69, 135, 255, 0.1);
+  color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+.feature-text h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.feature-text p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.about-cta {
+  background: var(--gradient-button);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius-round);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-light);
+}
+
+.about-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* ------ סקשן תהליך העבודה ------ */
+.process-section {
+  padding: 6rem 0;
+  background-color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.process-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 55px;
+  left: 2.5%;
+  width: 95%;
+  height: 2px;
+  background: linear-gradient(to right, rgba(84, 233, 209, 0.3), rgba(69, 135, 255, 0.3));
+  z-index: -1;
+}
+
+.process-step {
+  flex: 1;
+  min-width: 200px;
+  max-width: 250px;
+  text-align: center;
+  position: relative;
+  padding: 0 1rem;
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--gradient-button);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0 auto 1.5rem;
+  z-index: 2;
+  position: relative;
+  box-shadow: var(--shadow-light);
+}
+
+.process-step h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.process-step p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* ------ סקשן צור קשר ------ */
+.contact-section {
+  padding: 6rem 0;
+  background-color: var(--background-light);
+  position: relative;
+  z-index: 2;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.contact-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.contact-info > p {
+  margin-bottom: 2rem;
+  color: var(--text-light);
+}
+
+.contact-details {
+  margin-top: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.contact-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(69, 135, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+}
+
+.contact-text h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+  color: var(--text-dark);
+}
+
+.contact-text p {
+  color: var(--text-light);
+}
+
+.contact-text a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition-normal);
+}
+
+.contact-text a:hover {
+  color: var(--primary-dark);
+}
+
+.contact-form {
+  background-color: #fff;
+  padding: 2.5rem;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-light);
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius-small);
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text-dark);
+  transition: var(--transition-normal);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(69, 135, 255, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-button {
+  background: var(--gradient-button);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  width: 100%;
+  border-radius: var(--border-radius-round);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-light);
+}
+
+.submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* ------ כפתור צף לשיחת טלפון ------ */
+.floating-cta {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  background: var(--gradient-button);
+  color: white;
+  padding: 10px 20px;
+  border-radius: var(--border-radius-round);
+  box-shadow: var(--shadow-medium);
+  z-index: 100;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.floating-cta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(69, 135, 255, 0.3);
+}
+
+.floating-phone-icon {
+  font-size: 1.5rem;
+  margin-left: 8px;
+}
+
+.floating-text {
+  font-weight: 600;
+}
+
+/* ------ פוטר ------ */
+.main-footer {
+  background-color: var(--text-dark);
+  color: white;
+  padding: 4rem 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-logo h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.footer-logo p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+}
+
+.footer-links h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: var(--transition-normal);
+}
+
+.footer-links a:hover {
+  color: var(--secondary-color);
+}
+
+.footer-contact h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.footer-contact p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.8rem;
+}
+
+.footer-contact a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: var(--transition-normal);
+}
+
+.footer-contact a:hover {
+  color: var(--secondary-color);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+/* ------ תאימות למובייל ------ */
+@media (max-width: 992px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .about-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .about-image {
+    width: 100%;
+  }
+  
+  .about-text {
+    width: 100%;
+  }
+  
+  .process-steps::before {
+    display: none;
+  }
+  
+  .process-step {
+    margin-bottom: 3rem;
+    flex-basis: 45%;
+  }
+  
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .process-step {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .process-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .process-step {
+    width: 100%;
+    max-width: 300px;
+  }
+}

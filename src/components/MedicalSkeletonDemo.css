@@ -1,0 +1,203 @@
+/* סגנונות לעמוד הרפואי המשלב את השלד ברקע */
+
+.medical-page {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f9ff 0%, #ebf4ff 100%);
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    direction: rtl;
+  }
+  
+  .page-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  header {
+    margin: 4rem 0;
+    padding-right: 2rem;
+    border-right: 4px solid #2a4b8f;
+  }
+  
+  header h1 {
+    color: #1e3a6c;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  header p {
+    color: #4a6997;
+    font-size: 1.3rem;
+  }
+  
+  .intro {
+    margin: 4rem 0;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(42, 75, 143, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  
+  .intro h2 {
+    color: #2a4b8f;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .intro p {
+    color: #505c75;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+  }
+  
+  .service-card {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(42, 75, 143, 0.08);
+    transition: all 0.3s ease;
+    border-top: 3px solid #62a9ff;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(42, 75, 143, 0.15);
+    border-top-color: #2a4b8f;
+  }
+  
+  .service-card h3 {
+    color: #2a4b8f;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .service-card p {
+    color: #505c75;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .cta {
+    margin: 6rem 0 4rem;
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(42, 75, 143, 0.85) 0%, rgba(98, 169, 255, 0.85) 100%);
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(42, 75, 143, 0.2);
+  }
+  
+  .cta h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  .contact-button {
+    background-color: white;
+    color: #2a4b8f;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background-color: #f5f9ff;
+  }
+  
+  /* התאמות לנוכחות השלד */
+  @media (min-width: 992px) {
+    .page-content {
+      width: 65%;
+      margin-right: 0;
+      margin-left: auto;
+      padding-left: 2rem;
+    }
+    
+    /* כאשר השלד בצד שמאל */
+    .skeleton-left .page-content {
+      margin-left: 0;
+      margin-right: auto;
+      padding-right: 2rem;
+      padding-left: 0;
+    }
+  }
+  
+  /* התאמות למסכים קטנים */
+  @media (max-width: 992px) {
+    header {
+      margin: 3rem 0;
+    }
+    
+    header h1 {
+      font-size: 2.3rem;
+    }
+    
+    .intro, .services, .cta {
+      margin: 3rem 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    header {
+      margin: 2rem 0;
+      padding-right: 1rem;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+    }
+    
+    header p {
+      font-size: 1.1rem;
+    }
+    
+    .services {
+      grid-template-columns: 1fr;
+    }
+    
+    .cta {
+      padding: 2rem;
+    }
+    
+    .cta h2 {
+      font-size: 1.6rem;
+    }
+  }
+  
+  /* אפקט אור על הכותרות כשהשלד זוהר */
+  @keyframes glow {
+    0% { text-shadow: 0 0 5px rgba(98, 169, 255, 0); }
+    50% { text-shadow: 0 0 15px rgba(98, 169, 255, 0.5); }
+    100% { text-shadow: 0 0 5px rgba(98, 169, 255, 0); }
+  }
+  
+  header h1 {
+    animation: glow 4s infinite;
+  }
